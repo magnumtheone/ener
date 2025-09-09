@@ -491,6 +491,53 @@ ml-2"></i></a>
         </div>
     </section>
 
+     <!-- Mini panneau publicitaire -->
+    <section id="mini-banner" class="py-8 bg-gray-100" data-anim="fade-up">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                <div class="swiper-container" id="banner-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide relative">
+                            <img src="../images/IMG-20250907-WA0047.jpg" class="w-full h-48 md:h-64 object-cover" alt="Projet Masco">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                                <h3 class="text-white text-xl font-bold">Expertise en Construction</h3>
+                                <p class="text-white/90">Des projets d'envergure réalisés avec excellence</p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide relative">
+                            <img src="../images/IMG-20250907-WA0173.jpg" class="w-full h-48 md:h-64 object-cover" alt="Services Masco">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                                <h3 class="text-white text-xl font-bold">Infrastructure ferroviaire</h3>
+                                <p class="text-white/90">Développement des transports modernes en RDC</p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide relative">
+                            <img src="../images/IMG-20250907-WA0039.jpg" class="w-full h-48 md:h-64 object-cover" alt="Projet Masco">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                                <h3 class="text-white text-xl font-bold">Ingénierie civile</h3>
+                                <p class="text-white/90">Solutions durables pour l'avenir de la RDC</p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide relative">
+                            <img src="../images/IMG-20250907-WA0064.jpg" class="w-full h-48 md:h-64 object-cover" alt="Projet Masco">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                                <h3 class="text-white text-xl font-bold">Construction durable</h3>
+                                <p class="text-white/90">Des infrastructures respectueuses de l'environnement</p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide relative">
+                            <img src="../images/IMG-20250907-WA0116.jpg" class="w-full h-48 md:h-64 object-cover" alt="Projet Masco">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                                <h3 class="text-white text-xl font-bold">Innovation énergétique</h3>
+                                <p class="text-white/90">Technologies avancées pour l'avenir énergétique</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <!-- Blog Section -->
     <section id="blog" class="py-12 bg-gray-50" data-anim="fade-up">
@@ -809,18 +856,42 @@ IntersectionObserver(function(entries, appearOnScroll) {
                 
             } catch (error) {
                 console.error('Erreur lors du chargement des articles:', error);
-                blogContainer.innerHTML = `
-                    <div class="col-span-3 text-center py-8">
-                        <div class="bg-white rounded-lg overflow-hidden shadow-sm">
-                            <img src="../images/IMG-20250907-WA0034.jpg" alt="Article par défaut" class="w-full h-44 object-cover">
-                            <div class="p-4">
-                                <time class="text-sm text-gray-500">15 août 2025</time>
-                                <h3 class="text-lg font-semibold text-primary mt-2">Réhabilitation ferroviaire : premières phases</h3>
-                                <p class="text-gray-600 text-sm mt-2">Retour sur les premières étapes de réhabilitation de la ligne Kisangani–Ubundu et les enjeux locaux.</p>
-                                <span class="inline-block mt-3 text-gray-400 font-medium">Article indisponible pour le moment.</span>
-                            </div>
+                blogContainer.innerHTML = '';
+                // Article 1
+                blogContainer.innerHTML += `
+                    <article class="bg-white rounded-lg overflow-hidden shadow-sm stagger-item hover:shadow-md transition-shadow duration-300">
+                        <img src="../images/IMG-20250907-WA0034.jpg" alt="Article par défaut" class="w-full h-44 object-cover">
+                        <div class="p-4">
+                            <time class="text-sm text-gray-500">15 août 2025</time>
+                            <h3 class="text-lg font-semibold text-primary mt-2">Réhabilitation ferroviaire : premières phases</h3>
+                            <p class="text-gray-600 text-sm mt-2">Retour sur les premières étapes de réhabilitation de la ligne Kisangani–Ubundu et les enjeux locaux.</p>
+                            <span class="inline-block mt-3 text-gray-400 font-medium">Article indisponible pour le moment.</span>
                         </div>
-                    </div>
+                    </article>
+                `;
+                // Article 2
+                blogContainer.innerHTML += `
+                    <article class="bg-white rounded-lg overflow-hidden shadow-sm stagger-item hover:shadow-md transition-shadow duration-300">
+                        <img src="../images/IMG-20250907-WA0123.jpg" alt="Travaux routiers" class="w-full h-44 object-cover">
+                        <div class="p-4">
+                            <time class="text-sm text-gray-500">22 juillet 2025</time>
+                            <h3 class="text-lg font-semibold text-primary mt-2">Travaux routiers à Kisangani</h3>
+                            <p class="text-gray-600 text-sm mt-2">Point sur l’avancement des travaux routiers et l’impact sur la mobilité urbaine à Kisangani.</p>
+                            <span class="inline-block mt-3 text-gray-400 font-medium">Article indisponible pour le moment.</span>
+                        </div>
+                    </article>
+                `;
+                // Article 3
+                blogContainer.innerHTML += `
+                    <article class="bg-white rounded-lg overflow-hidden shadow-sm stagger-item hover:shadow-md transition-shadow duration-300">
+                        <img src="../images/IMG-20250907-WA0173.jpg" alt="Chantier hydroélectrique" class="w-full h-44 object-cover">
+                        <div class="p-4">
+                            <time class="text-sm text-gray-500">5 juin 2025</time>
+                            <h3 class="text-lg font-semibold text-primary mt-2">Nouveau chantier hydroélectrique</h3>
+                            <p class="text-gray-600 text-sm mt-2">Lancement du chantier hydroélectrique et perspectives pour l’approvisionnement énergétique local.</p>
+                            <span class="inline-block mt-3 text-gray-400 font-medium">Article indisponible pour le moment.</span>
+                        </div>
+                    </article>
                 `;
             }
         }
