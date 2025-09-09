@@ -145,7 +145,7 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
     <section id="gallery" class="py-12 bg-gray-50" data-anim="zoom-in">
         <div class="max-w-6xl mx-auto px-4">
             <h2 class="text-2xl font-bold text-primary mb-6">Galerie photos</h2>
-            <p class="text-gray-600 mb-4">Quelques images récentes de nos chantiers et réalisations. Cliquez pour agrandir.</p>
+            <p class="text-gray-600 mb-4">Quelques images récentes de nos recents moments forts.</p>
             <div id="gallery-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                 <!-- Thumbnails injected by JS or static fallback -->
                 <img src="../images/IMG-20250907-WA0034.jpg" alt="Galerie 1" class="w-full h-36 object-cover rounded-md cursor-pointer" loading="lazy">
@@ -817,104 +817,6 @@ IntersectionObserver(function(entries, appearOnScroll) {
         document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); if(e.key==='ArrowRight') next(); if(e.key==='ArrowLeft') prev(); });
     })();
 
-    // Chargement dynamique des articles de blog
-    (function(){
-        const blogContainer = document.getElementById('blog-articles');
-        if(!blogContainer) return;
-
-        // Configuration de l'API backend
-        const API_BASE_URL = 'http://127.0.0.1:8000';
-        
-        async function loadBlogArticles(){
-            try {
-                const response = await fetch(`${API_BASE_URL}/api/articles/`);
-                if(!response.ok) throw new Error('Erreur de chargement');
-                
-                const articles = await response.json();
-                
-                // Vider le container (enlever le placeholder)
-                blogContainer.innerHTML = '';
-                
-                if(articles.length === 0){
-                    blogContainer.innerHTML = `
-                        <div class="col-span-3 text-center py-8">
-                            <p class="text-gray-500">Aucun article publié pour le moment.</p>
-                        </div>
-                    `;
-                    return;
-                }
-                
-                // Afficher les 3 derniers articles
-                articles.slice(0, 3).forEach((article, index) => {
-                    const articleCard = document.createElement('article');
-                    articleCard.className = 'bg-white rounded-lg overflow-hidden shadow-sm stagger-item hover:shadow-md transition-shadow duration-300';
-                    articleCard.setAttribute('aria-labelledby', `blog-post-${article.id}`);
-                    
-                    const imageUrl = article.image ? `${API_BASE_URL}${article.image}` : '../images/IMG-20250907-WA0034.jpg';
-                    const date = new Date(article.date_publication).toLocaleDateString('fr-FR', {
-                        year: 'numeric',
-                        month: 'long', 
-                        day: 'numeric'
-                    });
-                    
-                    articleCard.innerHTML = `
-                        <img src="${imageUrl}" alt="${article.titre}" class="w-full h-44 object-cover" loading="lazy">
-                        <div class="p-4">
-                            <time datetime="${article.date_publication}" class="text-sm text-gray-500">${date}</time>
-                            <h3 id="blog-post-${article.id}" class="text-lg font-semibold text-primary mt-2">${article.titre}</h3>
-                            <p class="text-gray-600 text-sm mt-2">${article.contenu.substring(0, 120)}${article.contenu.length > 120 ? '...' : ''}</p>
-                            <a href="/article/${article.id}/" class="inline-block mt-3 text-primary font-medium hover:text-primary-dark">Lire la suite →</a>
-                        </div>
-                    `;
-                    
-                    blogContainer.appendChild(articleCard);
-                });
-                
-            } catch (error) {
-                console.error('Erreur lors du chargement des articles:', error);
-                blogContainer.innerHTML = '';
-                // Article 1
-                blogContainer.innerHTML += `
-                    <article class="bg-white rounded-lg overflow-hidden shadow-sm stagger-item hover:shadow-md transition-shadow duration-300">
-                        <img src="../images/IMG-20250907-WA0034.jpg" alt="Article par défaut" class="w-full h-44 object-cover">
-                        <div class="p-4">
-                            <time class="text-sm text-gray-500">15 août 2025</time>
-                            <h3 class="text-lg font-semibold text-primary mt-2">Réhabilitation ferroviaire : premières phases</h3>
-                            <p class="text-gray-600 text-sm mt-2">Retour sur les premières étapes de réhabilitation de la ligne Kisangani–Ubundu et les enjeux locaux.</p>
-                            <span class="inline-block mt-3 text-gray-400 font-medium">Article indisponible pour le moment.</span>
-                        </div>
-                    </article>
-                `;
-                // Article 2
-                blogContainer.innerHTML += `
-                    <article class="bg-white rounded-lg overflow-hidden shadow-sm stagger-item hover:shadow-md transition-shadow duration-300">
-                        <img src="../images/IMG-20250907-WA0123.jpg" alt="Travaux routiers" class="w-full h-44 object-cover">
-                        <div class="p-4">
-                            <time class="text-sm text-gray-500">22 juillet 2025</time>
-                            <h3 class="text-lg font-semibold text-primary mt-2">Travaux routiers à Kisangani</h3>
-                            <p class="text-gray-600 text-sm mt-2">Point sur l’avancement des travaux routiers et l’impact sur la mobilité urbaine à Kisangani.</p>
-                            <span class="inline-block mt-3 text-gray-400 font-medium">Article indisponible pour le moment.</span>
-                        </div>
-                    </article>
-                `;
-                // Article 3
-                blogContainer.innerHTML += `
-                    <article class="bg-white rounded-lg overflow-hidden shadow-sm stagger-item hover:shadow-md transition-shadow duration-300">
-                        <img src="../images/IMG-20250907-WA0173.jpg" alt="Chantier hydroélectrique" class="w-full h-44 object-cover">
-                        <div class="p-4">
-                            <time class="text-sm text-gray-500">5 juin 2025</time>
-                            <h3 class="text-lg font-semibold text-primary mt-2">Nouveau chantier hydroélectrique</h3>
-                            <p class="text-gray-600 text-sm mt-2">Lancement du chantier hydroélectrique et perspectives pour l’approvisionnement énergétique local.</p>
-                            <span class="inline-block mt-3 text-gray-400 font-medium">Article indisponible pour le moment.</span>
-                        </div>
-                    </article>
-                `;
-            }
-        }
-        
-        // Charger les articles au chargement de la page
-        loadBlogArticles();
-    })();
     </script>
 </body> 
 </html> 
