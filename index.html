@@ -127,20 +127,58 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
     </section>
 
     <!-- Partners Section (separate, images only) -->
-    <section id="partners" class="py-8 bg-white" data-anim="fade-up">
+    <section id="partners" class="py-8 bg-white">
         <div class="max-w-6xl mx-auto px-4 text-center">
-            <h2 class="text-2xl font-bold text-primary mb-4 section-animate">Nos Partenaires</h2>
-            <p class="text-gray-600 mb-4 section-animate">Nous collaborons avec des acteurs locaux et internationaux.</p>
-            <div id="partners-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 items-center justify-items-center">
-                <img src="../images/vice-ministere.jpg" alt="APCSC" class="w-28 h-16 object-contain" loading="lazy">
-                <img src="../images/apcsc.jpg" alt="APCSC" class="w-28 h-16 object-contain" loading="lazy">
-                <img src="../images/bgfibank.jpg" alt="BGFI" class="w-28 h-16 object-contain" loading="lazy">
-                <img src="../images/cccc.jpg" alt="CCCC" class="w-28 h-16 object-contain" loading="lazy">
-                <img src="../images/ccecc.jpg" alt="CCECC" class="w-28 h-16 object-contain" loading="lazy">
-                <img src="../images/fhec.jpg" alt="FHEC" class="w-28 h-16 object-contain" loading="lazy">
+            <h2 class="text-2xl font-bold text-primary mb-4">Nos Partenaires</h2>
+            <p class="text-gray-600 mb-8">Nous collaborons avec des acteurs locaux et internationaux pour bâtir l'avenir.</p>
+            
+            <!-- Flex container for horizontal scrolling on smaller screens and grid on larger -->
+            <div class="flex overflow-x-auto md:grid md:grid-cols-6 gap-8 items-start justify-center py-4">
+                
+                <div class="partner-item flex-shrink-0 w-36 text-center cursor-pointer" data-name="Vice-Ministère des ITPR" data-description="Le Vice-Ministère des Infrastructures, Travaux Publics et Reconstruction est un partenaire clé dans la supervision et la validation de nos projets d'envergure nationale.">
+                    <img src="../images/vice-ministere.jpg" alt="Logo Vice-Ministère" class="w-28 h-20 object-contain mx-auto mb-2 transition-transform duration-300 hover:scale-110">
+                    <p class="text-sm font-medium text-gray-700">Vice-Ministère ITPR</p>
+                </div>
+
+                <div class="partner-item flex-shrink-0 w-36 text-center cursor-pointer" data-name="APCSC" data-description="L'APCSC nous accompagne dans la gestion et la logistique de nos projets, assurant une coordination efficace sur le terrain.">
+                    <img src="../images/apcsc.jpg" alt="Logo APCSC" class="w-28 h-20 object-contain mx-auto mb-2 transition-transform duration-300 hover:scale-110">
+                    <p class="text-sm font-medium text-gray-700">APCSC</p>
+                </div>
+
+                <div class="partner-item flex-shrink-0 w-36 text-center cursor-pointer" data-name="BGFI Bank" data-description="Partenaire financier de premier plan, BGFI Bank nous soutient dans le financement de nos projets d'infrastructure.">
+                    <img src="../images/bgfibank.jpg" alt="Logo BGFI Bank" class="w-28 h-20 object-contain mx-auto mb-2 transition-transform duration-300 hover:scale-110">
+                    <p class="text-sm font-medium text-gray-700">BGFI Bank</p>
+                </div>
+
+                <div class="partner-item flex-shrink-0 w-36 text-center cursor-pointer" data-name="CCCC" data-description="China Communications Construction Company (CCCC) est un partenaire technique stratégique pour les projets ferroviaires et routiers.">
+                    <img src="../images/cccc.jpg" alt="Logo CCCC" class="w-28 h-20 object-contain mx-auto mb-2 transition-transform duration-300 hover:scale-110">
+                    <p class="text-sm font-medium text-gray-700">CCCC</p>
+                </div>
+
+                <div class="partner-item flex-shrink-0 w-36 text-center cursor-pointer" data-name="CCECC" data-description="China Civil Engineering Construction Corporation (CCECC) collabore avec nous sur des projets de construction complexes.">
+                    <img src="../images/ccecc.jpg" alt="Logo CCECC" class="w-28 h-20 object-contain mx-auto mb-2 transition-transform duration-300 hover:scale-110">
+                    <p class="text-sm font-medium text-gray-700">CCECC</p>
+                </div>
+
+                <div class="partner-item flex-shrink-0 w-36 text-center cursor-pointer" data-name="FHEC" data-description="FHEC est un partenaire essentiel pour les études et la mise en œuvre de nos projets énergétiques.">
+                    <img src="../images/fhec.jpg" alt="Logo FHEC" class="w-28 h-20 object-contain mx-auto mb-2 transition-transform duration-300 hover:scale-110">
+                    <p class="text-sm font-medium text-gray-700">FHEC</p>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- Modal for Partner Details -->
+    <div id="partner-modal" class="modal-backdrop" aria-hidden="true" role="dialog">
+        <div class="modal max-w-lg w-11/12 p-6 relative">
+            <button id="modal-close-btn" class="absolute top-3 right-4 text-2xl font-bold text-gray-600 hover:text-black">&times;</button>
+            <div class="text-center">
+                <img id="modal-partner-img" src="" alt="Logo du partenaire" class="w-40 h-24 object-contain mx-auto mb-4">
+                <h3 id="modal-partner-name" class="text-2xl font-bold text-primary mb-3"></h3>
+                <p id="modal-partner-desc" class="text-gray-700"></p>
+            </div>
+        </div>
+    </div>
 
     <section id="gallery" class="py-12 bg-gray-50" data-anim="zoom-in">
         <div class="max-w-6xl mx-auto px-4">
@@ -171,44 +209,19 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
         </div>
     </div>
  
-    <!-- About Section (Qui sommes-nous ?) --> 
-    <section id="about" data-anim="fade-up"> 
-        <div class="max-w-6xl mx-auto px-4"> 
-            <div class="about-content-wrapper fade-in-on-scroll"> 
-                <div class="about-text-content"> 
-                    <h2 class="text-primary-blue">Qui sommes-nous 
-?</h2> 
-                    <p> 
-                        Masco Énergie et Construction est une Société 
-Anonyme (SA) créée en 2012, basée à Kisangani, République Démocratique 
-du Congo. Nous sommes un acteur majeur dans le génie civil, les 
-infrastructures ferroviaires, la consultance, les études de projets et 
-l'accompagnement institutionnel. 
-                    </p> 
-                    <p> 
-                        Notre mission est de concevoir, réaliser et 
-accompagner des projets d’infrastructure innovants, en offrant des 
-services de consultance, d’études de faisabilité, et de facilitation 
-institutionnelle en RDC. 
-                    </p> 
-                    <!--<a href="#" class="text-secondary-orange">En 
-savoir plus sur notre histoire <i class="fas fa-arrow-right 
-ml-2"></i></a>-->
-                </div> 
-                <!-- Old team-section removed (replaced by Team section earlier) -->
-            </div> 
-                <!-- Partners: moved to its own section below -->
-            </div> 
-        </section>
+    <!-- About Section (Qui sommes-nous ?) - fusionnée et corrigée -->
+    <section id="about" class="py-12" data-anim="fade-up">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="about-text-content fade-in-on-scroll">
+                    <h2 class="text-3xl font-bold text-primary mb-4">Qui sommes-nous ?</h2>
+                    <p>Masco Énergie et Construction est une Société Anonyme (SA) créée en 2012, basée à Kisangani, République Démocratique du Congo. Nous sommes un acteur majeur dans le génie civil, les infrastructures ferroviaires, la consultance, les études de projets et l'accompagnement institutionnel.</p>
+                    <p class="mt-3">Notre mission est de concevoir, réaliser et accompagner des projets d’infrastructure innovants, en offrant des services de consultance, d’études de faisabilité, et de facilitation institutionnelle en RDC.</p>
+                    <!--<a href="#" class="text-secondary-orange">En savoir plus sur notre histoire <i class="fas fa-arrow-right ml-2"></i></a>-->
+                </div>
 
-    <!-- Partner modal removed: partners are now static images in their own section -->
-
-<!-- About Section (Qui sommes-nous ?) -->
-    <section id="about">
-        <div class="container">
-            <div class="partners-section fade-in-on-scroll">
-                <!-- Reduced-size video block to the right -->
-                    <h3 class="text-primary">Vidéo de présentation du projet phare</h3>
+                <div class="about-media fade-in-on-scroll">
+                    <h3 class="text-primary text-xl font-semibold mb-2">Vidéo de présentation du projet phare</h3>
                     <p class="text-gray-600 mb-3">Découvrez en quelques minutes le projet phare de Masco.</p>
                     <div class="max-w-3xl mx-auto">
                         <video id="about-presentation" controls preload="metadata" poster="../images/couverture.png" class="w-full h-56 md:h-80 rounded-lg bg-black">
@@ -218,7 +231,7 @@ ml-2"></i></a>-->
                     </div>
                     <details class="mt-2 text-sm text-gray-600">
                         <summary class="font-semibold">Transcription / notes de la présentation</summary>
-                        <p class="mt-2">(Vidéo de presentationde du projet phare.)</p>
+                        <p class="mt-2">(Vidéo de présentation du projet phare.)</p>
                     </details>
                 </div>
             </div>
@@ -317,6 +330,51 @@ ml-2"></i></a>-->
                 img.setAttribute('role','img');
             });
         })();
+
+        // Partner Modal Logic
+        (function() {
+            const partnerItems = document.querySelectorAll('.partner-item');
+            const modal = document.getElementById('partner-modal');
+            const modalImg = document.getElementById('modal-partner-img');
+            const modalName = document.getElementById('modal-partner-name');
+            const modalDesc = document.getElementById('modal-partner-desc');
+            const closeModalBtn = document.getElementById('modal-close-btn');
+
+            if (!modal) return;
+
+            partnerItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const name = item.dataset.name;
+                    const description = item.dataset.description;
+                    const imgSrc = item.querySelector('img').src;
+
+                    modalName.textContent = name;
+                    modalDesc.textContent = description;
+                    modalImg.src = imgSrc;
+                    
+                    modal.style.display = 'flex';
+                    modal.setAttribute('aria-hidden', 'false');
+                });
+            });
+
+            function closeModal() {
+                modal.style.display = 'none';
+                modal.setAttribute('aria-hidden', 'true');
+            }
+
+            closeModalBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            });
+        })();
+
     (function(){
         const track = document.getElementById('mini-ad-track');
         if(!track) return;
@@ -343,7 +401,7 @@ ml-2"></i></a>-->
             const observer = new IntersectionObserver((entries)=>{
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('opacity-100','translate-y-0');
+                        entry.target.classList.add('is-visible');
                         observer.unobserve(entry.target);
                     }
                 });
@@ -351,7 +409,7 @@ ml-2"></i></a>-->
 
             document.querySelectorAll('.fade-in-on-scroll').forEach(el=>{
                 // initial state: slightly down and transparent using inline tailwind-friendly classes
-                el.classList.add('opacity-0','transform','translate-y-6','transition','duration-700','ease-out');
+                el.classList.add('opacity-100','transform','translate-y-0','transition','duration-700','ease-out');
                 observer.observe(el);
             });
         })();
@@ -540,7 +598,7 @@ ml-2"></i></a>-->
 
 
     <!-- Blog Section -->
-    <section id="blog" class="py-12 bg-gray-50" data-anim="fade-up">
+    <section id="blog" class="py-12 bg-gray-50">
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-3xl font-bold text-primary">Le Blog</h2>
@@ -549,8 +607,8 @@ ml-2"></i></a>-->
 
             <p class="text-gray-600 mb-6">Retrouvez nos analyses, retours de chantiers et actualités sectorielles.</p>
 
-            <div id="blog-articles" class="grid grid-cols-1 md:grid-cols-3 gap-6 stagger" data-delay="90">
-                <article class="bg-white rounded-lg overflow-hidden shadow-sm stagger-item hover:shadow-md transition-shadow duration-300">
+            <div id="blog-articles" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
                     <img src="../images/IMG-20250907-WA0034.jpg" alt="Article par défaut" class="w-full h-44 object-cover">
                     <div class="p-4">
                         <time class="text-sm text-gray-500">15 août 2025</time>
@@ -559,7 +617,7 @@ ml-2"></i></a>-->
                         <span class="inline-block mt-3 text-gray-400 font-medium">Article indisponible pour le moment.</span>
                     </div>
                 </article>
-                <article class="bg-white rounded-lg overflow-hidden shadow-sm stagger-item hover:shadow-md transition-shadow duration-300">
+                <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
                     <img src="../images/IMG-20250907-WA0123.jpg" alt="Travaux routiers" class="w-full h-44 object-cover">
                     <div class="p-4">
                         <time class="text-sm text-gray-500">22 juillet 2025</time>
@@ -568,7 +626,7 @@ ml-2"></i></a>-->
                         <span class="inline-block mt-3 text-gray-400 font-medium">Article indisponible pour le moment.</span>
                     </div>
                 </article>
-                <article class="bg-white rounded-lg overflow-hidden shadow-sm stagger-item hover:shadow-md transition-shadow duration-300">
+                <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
                     <img src="../images/IMG-20250907-WA0173.jpg" alt="Chantier hydroélectrique" class="w-full h-44 object-cover">
                     <div class="p-4">
                         <time class="text-sm text-gray-500">5 juin 2025</time>
