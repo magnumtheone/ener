@@ -15,6 +15,7 @@
     <!-- Font Awesome for icons (fixed link) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="./pages/style.css">
+    <link rel="stylesheet" href="./pages/Galerie.css">
     <style>
     /* minimal CSS kept while converting to Tailwind utilities */
     .skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
@@ -118,7 +119,7 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
         </div> 
     </section> 
     <!-- Team Section -->
-    <section id="team" class="py-12 stagger" data-anim="fade-in" data-delay="500">
+    <section id="team" class="py-12 stagger" data-anim="fade-in" data-delay="100">
         <div class="max-w-6xl mx-auto px-4">
             <h2 class="text-2xl font-bold text-center mb-6 fade-in-on-scroll">Notre Équipe</h2>
             <p class="text-gray-600 text-center mb-6 fade-in-on-scroll">Une équipe pluridisciplinaire dédiée aux projets d'infrastructures.</p>
@@ -143,7 +144,7 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
     </section>
 
     <!-- Partners Section (separate, images only) -->
-    <section id="partners" class="py-8 bg-white stagger" data-anim="fade-up" data-delay="500">
+    <section id="partners" class="py-8 bg-white stagger" data-anim="fade-up" data-delay="80">
         <div class="max-w-6xl mx-auto px-4 text-center">
             <h2 class="text-2xl font-bold text-primary-black mb-4">Nos Partenaires</h2>
             <p class="text-gray-600 mb-8">Nous collaborons avec des acteurs locaux et internationaux pour bâtir l'avenir.</p>
@@ -282,36 +283,24 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
 
  <!-- Renaissance du chemin de fer Kisangani–Ubundu (séparée) -->
     <section id="renaissance" class="py-8 bg-gray-50" data-anim="fade-right">
-        <div class="container">
-            <div class="card">
+        <div class="container mx-auto px-4">
+            <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
                 <div class="text-center">
-                    <div class="train-icon" aria-hidden="true"><i class="fas fa-train"></i></div>
+                    <div class="train-icon text-4xl text-primary mb-4" aria-hidden="true"><i class="fas fa-train"></i></div>
                     <h3 class="text-2xl font-bold text-primary-black mb-2">Renaissance du chemin de fer Kisangani–Ubundu/ Kindu–Kabalo–Kalemie</h3>
-                    <p class="text-gray-700 mb-2">Jadis, le train Kisangani–Ubundu grondait au rythme du fleuve et ouvrait la voie aux échanges. Le projet vise la réhabilitation et la modernisation de la ligne pour relancer l’activité économique.</p>
-                    <div class="about-media fade-in-on-scroll">
-                    <!--<h3 class="text-primary text-xl font-semibold mb-2">Vidéo de présentation du projet phare</h3>-->
-                    <p class="text-gray-600 mb-3">Découvrez en quelques minutes le projet phare de Masco.</p>
-                    <div class="max-w-3xl mx-auto">
-                        <video id="about-presentation" controls preload="metadata" poster="../images/couverture.png" class="w-full h-56 md:h-80 rounded-lg bg-black">
-                            <source src="../vidéos/VID-20250906-WA0053.mp4" type="video/mp4">
-                            Votre navigateur ne supporte pas la balise vidéo. Déposez le fichier <code>presentation.mp4</code> dans <code>frontend/vidéos/</code> pour l'activer.
-                        </video>
-                    </div>
-                    <details class="mt-2 text-sm text-gray-600">
-                        <summary class="font-semibold">Transcription / notes de la présentation</summary>
-                        <p class="mt-2">(Vidéo de présentation du projet phare.)</p>
-                    </details>
-                </div>
-
-            </div>
-
-                <!-- Mini panneau publicitaire : carrousel généré dynamiquement -->
-                <div class="mini-ad-wrap mt-6">
-                    <div id="mini-ad" class="w-full md:w-2/3 mx-auto overflow-hidden rounded-lg border border-gray-200 bg-white">
-                        <div id="mini-ad-track" style="display:flex;transition:transform 0.45s ease;"></div>
-                        <!-- controls -->
-                        <button id="mini-ad-prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hidden md:inline">‹</button>
-                        <button id="mini-ad-next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hidden md:inline">›</button>
+                    <p class="text-gray-700 mb-6">Jadis, le train Kisangani–Ubundu grondait au rythme du fleuve et ouvrait la voie aux échanges. Le projet vise la réhabilitation et la modernisation de la ligne pour relancer l’activité économique.</p>
+                    <div class="about-media">
+                        <p class="text-gray-600 mb-3">Découvrez en quelques minutes le projet phare de Masco.</p>
+                        <div class="max-w-3xl mx-auto">
+                            <video id="about-presentation" controls preload="metadata" poster="../images/couverture.png" class="w-full h-56 md:h-80 rounded-lg bg-black shadow-md">
+                                <source src="../vidéos/VID-20250906-WA0053.mp4" type="video/mp4">
+                                Votre navigateur ne supporte pas la balise vidéo.
+                            </video>
+                        </div>
+                        <details class="mt-2 text-sm text-gray-600">
+                            <summary class="font-semibold cursor-pointer">Transcription / notes de la présentation</summary>
+                            <p class="mt-2 text-left">(Vidéo de présentation du projet phare.)</p>
+                        </details>
                     </div>
                 </div>
             </div>
@@ -342,9 +331,9 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
 
         // --- Section animation (data-anim aware IntersectionObserver) ---
         (function(){
-            const sections = document.querySelectorAll('section');
+            const elements = document.querySelectorAll('section, [data-anim]');
             if(!('IntersectionObserver' in window)){
-                sections.forEach(s=> s.classList.add('is-visible'));
+                elements.forEach(el=> el.classList.add('is-visible'));
                 return;
             }
 
@@ -373,9 +362,9 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
                 });
             },{threshold:0.12});
 
-            sections.forEach(s=>{
-                if(!s.classList.contains('section-animate')) s.classList.add('section-animate');
-                obs.observe(s);
+            elements.forEach(el=>{
+                if(el.tagName === 'SECTION' && !el.classList.contains('section-animate')) el.classList.add('section-animate');
+                obs.observe(el);
             });
         })();
 
@@ -502,12 +491,12 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
     })();
     </script>
     <!-- Services Section --> 
-    <section id="services" class="py-12" data-anim="fade-right"> 
+    <section id="services" class="py-12 stagger" data-anim="fade-right" data-delay="100"> 
         <div class="max-w-6xl mx-auto px-4"> 
-            <h2 class="text-primary text-3xl md:text-4xl font-bold mb-8 fade-in-on-scroll">Nos Services</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 fade-in-on-scroll"> 
+            <h2 class="text-primary text-3xl md:text-4xl font-bold mb-8">Nos Services</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"> 
                 <!-- Service 1: Génie Civil & Infrastructures --> 
-                <div class="flex flex-col items-start bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition"> 
+                <div class="flex flex-col items-start bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition stagger-item"> 
                     <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center mb-4 text-orange-600">
                         <i class="fas fa-hard-hat"></i>
                     </div>
@@ -515,7 +504,7 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
                     <p class="text-gray-600 text-sm">Conception et réalisation d'infrastructures de grande envergure, notamment ferroviaires, routes et ponts.</p> 
                 </div> 
                 <!-- Service 2: Bureau d'Études & Consultance --> 
-                <div class="flex flex-col items-start bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition"> 
+                <div class="flex flex-col items-start bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition stagger-item"> 
                     <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center mb-4 text-orange-600">
                         <i class="fas fa-chart-line"></i>
                     </div>
@@ -523,7 +512,7 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
                     <p class="text-gray-600 text-sm">Analyses complètes, études de faisabilité et conception technique pour vos projets.</p> 
                 </div> 
                 <!-- Service 3: Facilitation & Accompagnement Institutionnel --> 
-                <div class="flex flex-col items-start bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition"> 
+                <div class="flex flex-col items-start bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition stagger-item"> 
                     <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center mb-4 text-orange-600">
                         <i class="fas fa-handshake"></i>
                     </div>
@@ -531,7 +520,7 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
                     <p class="text-gray-600 text-sm">Appui à l'installation et facilitation des procédures pour les investisseurs en RDC.</p> 
                 </div> 
                 <!-- Service 4: Financement & Mobilisation des Ressources --> 
-                <div class="flex flex-col items-start bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition"> 
+                <div class="flex flex-col items-start bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition stagger-item"> 
                     <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center mb-4 text-orange-600">
                         <i class="fas fa-dollar-sign"></i>
                     </div>
@@ -543,119 +532,127 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
     </section> 
  
     <!-- Projects Section -->
-    <section id="projects" class="py-16 md:py-24 bg-white" data-anim="fade-left">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <h2 class="text-4xl font-bold text-primary mb-12">Nos Projets</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8"> 
-                <!-- Project 1 -->
-                <article class="bg-white rounded-lg shadow-md overflow-hidden"> 
-                    <div class="relative w-full h-56 md:h-64 overflow-hidden"> 
-                        <img src="../images/maqtt (1).jpg" alt="Maquette projet 1" loading="lazy" class="w-full h-full object-cover"> 
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4"> 
-                            <span class="text-white font-semibold">Maquette 1</span>
-                        </div>
+<section id="projects" class="py-16 md:py-24 bg-white stagger" data-anim="fade-left" data-delay="150">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold text-primary mb-12">Nos Projets</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8"> 
+            <!-- Project 1 -->
+            <article class="bg-white rounded-lg shadow-md overflow-hidden stagger-item"> 
+                <div class="relative w-full h-56 md:h-64 overflow-hidden"> 
+                    <img src="../images/maqtt (1).jpg" alt="Maquette projet 1" loading="lazy" class="w-full h-full object-cover"> 
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4"> 
+                        <span class="text-white font-semibold">Maquette 1</span>
                     </div>
-                    <div class="p-5 text-left"> 
-                        <h3 class="text-xl font-semibold mb-2">Construction d'une ligne ferroviaire</h3>
-                        <p class="text-gray-600">Projet majeur de construction d'une nouvelle ligne ferroviaire dans la région de Kisangani, RDC.</p>
-                        <!-- Buttons removed as requested -->
+                </div>
+                <div class="p-5 text-left"> 
+                    <h3 class="text-xl font-semibold mb-2">Construction d'une ligne ferroviaire</h3>
+                    <p class="text-gray-600">Projet majeur de construction d'une nouvelle ligne ferroviaire dans la région de Kisangani, RDC.</p>
+                </div>
+            </article>
+            <!-- Project 2 -->
+            <article class="bg-white rounded-lg shadow-md overflow-hidden stagger-item"> 
+                <div class="relative w-full h-56 md:h-64 overflow-hidden"> 
+                    <img src="../images/maqtt (2).jpg" alt="Maquette projet 2" loading="lazy" class="w-full h-full object-cover"> 
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4"> 
+                        <span class="text-white font-semibold">Maquette 2</span>
                     </div>
-                </article>
-                <!-- Project 2 -->
-                <article class="bg-white rounded-lg shadow-md overflow-hidden"> 
-                    <div class="relative w-full h-56 md:h-64 overflow-hidden"> 
-                        <img src="../images/maqtt (2).jpg" alt="Maquette projet 2" loading="lazy" class="w-full h-full object-cover"> 
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4"> 
-                            <span class="text-white font-semibold">Maquette 2</span>
-                        </div>
+                </div>
+                <div class="p-5 text-left"> 
+                    <h3 class="text-xl font-semibold mb-2">Infrastructure portuaire</h3>
+                    <p class="text-gray-600">Développement d'infrastructures portuaires modernes pour faciliter le transport fluvial en RDC.</p>
+                </div>
+            </article>
+            <!-- Project 3 -->
+            <article class="bg-white rounded-lg shadow-md overflow-hidden stagger-item"> 
+                <div class="relative w-full h-56 md:h-64 overflow-hidden"> 
+                    <img src="../images/maqtt (3).jpg" alt="Maquette projet 3" loading="lazy" class="w-full h-full object-cover"> 
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4"> 
+                        <span class="text-white font-semibold">Maquette 3</span>
                     </div>
-                    <div class="p-5 text-left"> 
-                        <h3 class="text-xl font-semibold mb-2">Infrastructure portuaire</h3>
-                        <p class="text-gray-600">Développement d'infrastructures portuaires modernes pour faciliter le transport fluvial en RDC.</p>
-                        <!-- Buttons removed as requested -->
-                    </div>
-                </article>
-                <!-- Project 3 -->
-                <article class="bg-white rounded-lg shadow-md overflow-hidden"> 
-                    <div class="relative w-full h-56 md:h-64 overflow-hidden"> 
-                        <img src="../images/maqtt (3).jpg" alt="Maquette projet 3" loading="lazy" class="w-full h-full object-cover"> 
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4"> 
-                            <span class="text-white font-semibold">Maquette 3</span>
-                        </div>
-                    </div>
-                    <div class="p-5 text-left"> 
-                        <h3 class="text-xl font-semibold mb-2">Bâtiments administratifs</h3>
-                        <p class="text-gray-600">Construction de complexes administratifs modernes dans les principales villes de la RDC.</p>
-                        <!-- Buttons removed as requested -->
-                    </div>
-                </article>
-                </article>
-            </div>
+                </div>
+                <div class="p-5 text-left"> 
+                    <h3 class="text-xl font-semibold mb-2">Bâtiments administratifs</h3>
+                    <p class="text-gray-600">Construction de complexes administratifs modernes dans les principales villes de la RDC.</p>
+                </div>
+            </article>
+        </div>
 
-            <div class="mt-12 grid grid-cols-1"> 
-                <div class="bg-white rounded-lg shadow-md p-6 text-left"> 
-                    <img src="../images/ferre.jpeg" alt="Kisangani–Ubundu" class="w-full h-64 object-cover rounded-md mb-4" loading="lazy"> 
-                    <h3 class="text-2xl font-bold ">Projet de réhabilitation : Kisangani–Ubundu</h3>
-                    <p class="text-gray-700 mt-2">Réhabilitation du chemin de fer Kisangani–Ubundu (115 km) pour renforcer la connectivité régionale, réduire les coûts logistiques et stimuler le développement local.</p>
-                    <div class="mt-4 flex gap-3"> 
-                        <a href="./pages/project-kisangani.html" class="inline-flex items-center px-4 py-2 rounded-full bg-primary text-white font-semibold">Détails</a>
-                        <!--<button class="inline-flex items-center px-4 py-2 rounded-full bg-orange-500 text-white font-semibold" id="open-project-gallery">Maquette</button>-->
-                    </div>
+        <div class="mt-12 grid grid-cols-1 stagger-item"> 
+            <div class="bg-white rounded-lg shadow-md p-6 text-left"> 
+                <img src="../images/ferre.jpeg" alt="Kisangani–Ubundu" class="w-full h-64 object-cover rounded-md mb-4" loading="lazy"> 
+                <h3 class="text-2xl font-bold ">Projet de réhabilitation : Kisangani–Ubundu</h3>
+                <p class="text-gray-700 mt-2">Réhabilitation du chemin de fer Kisangani–Ubundu (115 km) pour renforcer la connectivité régionale, réduire les coûts logistiques et stimuler le développement local.</p>
+                <div class="mt-4 flex gap-3"> 
+                    <a href="./pages/project-kisangani.html" class="inline-flex items-center px-4 py-2 rounded-full bg-primary text-white font-semibold">Détails</a>
                 </div>
             </div>
         </div>
-    </section>
-
-     <!-- Mini panneau publicitaire -->
-    <section id="mini-banner" class="py-8 bg-gray-100" data-anim="fade-up">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="relative overflow-hidden rounded-lg shadow-lg">
-                <div id="banner-swiper">
-                    <div class="swiper-wrapper" style="display: flex; transition: transform 0.5s ease-in-out;">
-                        <div class="swiper-slide relative" style="flex-shrink: 0; width: 100%;">
-                            <img src="../images/IMG-20250907-WA0147_light.webp" class="w-full h-48 md:h-64 object-cover" alt="Projet Masco">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
-                                <h3 class="text-white text-xl font-bold">Expertise en Construction</h3>
-                                <p class="text-white/90">Des projets d'envergure réalisés avec excellence</p>
-                            </div>
-                        </div>
-                        <div class="swiper-slide relative" style="flex-shrink: 0; width: 100%;">
-                            <img src="../images/IMG-20250907-WA0173.jpg" class="w-full h-48 md:h-64 object-cover" alt="Services Masco">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
-                                <h3 class="text-white text-xl font-bold">Infrastructure ferroviaire</h3>
-                                <p class="text-white/90">Développement des transports modernes en RDC</p>
-                            </div>
-                        </div>
-                        <div class="swiper-slide relative" style="flex-shrink: 0; width: 100%;">
-                            <img src="../images/IMG-20250907-WA0039.jpg" class="w-full h-48 md:h-64 object-cover" alt="Projet Masco">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
-                                <h3 class="text-white text-xl font-bold">Ingénierie civile</h3>
-                                <p class="text-white/90">Solutions durables pour l'avenir de la RDC</p>
-                            </div>
-                        </div>
-                        <div class="swiper-slide relative" style="flex-shrink: 0; width: 100%;">
-                            <img src="../images/IMG-20250907-WA0064.jpg" class="w-full h-48 md:h-64 object-cover" alt="Projet Masco">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
-                                <h3 class="text-white text-xl font-bold">Construction durable</h3>
-                                <p class="text-white/90">Des infrastructures respectueuses de l'environnement</p>
-                            </div>
-                        </div>
-                        <div class="swiper-slide relative" style="flex-shrink: 0; width: 100%;">
-                            <img src="../images/IMG-20250907-WA0116.jpg" class="w-full h-48 md:h-64 object-cover" alt="Projet Masco">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
-                                <h3 class="text-white text-xl font-bold">Innovation énergétique</h3>
-                                <p class="text-white/90">Technologies avancées pour l'avenir énergétique</p>
-                            </div>
-                        </div>
+    </div>
+</section>
+    
+    <!--Galerie pour remplacer le Mini panneau publicitaire-->
+    <div class="wrapper" data-anim="zoom-in">
+        <div class="conteiner">
+            <input type="radio" name="slide" id="c1" checked>
+            <label for="c1" class="card" style="background-image: url('../images/IMG-20250907-WA0147_light.webp');">
+                <div class="row">
+                    <div class="icon">1</div>
+                    <div class="description">
+                        <h4>Expertise en Construction</h4>
+                        <p>Des projets d'envergure réalisés avec excellence</p>
                     </div>
                 </div>
-            </div>
+            </label>
+
+            <input type="radio" name="slide" id="c2">
+            <label for="c2" class="card" style="background-image: url('../images/20210528171953417844-cbfafa63-1009-4915-a191-88a8d44877bb.jpg');"> 
+                <div class="row">
+                    <div class="icon">2</div>
+                    <div class="description">
+                        <h4>Infrastructure ferroviaire</h4>
+                        <p>Développement des transports modernes en RDC</p>
+                    </div>
+                </div>
+            </label>
+
+            <input type="radio" name="slide" id="c3">
+            <label for="c3" class="card" style="background-image: url('../images/IMG-20250907-WA0039_light.webp');">
+               <div class="row">
+                    <div class="icon">3</div>
+                    <div class="description">
+                        <h4>Ingénierie civile</h4>
+                        <p>Solutions durables pour l'avenir de la RDC</p>
+                    </div>
+               </div>
+            </label>
+
+            <input type="radio" name="slide" id="c4">
+            <label for="c4" class="card" style="background-image: url('../images/IMG-20250907-WA0064_light.webp');">
+                <div class="row">
+                    <div class="icon">4</div>
+                    <div class="description">
+                        <h4>Construction durable</h4>
+                        <p>Des infrastructures respectueuses de l'environnement</p>
+                    </div>
+                </div>
+            </label>
+
+            <input type="radio" name="slide" id="c5">
+            <label for="c5" class="card" style="background-image: url('../images/IMG-20250907-WA0116_light.webp');">
+                <div class="row">
+                    <div class="icon">5</div>
+                    <div class="description">
+                        <h4>Innovation énergétique</h4>
+                        <p>Technologies avancées pour l'avenir énergétique</p>
+                    </div>
+                </div>
+            </label>
         </div>
-    </section>
+    </div>
 
 
     <!-- Blog Section -->
-    <section id="blog" class="py-12 bg-gray-50">
+    <section id="blog" class="py-12 bg-gray-50 stagger" data-anim="fade-up" data-delay="150">
         <div class="max-w-6xl mx-auto px-4 ">
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-3xl text-center font-bold">Le Blog</h2>
@@ -665,7 +662,7 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
             <p class="text-gray-600 mb-6">Retrouvez nos analyses, retours de chantiers et actualités sectorielles.</p>
 
             <div id="blog-articles" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+                <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 stagger-item">
                     <img src="../images/IMG-20250907-WA0034_light.webp" alt="Article par défaut" class="w-full h-44 object-cover">
                     <div class="p-4">
                         <time class="text-sm text-gray-500">15 août 2025</time>
@@ -674,7 +671,7 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
                         <span class="inline-block mt-3 text-gray-400 font-medium">Article indisponible pour le moment.</span>
                     </div>
                 </article>
-                <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+                <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 stagger-item">
                     <img src="../images/IMG-20250907-WA0123_light.webp" alt="Travaux routiers" class="w-full h-44 object-cover">
                     <div class="p-4">
                         <time class="text-sm text-gray-500">22 juillet 2025</time>
@@ -683,7 +680,7 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
                         <span class="inline-block mt-3 text-gray-400 font-medium">Article indisponible pour le moment.</span>
                     </div>
                 </article>
-                <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+                <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 stagger-item">
                     <img src="../images/IMG-20250907-WA0015 - Copie.jpg" alt="Chantier hydroélectrique" class="w-full h-44 object-cover">
                     <div class="p-4">
                         <time class="text-sm text-gray-500">5 juin 2025</time>
@@ -696,11 +693,11 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
         </div>
     </section>
 
-   <!-- Contact Section --> 
-    <section id="contact"> 
+    <!-- Contact Section --> 
+    <section id="contact" data-anim="fade-up"> 
         <div class="container text-center"> 
-            <h2 class="fade-in-on-scroll">Contactez-nous</h2> 
-            <div class="contact-grid fade-in-on-scroll"> 
+            <h2>Contactez-nous</h2> 
+            <div class="contact-grid"> 
                 <!-- Contact Info --> 
                 <div class="contact-info"> 
                     <h3 class="text-primary-blue">Informations de contact</h3> 

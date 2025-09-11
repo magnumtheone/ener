@@ -290,7 +290,7 @@ hidden on desktop */
         .anim-zoom-in.is-visible { transform: scale(1); opacity: 1; transition: transform .6s cubic-bezier(.2,.9,.2,1), opacity .5s ease-out; }
 
         /* Stagger children: add .stagger on parent and .stagger-item on children */
-        .stagger .stagger-item { opacity: 0; transform: translateY(12px); }
+        .stagger .stagger-item { opacity: 1; transform: translateY(12px); }
         .stagger.is-visible .stagger-item { opacity: 1; transform: translateY(0); transition: transform .5s ease, opacity .45s ease; }
 
         /* Respect reduced motion preference */
