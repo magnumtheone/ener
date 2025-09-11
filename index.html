@@ -6,10 +6,10 @@
     <meta name="description" content="Masco Énergie et Construction — conception, réalisation et accompagnement de projets d'infrastructure en RDC (Kisangani).">
     <title>Masco Énergie et Construction</title>
     <!-- Favicon & Open Graph -->
-    <link rel="icon" href="../images/logo.png" type="image/svg+xml">
+    <link rel="icon" href="../images/logo_light.webp" type="image/svg+xml">
     <meta property="og:title" content="Masco Énergie et Construction">
     <meta property="og:description" content="Conception et réalisation de projets d'infrastructure innovants en RDC.">
-    <meta property="og:image" content="../images/logo.png">
+    <meta property="og:image" content="../images/logo_light.webp">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome for icons (fixed link) -->
@@ -28,6 +28,24 @@
     .text-primary{color:var(--primary)}
     .bg-primary{background-color:var(--primary)}
     .bg-primary-dark{background-color:#16314b}
+    .gallery-item .overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 1rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        border-radius: 0.375rem; /* same as rounded-md */
+    }
+
+    .gallery-item:hover .overlay {
+        opacity: 1;
+    }
     </style>
     </head>
     <body class="bg-gray-50 text-gray-800"> 
@@ -40,7 +58,7 @@
                 <!-- Placeholder for Masco Logo - Replace with actual 
 logo image --> 
                 <img 
-src="../images/logo.png" alt="Masco 
+src="../images/logo_light.webp" alt="Masco 
 Logo"> 
                 <span style="color: #e67e22;">MASCO</span> 
             </a> 
@@ -57,7 +75,6 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
                     </svg> 
                 </button> 
             </div> 
- 
             <!-- Desktop Navigation --> 
             <ul id="main-nav" class="hidden md:flex items-center space-x-6 text-sm font-medium"> 
                 <li><a href="#hero" class="hover:text-primary">Accueil</a></li> 
@@ -88,7 +105,7 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
         <div class="hero-background active" style="background-image:url('../images/panneau.jpg');"></div> 
         <div class="hero-background" style="background-image:url('../images/ferre.jpeg');"></div> 
         <div class="hero-background" style="background-image:url('../images/Projet construction.jpeg');"></div> 
-        <div class="hero-background" style="background-image:url('../images/courtier.jpg');"></div> 
+        <div class="hero-background" style="background-image:url('../images/courtier_light.webp');"></div> 
         <!-- Overlay for better text readability --> 
         <div class="overlay" aria-hidden="true"></div> 
         <div class="max-w-4xl mx-auto px-4 text-center py-16 hero-content content"> 
@@ -101,23 +118,23 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
         </div> 
     </section> 
     <!-- Team Section -->
-    <section id="team" class="py-12" data-anim="fade-up">
+    <section id="team" class="py-12 stagger" data-anim="fade-in" data-delay="500">
         <div class="max-w-6xl mx-auto px-4">
             <h2 class="text-2xl font-bold text-center mb-6 fade-in-on-scroll">Notre Équipe</h2>
             <p class="text-gray-600 text-center mb-6 fade-in-on-scroll">Une équipe pluridisciplinaire dédiée aux projets d'infrastructures.</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <div class="bg-white rounded-lg p-4 text-center fade-in-on-scroll">
-                    <img src="../images/Chairman.jpg" alt="Gabriel" class="w-28 h-28 object-cover rounded-full mx-auto mb-3">
+                <div class="bg-white rounded-lg p-4 text-center fade-in-on-scroll stagger-item">
+                    <img src="../images/Chairman_light.webp" alt="Gabriel" class="w-28 h-28 object-cover rounded-full mx-auto mb-3">
                     <h4 class="font-semibold ">Gabriel MADUA MASUDI</h4>
                     <p class="text-sm text-gray-600">Chairman de MEC</p>
                 </div>
-                <div class="bg-white rounded-lg p-4 text-center fade-in-on-scroll">
+                <div class="bg-white rounded-lg p-4 text-center fade-in-on-scroll stagger-item">
                     <img src="../images/vice-président.jpg" alt="Park" class="w-28 h-28 object-cover rounded-full mx-auto mb-3">
                     <h4 class="font-semibold">Park CHANG MOOK</h4>
                     <p class="text-sm text-gray-600">Vice-président de MEC</p>
                 </div>
-                <div class="bg-white rounded-lg p-4 text-center fade-in-on-scroll">
-                    <img src="../images/adg.jpg" alt="Georges" class="w-28 h-28 object-cover rounded-full mx-auto mb-3">
+                <div class="bg-white rounded-lg p-4 text-center fade-in-on-scroll stagger-item">
+                    <img src="../images/adg_light.webp" alt="Georges" class="w-28 h-28 object-cover rounded-full mx-auto mb-3">
                     <h4 class="font-semibold">Georges OYEMA SHULUNGU</h4>
                     <p class="text-sm text-gray-600">Administrateur Directeur Général, ADG de Mec</p>
                 </div>
@@ -126,7 +143,7 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
     </section>
 
     <!-- Partners Section (separate, images only) -->
-    <section id="partners" class="py-8 bg-white">
+    <section id="partners" class="py-8 bg-white stagger" data-anim="fade-up" data-delay="500">
         <div class="max-w-6xl mx-auto px-4 text-center">
             <h2 class="text-2xl font-bold text-primary-black mb-4">Nos Partenaires</h2>
             <p class="text-gray-600 mb-8">Nous collaborons avec des acteurs locaux et internationaux pour bâtir l'avenir.</p>
@@ -134,37 +151,37 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
             <!-- Flex container for horizontal scrolling on smaller screens and centered on larger -->
             <div class="flex overflow-x-auto md:flex-wrap md:justify-center gap-8 items-start py-4">
                 
-                <div class="partner-item flex-shrink-0 w-36 text-center cursor-pointer" data-name="Vice-Ministère des ITPR" data-description="Le Vice-Ministère des Infrastructures, Travaux Publics et Reconstruction est un partenaire clé dans la supervision et la validation de nos projets d'envergure nationale.">
+                <div class="partner-item flex-shrink-0 w-36 text-center cursor-pointer stagger-item" data-name="Vice-Ministère des ITPR" data-description="Le Vice-Ministère des Infrastructures, Travaux Publics et Reconstruction est un partenaire clé dans la supervision et la validation de nos projets d'envergure nationale.">
                     <img src="../images/vice-ministere.jpg" alt="Logo Vice-Ministère" class="w-28 h-20 object-contain mx-auto mb-2 transition-transform duration-300 hover:scale-110">
                     <p class="text-sm font-medium text-gray-700">Vice-Ministère ITPR</p>
                 </div>
 
-                <div class="partner-item flex-shrink-0 w-36 text-center cursor-pointer" data-name="APCSC" data-description="L'APCSC nous accompagne dans la gestion et la logistique de nos projets, assurant une coordination efficace sur le terrain.">
+                <div class="partner-item flex-shrink-0 w-36 text-center cursor-pointer stagger-item" data-name="APCSC" data-description="L'APCSC nous accompagne dans la gestion et la logistique de nos projets, assurant une coordination efficace sur le terrain.">
                     <img src="../images/apcsc.jpg" alt="Logo APCSC" class="w-28 h-20 object-contain mx-auto mb-2 transition-transform duration-300 hover:scale-110">
                     <p class="text-sm font-medium text-gray-700">APCSC</p>
                 </div>
 
-                <div class="partner-item flex-shrink-0 w-36 text-center cursor-pointer" data-name="BGFI Bank" data-description="Partenaire financier de premier plan, BGFI Bank nous soutient dans le financement de nos projets d'infrastructure.">
+                <div class="partner-item flex-shrink-0 w-36 text-center cursor-pointer stagger-item" data-name="BGFI Bank" data-description="Partenaire financier de premier plan, BGFI Bank nous soutient dans le financement de nos projets d'infrastructure.">
                     <img src="../images/bgfibank.jpg" alt="Logo BGFI Bank" class="w-28 h-20 object-contain mx-auto mb-2 transition-transform duration-300 hover:scale-110">
                     <p class="text-sm font-medium text-gray-700">BGFI Bank</p>
                 </div>
 
-                <div class="partner-item flex-shrink-0 w-36 text-center cursor-pointer" data-name="CCCC" data-description="China Communications Construction Company (CCCC) est un partenaire technique stratégique pour les projets ferroviaires et routiers.">
+                <div class="partner-item flex-shrink-0 w-36 text-center cursor-pointer stagger-item" data-name="CCCC" data-description="China Communications Construction Company (CCCC) est un partenaire technique stratégique pour les projets ferroviaires et routiers.">
                     <img src="../images/cccc.jpg" alt="Logo CCCC" class="w-28 h-20 object-contain mx-auto mb-2 transition-transform duration-300 hover:scale-110">
                     <p class="text-sm font-medium text-gray-700">CCCC</p>
                 </div>
 
-                <div class="partner-item flex-shrink-0 w-36 text-center cursor-pointer" data-name="CCECC" data-description="China Civil Engineering Construction Corporation (CCECC) collabore avec nous sur des projets de construction complexes.">
+                <div class="partner-item flex-shrink-0 w-36 text-center cursor-pointer stagger-item" data-name="CCECC" data-description="China Civil Engineering Construction Corporation (CCECC) collabore avec nous sur des projets de construction complexes.">
                     <img src="../images/ccecc.jpg" alt="Logo CCECC" class="w-28 h-20 object-contain mx-auto mb-2 transition-transform duration-300 hover:scale-110">
                     <p class="text-sm font-medium text-gray-700">CCECC</p>
                 </div>
 
-                <div class="partner-item flex-shrink-0 w-36 text-center cursor-pointer" data-name="FHEC" data-description="FHEC est un partenaire essentiel pour les études et la mise en œuvre de nos projets énergétiques.">
+                <div class="partner-item flex-shrink-0 w-36 text-center cursor-pointer stagger-item" data-name="FHEC" data-description="FHEC est un partenaire essentiel pour les études et la mise en œuvre de nos projets énergétiques.">
                     <img src="../images/fhec.jpg" alt="Logo FHEC" class="w-28 h-20 object-contain mx-auto mb-2 transition-transform duration-300 hover:scale-110">
                     <p class="text-sm font-medium text-gray-700">FHEC</p>
                 </div>
 
-                <div class="partner-item flex-shrink-0 w-36 text-center cursor-pointer" data-name="SNCC" data-description="La Société Nationale des Chemins de fer du Congo (SNCC) est un acteur historique et incontournable du transport ferroviaire en RDC, partenaire clé de nos projets de réhabilitation.">
+                <div class="partner-item flex-shrink-0 w-36 text-center cursor-pointer stagger-item" data-name="SNCC" data-description="La Société Nationale des Chemins de fer du Congo (SNCC) est un acteur historique et incontournable du transport ferroviaire en RDC, partenaire clé de nos projets de réhabilitation.">
                     <img src="../images/sncc.jpg" alt="Logo SNCC" class="w-28 h-20 object-contain mx-auto mb-2 transition-transform duration-300 hover:scale-110">
                     <p class="text-sm font-medium text-gray-700">SNCC</p>
                 </div>
@@ -173,7 +190,7 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
     </section>
 
     <!-- Modal for Partner Details -->
-    <div id="partner-modal" class="modal-backdrop" aria-hidden="true" role="dialog">
+    <div id="partner-modal" class="modal-backdrop" aria-hidden="true" role="dialog" data-anim="fade-up" data-delay="500">
         <div class="modal max-w-lg w-11/12 p-6 relative">
             <button id="modal-close-btn" class="absolute top-3 right-4 text-2xl font-bold text-gray-600 hover:text-black">&times;</button>
             <div class="text-center">
@@ -184,20 +201,51 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
         </div>
     </div>
 
-    <section id="gallery" class="py-12 bg-gray-50" data-anim="zoom-in">
+    <section id="gallery" class="py-12 bg-gray-50" data-anim="zoom-in" data-delay="500">
         <div class="max-w-6xl mx-auto px-4">
             <h2 class="text-2xl font-bold text-center text-primary-black mb-6">Galerie photos</h2>
             <p class="text-gray-600 text-center mb-4">Quelques images récentes de nos moments forts.</p>
             <div id="gallery-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                <!-- Thumbnails injected by JS or static fallback -->
-                <img src="../images/IMG-20250907-WA0034.jpg" alt="Galerie 1" class="w-full h-36 object-cover rounded-md cursor-pointer" loading="lazy">
-                <img src="../images/IMG-20250907-WA0123.jpg" alt="Galerie 2" class="w-full h-36 object-cover rounded-md cursor-pointer" loading="lazy">
-                <img src="../images/IMG-20250907-WA0041.jpg" alt="Galerie 3" class="w-full h-36 object-cover rounded-md cursor-pointer" loading="lazy">
-                <img src="../images/IMG-20250907-WA0038.jpg" alt="Galerie 4" class="w-full h-36 object-cover rounded-md cursor-pointer" loading="lazy">
-                <img src="../images/IMG-20250907-WA0053.jpg" alt="Galerie 5" class="w-full h-36 object-cover rounded-md cursor-pointer" loading="lazy">
-                <img src="../images/IMG-20250907-WA0147.jpg" alt="Galerie 6" class="w-full h-36 object-cover rounded-md cursor-pointer" loading="lazy">
-                <img src="../images/Chairman.jpg" alt="Galerie 7" class="w-full h-36 object-cover rounded-md cursor-pointer" loading="lazy">
-                <img src="../images/IMG-20250907-WA0016.jpg" alt="Galerie 8" class="w-full h-36 object-cover rounded-md cursor-pointer" loading="lazy">
+                <!-- Image 1 -->
+                <div class="gallery-item relative" data-description="Signature de l'accord de partenariat.">
+                    <img src="../images/IMG-20250907-WA0034_light.webp" alt="Signature de l'accord" class="w-full h-36 object-cover rounded-md cursor-pointer " loading="lazy">
+                    <div class="overlay"><p>Signature de l'accord de partenariat.</p></div>
+                </div>
+                <!-- Image 2 -->
+                <div class="gallery-item relative" data-description="Signature de l'accord de partenariat.">
+                    <img src="../images/IMG-20250907-WA0123_light.webp" alt="Visite du chantier" class="w-full h-36 object-cover rounded-md cursor-pointer" loading="lazy">
+                    <div class="overlay"><p>Signature de l'accord de partenariat.</p></div>
+                </div>
+                <!-- Image 3 -->
+                <div class="gallery-item relative" data-description="Présentation du projet aux autorités locales.">
+                    <img src="../images/IMG-20250907-WA0041_light.webp" alt="Présentation du projet" class="w-full h-36 object-cover rounded-md cursor-pointer" loading="lazy">
+                    <div class="overlay"><p>Présentation du projet aux autorités locales.</p></div>
+                </div>
+                <!-- Image 4 -->
+                <div class="gallery-item relative" data-description="Équipe technique sur le terrain.">
+                    <img src="../images/IMG-20250907-WA0045_light.webp" alt="Équipe technique" class="w-full h-36 object-cover rounded-md cursor-pointer" loading="lazy">
+                    <div class="overlay"><p>Équipe technique sur le terrain.</p></div>
+                </div>
+                <!-- Image 5 -->
+                <div class="gallery-item relative" data-description="Réunion de planification stratégique.">
+                    <img src="../images/IMG-20250907-WA0053_light.webp" alt="Réunion de planification" class="w-full h-36 object-cover rounded-md cursor-pointer" loading="lazy">
+                    <div class="overlay"><p>Réunion de planification stratégique.</p></div>
+                </div>
+                <!-- Image 6 -->
+                <div class="gallery-item relative" data-description="Inspection des équipements.">
+                    <img src="../images/IMG-20250907-WA0147_light.webp" alt="Inspection des équipements" class="w-full h-36 object-cover rounded-md cursor-pointer" loading="lazy">
+                    <div class="overlay"><p>Rèunion d'experts.</p></div>
+                </div>
+                <!-- Image 7 -->
+                <div class="gallery-item relative" data-description="Portrait du Chairman de MEC.">
+                    <img src="../images/Chairman_light.webp" alt="Chairman de MEC" class="w-full h-36 object-cover rounded-md cursor-pointer" loading="lazy">
+                    <div class="overlay"><p>Portrait du Chairman de MEC.</p></div>
+                </div>
+                <!-- Image 8 -->
+                <div class="gallery-item relative" data-description="Travaux de terrassement en cours.">
+                    <img src="../images/IMG-20250907-WA0016_light.webp" alt="Travaux de terrassement" class="w-full h-36 object-cover rounded-md cursor-pointer" loading="lazy">
+                    <div class="overlay"><p>Signature de l'accord de partenariat avec le Vice-Ministre.</p></div>
+                </div>
             </div>
         </div>
     </section>
@@ -212,6 +260,7 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
             </div>
             <div class="modal-body">
                 <img id="gallery-current" src="" alt="" class="w-full h-96 object-contain mx-auto" />
+                <div id="gallery-description" class="text-center text-gray-800 mt-2"></div>
                 <div id="gallery-thumbs" class="mt-3 grid grid-cols-4 gap-2"></div>
             </div>
         </div>
@@ -427,7 +476,7 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
     (function(){
         // 1) Images pool (reuse existing images in ../images)
         const pool = [
-            'couverture.png','panneau2.jpg','IMG-20250907-WA0034.jpg','IMG-20250907-WA0127.jpg','IMG-20250907-WA0123.jpg','IMG-20250907-WA0127.jpg','IMG-20250907-WA0045.jpg','IMG-20250907-WA0173.jpg','IMG-20250907-WA0038.jpg'
+            'couverture.png','panneau2.jpg','IMG-20250907-WA0034_light.webp','IMG-20250907-WA0127_light.webp','IMG-20250907-WA0123_light.webp','IMG-20250907-WA0127_light.webp','IMG-20250907-WA0045_light.webp','IMG-20250907-WA0038_light.webp'
         ];
 
         const track = document.getElementById('mini-ad-track');
@@ -560,38 +609,38 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
      <!-- Mini panneau publicitaire -->
     <section id="mini-banner" class="py-8 bg-gray-100" data-anim="fade-up">
         <div class="max-w-6xl mx-auto px-4">
-            <div class="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                <div class="swiper-container" id="banner-swiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide relative">
-                            <img src="../images/IMG-20250907-WA0047.jpg" class="w-full h-48 md:h-64 object-cover" alt="Projet Masco">
+            <div class="relative overflow-hidden rounded-lg shadow-lg">
+                <div id="banner-swiper">
+                    <div class="swiper-wrapper" style="display: flex; transition: transform 0.5s ease-in-out;">
+                        <div class="swiper-slide relative" style="flex-shrink: 0; width: 100%;">
+                            <img src="../images/IMG-20250907-WA0147_light.webp" class="w-full h-48 md:h-64 object-cover" alt="Projet Masco">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
                                 <h3 class="text-white text-xl font-bold">Expertise en Construction</h3>
                                 <p class="text-white/90">Des projets d'envergure réalisés avec excellence</p>
                             </div>
                         </div>
-                        <div class="swiper-slide relative">
+                        <div class="swiper-slide relative" style="flex-shrink: 0; width: 100%;">
                             <img src="../images/IMG-20250907-WA0173.jpg" class="w-full h-48 md:h-64 object-cover" alt="Services Masco">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
                                 <h3 class="text-white text-xl font-bold">Infrastructure ferroviaire</h3>
                                 <p class="text-white/90">Développement des transports modernes en RDC</p>
                             </div>
                         </div>
-                        <div class="swiper-slide relative">
+                        <div class="swiper-slide relative" style="flex-shrink: 0; width: 100%;">
                             <img src="../images/IMG-20250907-WA0039.jpg" class="w-full h-48 md:h-64 object-cover" alt="Projet Masco">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
                                 <h3 class="text-white text-xl font-bold">Ingénierie civile</h3>
                                 <p class="text-white/90">Solutions durables pour l'avenir de la RDC</p>
                             </div>
                         </div>
-                        <div class="swiper-slide relative">
+                        <div class="swiper-slide relative" style="flex-shrink: 0; width: 100%;">
                             <img src="../images/IMG-20250907-WA0064.jpg" class="w-full h-48 md:h-64 object-cover" alt="Projet Masco">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
                                 <h3 class="text-white text-xl font-bold">Construction durable</h3>
                                 <p class="text-white/90">Des infrastructures respectueuses de l'environnement</p>
                             </div>
                         </div>
-                        <div class="swiper-slide relative">
+                        <div class="swiper-slide relative" style="flex-shrink: 0; width: 100%;">
                             <img src="../images/IMG-20250907-WA0116.jpg" class="w-full h-48 md:h-64 object-cover" alt="Projet Masco">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
                                 <h3 class="text-white text-xl font-bold">Innovation énergétique</h3>
@@ -617,7 +666,7 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
 
             <div id="blog-articles" class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <img src="../images/IMG-20250907-WA0034.jpg" alt="Article par défaut" class="w-full h-44 object-cover">
+                    <img src="../images/IMG-20250907-WA0034_light.webp" alt="Article par défaut" class="w-full h-44 object-cover">
                     <div class="p-4">
                         <time class="text-sm text-gray-500">15 août 2025</time>
                         <h3 class="text-lg font-semibold mt-2">Réhabilitation ferroviaire : premières phases</h3>
@@ -626,7 +675,7 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
                     </div>
                 </article>
                 <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <img src="../images/IMG-20250907-WA0123.jpg" alt="Travaux routiers" class="w-full h-44 object-cover">
+                    <img src="../images/IMG-20250907-WA0123_light.webp" alt="Travaux routiers" class="w-full h-44 object-cover">
                     <div class="p-4">
                         <time class="text-sm text-gray-500">22 juillet 2025</time>
                         <h3 class="text-lg font-semibold mt-2">Travaux routiers à Kisangani</h3>
@@ -635,7 +684,7 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
                     </div>
                 </article>
                 <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <img src="../images/IMG-20250907-WA0173.jpg" alt="Chantier hydroélectrique" class="w-full h-44 object-cover">
+                    <img src="../images/IMG-20250907-WA0015 - Copie.jpg" alt="Chantier hydroélectrique" class="w-full h-44 object-cover">
                     <div class="p-4">
                         <time class="text-sm text-gray-500">5 juin 2025</time>
                         <h3 class="text-lg font-semibold mt-2">Nouveau chantier hydroélectrique</h3>
@@ -693,6 +742,64 @@ src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15967.65363
         </div> 
     </section> 
  
+    <script>
+    // Gallery Lightbox Logic
+    (function() {
+        const galleryGrid = document.getElementById('gallery-grid');
+        if (!galleryGrid) return;
+
+        const images = Array.from(galleryGrid.querySelectorAll('.gallery-item'));
+        const lightbox = document.getElementById('gallery-lightbox');
+        const currentImage = document.getElementById('gallery-current');
+        const descriptionContainer = document.getElementById('gallery-description');
+        const closeBtn = document.getElementById('gallery-close');
+        const prevBtn = document.getElementById('gallery-prev');
+        const nextBtn = document.getElementById('gallery-next');
+        let currentIndex = 0;
+
+        function showImage(index) {
+            const item = images[index];
+            const img = item.querySelector('img');
+            const description = item.dataset.description || '';
+            
+            currentImage.src = img.src;
+            currentImage.alt = img.alt;
+            descriptionContainer.textContent = description;
+            currentIndex = index;
+            
+            lightbox.style.display = 'flex';
+            lightbox.setAttribute('aria-hidden', 'false');
+        }
+
+        function hideLightbox() {
+            lightbox.style.display = 'none';
+            lightbox.setAttribute('aria-hidden', 'true');
+        }
+
+        images.forEach((item, index) => {
+            item.addEventListener('click', () => showImage(index));
+        });
+
+        closeBtn.addEventListener('click', hideLightbox);
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        });
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        });
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) hideLightbox();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+                hideLightbox();
+            }
+        });
+    })();
+    </script>
+
     <!-- Footer --> 
     <footer> 
         <div class="container footer-content"> 
