@@ -79,9 +79,33 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
             <!-- Desktop Navigation --> 
             <ul id="main-nav" class="hidden md:flex items-center space-x-6 text-sm font-medium"> 
                 <li><a href="#hero" class="hover:text-primary">Accueil</a></li> 
-                <li><a href="#about" class="hover:text-primary">À propos</a></li> 
-                <li><a href="#services" class="hover:text-primary">Nos Services</a></li> 
-                <li><a href="#projects" class="hover:text-primary">Projets</a></li> 
+                
+                <!-- Dropdown for "À propos" -->
+                <li class="relative group">
+                    <a href="#about" class="hover:text-primary flex items-center py-4">
+                        À propos <i class="fas fa-chevron-down text-xs ml-2"></i>
+                    </a>
+                    <ul class="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-0 py-2 w-48 z-50 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+                        <li><a href="#team" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Notre Équipe</a></li>
+                        <li><a href="#partners" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Nos Partenaires</a></li>
+                        <li><a href="#gallery" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Galeries Photos</a></li>
+                    </ul>
+                </li>
+
+                <!-- Dropdown for "Nos Services" -->
+                <li><a href="#services" class="hover:text-primary">Services</a></li> 
+
+                <li class="relative group">
+                    <a href="#about" class="hover:text-primary flex items-center py-4">
+                        Nos Projets<i class="fas fa-chevron-down text-xs ml-2"></i>
+                    </a>
+                    <ul class="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-0 py-2 w-48 z-50 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+                        <li><a href="#renaissance" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Renaissance du chemin de fer Kisangani–Ubundu</a></li>
+                        <li><a href="#projects" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Nos autres projets</a></li>
+                        <li><a href="#wrapper" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Utilitaires</a></li>
+                    </ul>
+                </li>
+
                 <li><a href="#blog" class="hover:text-primary">Blog</a></li> 
                 <li><a href="#contact" class="hover:text-primary">Contact</a></li> 
             </ul> 
@@ -269,10 +293,15 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
  
     <!-- About Section (Qui sommes-nous ?) - fusionnée et corrigée -->
     <section id="about" class="py-12" data-anim="fade-up">
-        <div class="max-w-6xl text-center mx-auto px-4">
-            <div class="grid grid-cols-1 text-center md:grid-cols-2 gap-8 items-center">
-                <div class="about-text-content text-center fade-in-on-scroll">
-                    <h2 class="text-3xl font-bold text-center text-primary mb-4">Qui sommes-nous ?</h2>
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <!-- Logo Column -->
+                <div class="stagger-item">
+                    <img src="images/logo_light.webp" alt="Masco Logo" class="w-48 h-48 object-contain mx-auto">
+                </div>
+                <!-- Text Column -->
+                <div class="about-text-content text-center md:text-left stagger-item">
+                    <h2 class="text-3xl font-bold text-primary mb-4">Qui sommes-nous ?</h2>
                     <p>Masco Énergie et Construction est une Société Anonyme (SA) créée en 2020, basée à Kisangani, République Démocratique du Congo. Nous sommes un acteur majeur dans le génie civil, les infrastructures ferroviaires, la consultance, les études de projets et l'accompagnement institutionnel.</p>
                     <p class="mt-3">Notre mission est de concevoir, réaliser et accompagner des projets d’infrastructure innovants, en offrant des services de consultance, d’études de faisabilité, et de facilitation institutionnelle en RDC.</p>
                     <!--<a href="#" class="text-secondary-orange">En savoir plus sur notre histoire <i class="fas fa-arrow-right ml-2"></i></a>-->
@@ -591,7 +620,7 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
 </section>
     
     <!--Galerie pour remplacer le Mini panneau publicitaire-->
-    <div class="wrapper" data-anim="zoom-in">
+    <div id="wrapper" class="wrapper" data-anim="zoom-in">
         <div class="conteiner">
             <input type="radio" name="slide" id="c1" checked>
             <label for="c1" class="card" style="background-image: url('../images/IMG-20250907-WA0147_light.webp');">
