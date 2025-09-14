@@ -161,15 +161,47 @@
     </footer>
 
   <script>
-    // Mobile menu toggle
+    // Mobile menu toggle (robust: use 'is-open' and sync with 'hidden' + aria-expanded)
     (function() {
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        if (mobileMenuButton && mobileMenu) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
+        const desktopNav = document.getElementById('main-nav');
+
+        if (!mobileMenuButton || !mobileMenu) return;
+
+        if(!mobileMenuButton.hasAttribute('aria-expanded')) mobileMenuButton.setAttribute('aria-expanded','false');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('is-open');
+            if(mobileMenu.classList.contains('is-open')){
+                mobileMenu.classList.remove('hidden');
+                mobileMenuButton.setAttribute('aria-expanded','true');
+            } else {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded','false');
+            }
+        });
+
+        // Close when clicking a menu link
+        const links = mobileMenu.querySelectorAll('a');
+        links.forEach(a => a.addEventListener('click', ()=>{
+            mobileMenu.classList.remove('is-open');
+            mobileMenu.classList.add('hidden');
+            mobileMenuButton.setAttribute('aria-expanded','false');
+        }));
+
+        // Ensure closed on desktop resize
+        function handleResize(){
+            if(window.innerWidth >= 768){
+                if(desktopNav) desktopNav.classList.remove('hidden');
+                mobileMenu.classList.remove('is-open');
+                mobileMenu.classList.add('hidden');
+            } else {
+                if(desktopNav) desktopNav.classList.add('hidden');
+            }
         }
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('load', handleResize);
     })();
 
     // Partner Modal Logic
