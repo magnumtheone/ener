@@ -137,5 +137,74 @@ Pour la population congolaise, en particulier celle de Kisangani, c’est un sig
             </div> 
         </div> 
     </footer>
+        <script>
+            document.addEventListener('DOMContentLoaded', function(){
+                try {
+                    const mobileMenuButton = document.getElementById('mobile-menu-button');
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    const desktopNav = document.getElementById('main-nav');
+
+                    if(!mobileMenuButton) return console.warn('mobile-menu-button introuvable');
+                    if(!mobileMenu) return console.warn('mobile-menu introuvable');
+
+                    // Ensure aria-expanded initial state
+                    if(!mobileMenuButton.hasAttribute('aria-expanded')) mobileMenuButton.setAttribute('aria-expanded','false');
+
+                        mobileMenuButton.addEventListener('click', function(){
+                            // Toggle the project-specific 'is-open' class (style.css defines #mobile-menu.is-open { display:block })
+                            // Keep 'hidden' for initial state (Tailwind), but rely on 'is-open' to show/hide consistently with site-wide CSS.
+                            mobileMenu.classList.toggle('is-open');
+                            // Mirror hidden for Tailwind consumers (optional)
+                            if(mobileMenu.classList.contains('is-open')){
+                                mobileMenu.classList.remove('hidden');
+                            } else {
+                                mobileMenu.classList.add('hidden');
+                            }
+                            const expanded = mobileMenu.classList.contains('is-open') ? 'true' : 'false';
+                            mobileMenuButton.setAttribute('aria-expanded', expanded);
+                            console.log('mobile menu toggled - expanded=', expanded);
+                        });
+
+                    // close mobile menu when clicking a link (safe: check length)
+                    const links = mobileMenu.querySelectorAll('a');
+                    if(links && links.length){
+                        links.forEach(a => a.addEventListener('click', function(){
+                            // Close mobile menu: remove is-open and add hidden
+                            mobileMenu.classList.remove('is-open');
+                            mobileMenu.classList.add('hidden');
+                            mobileMenuButton.setAttribute('aria-expanded','false');
+                            console.log('mobile menu closed via link click');
+                        }));
+                    }
+
+                    // show/hide desktop nav based on width using classes (more robust with Tailwind)
+                    function handleResize(){
+                        try{
+                            if(window.innerWidth >= 768){
+                                if(desktopNav){
+                                    desktopNav.classList.remove('hidden');
+                                    desktopNav.classList.add('md:flex');
+                                }
+                                // Ensure mobile menu fully closed on desktop
+                                mobileMenu.classList.remove('is-open');
+                                mobileMenu.classList.add('hidden');
+                            } else {
+                                if(desktopNav) desktopNav.classList.add('hidden');
+                            }
+                        }catch(e){ console.error('handleResize error', e); }
+                    }
+
+                    window.addEventListener('resize', handleResize);
+                    // run once after load
+                    window.addEventListener('load', function(){
+                        handleResize();
+                        console.log('mobile menu script initialised');
+                    });
+
+                } catch(err){
+                    console.error('Erreur dans le script mobile menu:', err);
+                }
+            });
+        </script>
 </body>
 </html>
