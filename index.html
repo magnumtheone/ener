@@ -107,6 +107,17 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
                 </li>
 
                 <li><a href="#blog" class="hover:text-primary">Blog</a></li> 
+
+                <li class="relative group">
+                    <a href="#faq" class="hover:text-primary flex items-center py-4">
+                        FAQ<i class="fas fa-chevron-down text-xs ml-2"></i>
+                    </a>
+                    <ul class="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-0 py-2 w-48 z-50 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+                        <li><a href="#faq" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">FAQ</a></li>
+                        <li><a href="#optimum-swift" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Optimum Swift (IA)</a></li>
+                    </ul>
+                </li>
+
                 <li><a href="#contact" class="hover:text-primary">Contact</a></li> 
             </ul> 
         </nav> 
@@ -119,6 +130,7 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
                 <li><a href="#services">Nos Services</a></li> 
                 <li><a href="#projects">Projets</a></li> 
                 <li><a href="#blog">Blog</a></li> 
+                <li><a href="#blog">FAQ & IA</a></li> 
                 <li><a href="#contact">Contact</a></li> 
             </ul> 
         </div> 
@@ -824,34 +836,279 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
         </div>
     </section>
 
-    <!-- Contact Section --> 
-    <section id="contact" data-anim="fade-up"> 
-        <div class="container text-center"> 
-            <h2>Contactez-nous</h2> 
-            <div class="contact-grid"> 
-                <!-- Contact Info --> 
-                <div class="contact-info"> 
-                    <h3 class="text-primary-blue">Informations de contact</h3> 
-                    <p><i class="fas fa-phone-alt 
-text-secondary-orange"></i> Téléphone: +243 892555988, +243 979271125</p> 
-                    <p><i class="fas fa-envelope 
-text-secondary-orange"></i> Email: energiesmasco123@gmail.com</p> 
-                    <p><i class="fas fa-map-marker-alt 
-text-secondary-orange"></i> Adresse: 7, Avenue du 10 Octobre/ Makiso, Kisangani, RDC.</p> 
- 
-                    <h3 class="text-primary-blue" style="margin-top: 
-1.5rem;">Suivez-nous</h3> 
-                    <div class="social-links"> 
-                        <a href="https://linkedin.com" 
-target="_blank"><i class="fab fa-linkedin"></i></a> 
-                        <a href="https://facebook.com/ Masco SA" 
-target="_blank"><i class="fab fa-facebook-square"></i></a> 
-                        <a href="https://wa.me/243892555988" target="_blank"><i 
-class="fab fa-whatsapp-square"></i></a> 
-                    </div> 
-                </div> 
- 
-                <!-- Google Map Placeholder --> 
+     <!-- Optimum Swift AI assistant (added) -->
+    <section id="optimum-swift" class="py-12 bg-white stagger" data-anim="fade-up" aria-labelledby="optimum-swift-title">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 id="optimum-swift-title" class="text-2xl font-bold text-center mb-6">Une question rapide ? Demandez à Optimum Swift (IA)</h2>
+            <p class="text-center text-gray-600 mb-4">Interrogez notre assistant convivial sur Masco Énergie et Construction. Si l'IA ne peut pas répondre, elle vous redirigera vers la section <a href="#contact" class="text-primary hover:underline">Contact</a>.</p>
+
+            <div id="ai-chat" class="bg-gray-50 rounded-lg p-4 shadow-sm">
+                <div id="chat-messages" class="h-56 overflow-y-auto p-3 bg-white rounded mb-3" aria-live="polite"></div>
+
+                <div class="flex items-center gap-2">
+                    <input id="ai-question" type="text" placeholder="Posez votre question sur Masco..." class="flex-1 border border-gray-200 rounded px-3 py-2" aria-label="Votre question">
+                    <button id="ai-send" class="bg-primary text-white px-4 py-2 rounded" aria-label="Envoyer la question">
+                        <span id="ai-send-text">Envoyer</span>
+                        <span id="ai-loading" class="hidden">…</span>
+                    </button>
+                </div>
+                <p id="ai-status" class="text-sm text-gray-500 mt-2"></p>
+                <p class="text-center text-sm text-gray-500 mt-2">Powered by Optimum Swift</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        //AI
+
+        // Attendre que le DOM soit chargé
+        document.addEventListener('DOMContentLoaded', function() {
+            // Eléments de l'assistant IA
+            const chatMessages = document.getElementById('chat-messages');
+            const userInput = document.getElementById('ai-question');
+            const sendButton = document.getElementById('ai-send');
+            const loadingSpinner = document.getElementById('ai-loading');
+            const buttonText = document.getElementById('ai-send-text');
+            const statusText = document.getElementById('ai-status');
+
+            console.log('Éléments IA initialisés:');
+            console.log('chatMessages:', chatMessages);
+            console.log('userInput:', userInput);
+            console.log('sendButton:', sendButton);
+
+            // Fonction pour afficher un message utilisateur dans la zone de chat
+            function displayUserMessage(message) {
+                console.log('Affichage du message utilisateur:', message);
+                if (!chatMessages) {
+                    console.error('chatMessages element not found');
+                    return;
+                }
+                
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'flex justify-end mb-2';
+                messageDiv.style.cssText = 'display: flex; justify-content: flex-end; margin-bottom: 8px;';
+                messageDiv.innerHTML = `
+                    <div style="background-color: #dbeafe; color: #1e40af; padding: 12px; border-radius: 8px; max-width: 300px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                        ${message}
+                    </div>
+                `;
+                console.log('Message div créé:', messageDiv);
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                console.log('Message ajouté au chat');
+            }
+
+            // Fonction pour afficher une réponse de l'IA dans la zone de chat
+            function displayAiMessage(message) {
+                if (!chatMessages) {
+                    console.error('chatMessages element not found');
+                    return;
+                }
+                
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'flex justify-start mb-2';
+                messageDiv.style.cssText = 'display: flex; justify-content: flex-start; margin-bottom: 8px;';
+                const innerDiv = document.createElement('div');
+                innerDiv.style.cssText = 'background-color: #f3f4f6; color: #374151; padding: 12px; border-radius: 8px; max-width: 300px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);';
+                messageDiv.appendChild(innerDiv);
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                // Effet machine à écrire
+                let i = 0;
+                function typeWriter() {
+                    if (i < message.length) {
+                        innerDiv.innerHTML += message.charAt(i);
+                        i++;
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                        setTimeout(typeWriter, 15); // Vitesse d'affichage
+                    }
+                }
+                typeWriter();
+            }
+
+            // Fonction pour afficher un message avec un lien cliquable
+            function displayLinkMessage(text, link) {
+                if (!chatMessages) {
+                    console.error('chatMessages element not found');
+                    return;
+                }
+                
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'flex justify-start mb-2';
+                messageDiv.style.cssText = 'display: flex; justify-content: flex-start; margin-bottom: 8px;';
+                messageDiv.innerHTML = `
+                    <div style="background-color: #f3f4f6; color: #374151; padding: 12px; border-radius: 8px; max-width: 340px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: flex-start; gap: 8px;">
+                        <span>${text}</span>
+                        <a href="${link}" target="_blank" rel="noopener" aria-label="Contacter sur WhatsApp" style="display: inline-flex; align-items: center; gap: 8px; background: #25d366; color: #fff; font-weight: 600; border-radius: 6px; padding: 8px 16px; text-decoration: none; box-shadow: 0 1px 2px rgba(0,0,0,0.07); transition: background 0.2s;">
+                            <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='currentColor' viewBox='0 0 24 24' aria-hidden='true' style='margin-right:4px;'><path d='M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.372-.01-.571-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.099 3.2 5.077 4.363.71.306 1.263.489 1.695.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.288.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.617h-.001a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.999-3.648-.235-.374A9.86 9.86 0 012.1 12.045C2.073 6.92 6.522 2.443 11.64 2.443c2.637 0 5.112 1.027 6.988 2.893a9.518 9.518 0 012.932 6.89c-.003 5.127-4.451 9.604-9.579 9.604zm8.413-18.307A11.815 11.815 0 0011.64.443C5.278.443.073 5.67.1 12.019c.021 2.13.557 4.21 1.601 6.063L.057 23.443a1 1 0 001.262 1.262l5.377-1.644a11.822 11.822 0 005.002 1.106h.005c6.362 0 11.567-5.227 11.54-11.578a11.82 11.82 0 00-3.502-8.19z'/></svg>
+                            <span>Contacter sur WhatsApp</span>
+                        </a>
+                    </div>
+                `;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            
+            // Gestion de l'API de l'IA pour Masco Énergie et Construction
+            async function sendMessage() {
+                const userMessage = userInput.value.trim();
+                console.log('Message utilisateur:', userMessage);
+                console.log('userInput element:', userInput);
+                console.log('chatMessages element:', chatMessages);
+                
+                if (userMessage === '') {
+                    console.log('Message vide, arrêt');
+                    return;
+                }
+
+                displayUserMessage(userMessage);
+                userInput.value = '';
+
+                sendButton.disabled = true;
+                buttonText.classList.add('hidden');
+                loadingSpinner.classList.remove('hidden');
+                if (statusText) statusText.textContent = 'Envoi en cours...';
+
+                const contactLink = "#contact";
+                const whatsappLink = "https://wa.me/243892555988";
+                
+               const prompt = `
+                Voici les informations de la société Masco Énergie et Construction SA. Ton rôle est d'être un assistant amical et utile pour les visiteurs de notre site web.
+
+                        Informations sur l'entreprise Masco Énergie et Construction SA :
+                        - Philosophie : Masco Énergie et Construction est une Société Anonyme (SA) créée en 2020, basée à Kisangani, République Démocratique du Congo. Nous sommes un acteur majeur dans le génie civil, les infrastructures ferroviaires, la consultance, les études de projets et l'accompagnement institutionnel. Notre mission est de concevoir, réaliser et accompagner des projets d'infrastructure innovants, en offrant des services de consultance, d'études de faisabilité, et de facilitation institutionnelle en RDC.
+                        - Services :
+                          - Génie Civil & Infrastructures : Conception et réalisation d'infrastructures de grande envergure, notamment ferroviaires, routes et ponts.
+                          - Bureau d'Études & Consultance : Analyses complètes, études de faisabilité et conception technique pour vos projets.
+                          - Facilitation & Accompagnement Institutionnel : Appui à l'installation et facilitation des procédures pour les investisseurs en RDC.
+                          - Financement & Mobilisation des Ressources : Assistance pour le montage de dossiers bancables et l'obtention de crédits.
+                        - Équipe :  
+                         - Experts en génie civil, ingénierie ferroviaire, consultance et accompagnement institutionnel.
+                         - Gabriel MADUA MASUDI Chairman de Masco Energies et Construction SA
+                         - Park CHANG MOOK : Vice-président de Masco Energies et Construction SA
+                         - Georges OYEMA SHULUNGU : Administrateur Directeur Général, ADG de Masco Energies et Construction SA
+                        - Partenaires : Collaboration avec des institutions financières, des agences gouvernementales et des entreprises
+                        - Localisation :
+                         - Adresse : 7, Avenue du 10 Octobre/ Makiso, Kisangani, République Démocratique du Congo.
+                         - Téléphone : +243 892555988, +243 979271125
+                         - Email : energiesmasco123@gmail.com
+                        - Projets :
+                          - Renaissance du chemin de fer Kisangani–Ubundu (115 km) : Réhabilitation pour renforcer la connectivité régionale.
+                          - Construction d'une ligne ferroviaire : Projet majeur dans la région de Kisangani.
+                          - Infrastructure portuaire : Développement d'infrastructures portuaires modernes.
+                          - Bâtiments administratifs : Construction de complexes administratifs modernes.
+                        
+                        Informations sur toi :
+                        - Tu es Optimum Swift ! L'assistant IA de Masco Énergie et Construction SA.
+
+                Instructions pour la réponse :
+                1. Si l'utilisateur demande à prendre un rendez-vous, à parler à un conseiller, à demander un devis ou à s'inscrire, réponds avec un message d'encouragement et fournis le lien vers la section contact : ${contactLink}.
+                2. Si la question concerne l'un des sujets mentionnés ci-dessus, réponds en te basant *strictement* sur les informations fournies dans le présent site.
+                3. Si la question n'est pas pertinente ou ne peut pas être répondue, réponds poliment que tu ne peux pas l'aider et invite-le à contacter l'entreprise directement via WhatsApp: ${whatsappLink}.
+                4. Tu ne diras qu'une seule fois à l'utilisateur "Bonjour ! Je suis Optimum Swift, votre assistant amical".
+                5. Tu ne mettras pas d'astérisques dans tes réponses.
+                Question de l'utilisateur: ${userMessage}`;
+
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = { contents: chatHistory };
+                const apiKey = "AIzaSyBqf-GApU09-cEqRgIkJ-_C9oiHT9R4fNI";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (!response.ok || !result.candidates || result.candidates.length === 0) {
+                        throw new Error('Erreur de l\'API: ' + (result.error?.message || 'Réponse inattendue.'));
+                    }
+                    
+                    const aiResponse = result.candidates[0].content.parts[0].text;
+                    
+                    if (aiResponse.includes(contactLink)) {
+                        displayLinkMessage("Super ! Vous pouvez nous contacter en cliquant sur le lien ci-dessous.", contactLink);
+                    } else {
+                        displayAiMessage(aiResponse);
+                    }
+
+                } catch (error) {
+                    console.error("Erreur lors de la communication avec l'API Gemini:", error);
+                    displayAiMessage("Désolé, je rencontre des difficultés pour répondre à votre question. Veuillez réessayer plus tard ou contacter directement l'entreprise.");
+                } finally {
+                    sendButton.disabled = false;
+                    buttonText.classList.remove('hidden');
+                    loadingSpinner.classList.add('hidden');
+                    if (statusText) statusText.textContent = '';
+                }
+            }
+            
+            // Gérer le clic sur le bouton d'envoi
+            sendButton.addEventListener('click', sendMessage);
+
+            // Gérer la touche Entrée dans le champ de saisie
+            userInput.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            // Message d'accueil initial de l'IA
+            displayAiMessage("Bonjour, je suis Optimum Swift ! L'assistant IA de Masco Énergie et Construction SA. N'hésitez pas à me poser des questions sur nos services, nos projets et tout ce qui vous préoccupes !");
+        });
+    </script>
+    
+   <!-- Formulaire de Contact et Devis Unifié -->
+        <section id="contact" class="py-16 md:py-24 bg-gradient-to-br from-blue-50 to-white text-red-900 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Contactez-nous</h2>
+                <div class="max-w-xl mx-auto bg-white p-8 md:p-10 rounded-xl shadow-2xl border-t-4 border-orange-700">
+                    <p class="text-center text-gray-600 mb-8">Remplissez ce formulaire pour obtenir un devis personnalisé ou pour échanger avec notre équipe.</p>
+                    <form id="contact-form" class="space-y-6">
+                        <div>
+                            <label for="form-nom" class="block text-sm font-medium text-gray-700 mb-2">Nom Complet</label>
+                            <input type="text" id="form-nom" name="Nom Complet" class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500" required aria-required="true">
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="form-postnom" class="block text-sm font-medium text-gray-700 mb-2">Post Nom</label>
+                                <input type="text" id="form-postnom" name="Post Nom" class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500">
+                            </div>
+                            <div>
+                                <label for="form-prenom" class="block text-sm font-medium text-gray-700 mb-2">Prénom</label>
+                                <input type="text" id="form-prenom" name="Prénom" class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500" required aria-required="true">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="form-entreprise" class="block text-sm font-medium text-gray-700 mb-2">Nom de l'entreprise (Facultatif)</label>
+                            <input type="text" id="form-entreprise" name="Nom de l'entreprise" class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500">
+                        </div>
+                        <div>
+                            <label for="form-email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" id="form-email" name="Email" class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500" required aria-required="true">
+                        </div>
+                        <div>
+                            <label for="form-phone" class="block text-sm font-medium text-gray-700 mb-2">Téléphone (Optionnel)</label>
+                            <input type="tel" id="form-phone" name="Téléphone" class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500">
+                        </div>
+                        <div>
+                            <label for="form-message" class="block text-sm font-medium text-gray-700 mb-2">Décrivez brièvement vos besoins / votre projet</label>
+                            <textarea id="form-message" name="Message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500" required aria-required="true"></textarea>
+                        </div>
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                            <button type="submit" class="w-full sm:w-1/2 bg-orange-600 text-white py-3 px-6 rounded-md font-semibold text-lg hover:bg-green-900 transition-colors duration-300 shadow-md transform hover:scale-105">
+                                Envoyer
+                            </button>
+                            <button type="button" id="whatsapp-contact-button" class="w-full sm:w-1/2 bg-green-900 text-white py-3 px-6 rounded-md font-semibold text-lg hover:bg-orange-600 transition-colors duration-300 shadow-md transform hover:scale-105">
+                                <a href="https://wa.me/243892555988" target="_blank" rel="noopener noreferrer">Contacter via WhatsApp</a>
+                            </button>
+                        </div>
+                        <!-- Google Map Placeholder --> 
                 <div class="map-container"> 
                     <!-- Replace with actual Google Map embed --> 
                     <iframe 
@@ -866,9 +1123,13 @@ src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15967.65363
                         referrerpolicy="no-referrer-when-downgrade"> 
                     </iframe> 
                 </div> 
-            </div> 
-        </div> 
-    </section> 
+                    </form>
+                    <p id="contact" class="text-sm text-center text-gray-500 mt-6">
+                        Vous pouvez aussi nous contacter directement à : <a href="mailto:energiesmasco123@gmail.com" class="text-red-600 hover:underline">energiesmasco123@gmail.com</a>
+                    </p>
+                </div>
+            </div>
+        </section>
  
     <script>
     // Gallery Lightbox Logic
@@ -935,7 +1196,34 @@ src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15967.65363
                 <p>© 2025 Masco Énergie et Construction SA. Design By <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" href="https://portfoliodavidwawina.vercel.app" target="_blank">Almekita Sarl.</a> Tous droits réservés.</p> 
                 <p style="margin-top: 0.5rem;">Construire l'Afrique, Concevoir l'avenir.</p> 
             </div> 
-            <div class="quick-links"> 
+             <!-- Contact Section --> 
+            <section id="" data-anim="fade-up"> 
+                <div class="text-center text-gray-600 mb-8"> 
+                    <h2 class="text-white">Contactez-nous</h2> 
+                    <div class="contact-grid"> 
+                <h3 class="text-primary-blue text-white ">Informations de contact</h3> 
+                            <p class="text-white"><i class="fas fa-phone-alt 
+        text-secondary-orange"></i> Téléphone: +243 892555988, +243 979271125</p> 
+                            <p class="text-white"><i class="fas fa-envelope 
+        text-secondary-orange"></i> Email: energiesmasco123@gmail.com</p> 
+                            <p class="text-white"><i class="fas fa-map-marker-alt 
+        text-secondary-orange"></i> Adresse: 7, Avenue du 10 Octobre/ Makiso, Kisangani, RDC.</p> 
+        
+                            <h3 class="text-primary-blue text-white" style="margin-top: 
+        1.5rem;">Suivez-nous</h3> 
+                            <div class="social-links text-white "> 
+                                <a href="https://linkedin.com" 
+        target="_blank"><i class="fab fa-linkedin"></i></a> 
+                                <a href="https://facebook.com/ Masco SA" 
+        target="_blank"><i class="fab fa-facebook-square"></i></a> 
+                                <a href="https://wa.me/243892555988" target="_blank"><i 
+        class="fab fa-whatsapp-square"></i></a> 
+                            </div> 
+                        </div> 
+            </div> 
+        </div> 
+    </section> 
+            <!--<div class="quick-links"> 
                 <a href="#">Mentions légales</a> 
                 <a href="#">Politique de confidentialité</a> 
             </div> 
@@ -945,7 +1233,7 @@ src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15967.65363
                 <a href="#projects">Projets</a> 
                 <a href="#contact">Contact</a> 
             </div> 
-        </div> 
+        </div> -->
     </footer> 
  
     <script> 

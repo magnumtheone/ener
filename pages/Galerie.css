@@ -64,7 +64,8 @@ input:checked + label{
     margin: 15px;
     flex-shrink: 0;
 }
-input{
+/* Ne masquer que les inputs radio utilisés par la galerie */
+.conteiner input[type="radio"]{
     display: none;
 }
 .description{
