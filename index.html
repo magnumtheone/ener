@@ -118,7 +118,7 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
                     </ul>
                 </li>
 
-                <li><a href="#contact" class="hover:text-primary">Contact</a></li> 
+                <li><a href="../pages/contact.html" class="hover:text-primary">Contact</a></li> 
             </ul> 
         </nav> 
  
@@ -132,7 +132,7 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
                 <li><a href="#projects">Projets</a></li> 
                 <li><a href="../pages/blog.html">Blog</a></li> 
                 <li><a href="#blog">FAQ & IA</a></li> 
-                <li><a href="#contact">Contact</a></li> 
+                <li><a href="../pages/contact.html">Contact</a></li> 
             </ul> 
         </div> 
     </header> 
@@ -1051,75 +1051,7 @@ stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7
             displayAiMessage("Bonjour, je suis Optimum Swift ! L'assistant IA de Masco Énergie et Construction SA. N'hésitez pas à me poser des questions sur nos services, nos projets et tout ce qui vous préoccupes !");
         });
     </script>
-    
-   <!-- Formulaire de Contact et Devis Unifié -->
-        <section id="contact" class="py-16 md:py-24 bg-gradient-to-br from-blue-50 to-white text-red-900 fade-in-section">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Contactez-nous</h2>
-                <div class="max-w-xl mx-auto bg-white p-8 md:p-10 rounded-xl shadow-2xl border-t-4 border-orange-700">
-                    <p class="text-center text-gray-600 mb-8">Remplissez ce formulaire pour obtenir un devis personnalisé ou pour échanger avec notre équipe.</p>
-                    <form id="contact-form" class="space-y-6">
-                        <div>
-                            <label for="form-nom" class="block text-sm font-medium text-gray-700 mb-2">Nom </label>
-                            <input type="text" id="form-nom" name="Nom Complet" class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500" required aria-required="true">
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div>
-                                <label for="form-postnom" class="block text-sm font-medium text-gray-700 mb-2">Post Nom</label>
-                                <input type="text" id="form-postnom" name="Post Nom" class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500">
-                            </div>
-                            <div>
-                                <label for="form-prenom" class="block text-sm font-medium text-gray-700 mb-2">Prénom</label>
-                                <input type="text" id="form-prenom" name="Prénom" class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500" required aria-required="true">
-                            </div>
-                        </div>
-                        <div>
-                            <label for="form-entreprise" class="block text-sm font-medium text-gray-700 mb-2">Nom de l'entreprise (Facultatif)</label>
-                            <input type="text" id="form-entreprise" name="Nom de l'entreprise" class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500">
-                        </div>
-                        <div>
-                            <label for="form-email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                            <input type="email" id="form-email" name="Email" class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500" required aria-required="true">
-                        </div>
-                        <div>
-                            <label for="form-phone" class="block text-sm font-medium text-gray-700 mb-2">Téléphone </label>
-                            <input type="tel" id="form-phone" name="Téléphone" class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500">
-                        </div>
-                        <div>
-                            <label for="form-message" class="block text-sm font-medium text-gray-700 mb-2">Entrez votre message </label>
-                            <textarea id="form-message" name="Message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500" required aria-required="true"></textarea>
-                        </div>
-                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                            <button type="submit" class="w-full sm:w-1/2 bg-orange-600 text-white py-3 px-6 rounded-md font-semibold text-lg hover:bg-green-900 transition-colors duration-300 shadow-md transform hover:scale-105">
-                                Envoyer
-                            </button>
-                            <button type="button" id="whatsapp-contact-button" class="w-full sm:w-1/2 bg-green-900 text-white py-3 px-6 rounded-md font-semibold text-lg hover:bg-orange-600 transition-colors duration-300 shadow-md transform hover:scale-105">
-                                <a href="https://wa.me/243892555988" target="_blank" rel="noopener noreferrer">Contacter via WhatsApp</a>
-                            </button>
-                        </div>
-                        <!-- Google Map Placeholder --> 
-                <div class="map-container"> 
-                    <!-- Replace with actual Google Map embed --> 
-                    <iframe 
-                        
-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15967.65363
- 8487834!2d25.1970228!3d0.5134768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13
- .1!3m3!1m2!1s0x170b04a0e9a7e04f%3A0x6b45f4c5e7b8f9a2!2sKisangani%2C%20
- R%C3%A9publique%20D%C3%A9mocratique%20du%20Congo!5e0!3m2!1sfr!2scd!4v1
- 678912345678!5m2!1sfr!2scd" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade"> 
-                    </iframe> 
-                </div> 
-                    </form>
-                    <p id="contact" class="text-sm text-center text-gray-500 mt-6">
-                        Vous pouvez aussi nous contacter directement à : <a href="mailto:energiesmasco123@gmail.com" class="text-red-600 hover:underline">energiesmasco123@gmail.com</a>
-                    </p>
-                </div>
-            </div>
-        </section>
- 
+
     <script>
     // Gallery Lightbox Logic
     (function() {
@@ -1182,7 +1114,7 @@ src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15967.65363
     <footer> 
         <div class="container footer-content"> 
             <div> 
-                <p>© 2025 Masco Énergie et Construction SA. Design By <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" href="https://portfoliodavidwawina.vercel.app" target="_blank">Almekita Sarl.</a> Tous droits réservés.</p> 
+                <p>© 2025 Masco Énergie et Construction SA. Design By <a class="block px-4 py-2 text-sm text-orange-700 hover:bg-orange-100" href="https://portfoliodavidwawina.vercel.app" target="_blank">Almekita Sarl.</a> Tous droits réservés.</p> 
                 <p style="margin-top: 0.5rem;">Construire l'Afrique, Concevoir l'avenir.</p> 
             </div> 
              <!-- Contact Section --> 

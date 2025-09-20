@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact – Masco Energies et Constructions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="theme-color" content="#ea580c" />
+</head>
+<body class="min-h-screen text-red-900"
+      style="background-image: linear-gradient(to bottom right, rgba(250, 246, 5, 0.35), rgba(0, 0, 0, 0.35)), url('../images/logo_light.webp'); background-size: cover; background-position: center; background-attachment: fixed;">
+
+  <!-- Section Contact -->
+  <section id="contact" class="py-16 md:py-24">
+    <div class="container mx-auto px-6">
+      <h1 class="text-3xl md:text-4xl font-bold text-green-700 text-center mb-12 drop-shadow">Contactez-nous</h1>
+
+      <div class="max-w-xl mx-auto bg-white/10 backdrop-blur-md p-8 md:p-10 rounded-xl shadow-2xl border border-white/20">
+        <p class="text-center text-gray-100/90 mb-8">
+          Powered by <a href="/index.html#optimum-swift"><strong>Optimum Swift</strong></a>
+        </p>
+
+        <form id="contact-form" class="space-y-6" novalidate>
+          <!-- Web3Forms -->
+          <input type="hidden" name="access_key" id="ACCESS_KEY" value="f0d99762-3340-4ac7-ba68-479b0c6b3158" />
+          <input type="hidden" name="subject" value="Nouveau message depuis le site" />
+          <input type="hidden" name="from_name" value="Site Web" />
+          <!-- composé du code pays + numéro -->
+          <input type="hidden" name="telephone_full" id="telephone_full" />
+          <!-- honeypot anti-bot (doit rester vide) -->
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
+
+          <div>
+            <label for="form-nom" class="block text-sm font-medium text-white mb-2">Nom</label>
+            <input type="text" id="form-nom" name="nom"
+                   class="w-full px-4 py-2 bg-white/80 text-gray-900 border border-white/40 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
+                   required />
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label for="form-postnom" class="block text-sm font-medium text-white mb-2">Post-nom</label>
+              <input type="text" id="form-postnom" name="postnom"
+                     class="w-full px-4 py-2 bg-white/80 text-gray-900 border border-white/40 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500" />
+            </div>
+            <div>
+              <label for="form-prenom" class="block text-sm font-medium text-white mb-2">Prénom</label>
+              <input type="text" id="form-prenom" name="prenom"
+                     class="w-full px-4 py-2 bg-white/80 text-gray-900 border border-white/40 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
+                     required />
+            </div>
+          </div>
+
+          <div>
+            <label for="form-entreprise" class="block text-sm font-medium text-white mb-2">Entreprise (facultatif)</label>
+            <input type="text" id="form-entreprise" name="entreprise"
+                   class="w-full px-4 py-2 bg-white/80 text-gray-900 border border-white/40 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500" />
+          </div>
+
+          <div>
+            <label for="form-email" class="block text-sm font-medium text-white mb-2">Email</label>
+            <input type="email" id="form-email" name="email"
+                   class="w-full px-4 py-2 bg-white/80 text-gray-900 border border-white/40 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
+                   required />
+          </div>
+
+          <!-- Code pays + Téléphone -->
+          <div>
+            <label class="block text-sm font-medium text-white mb-2">Téléphone</label>
+            <div class="flex gap-2">
+              <!--<select id="country-code" name="country_code"
+                      class="w-40 px-3 py-2 bg-white/80 text-gray-900 border border-white/40 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500">
+                <option value="+243">🇨🇩 +243 (RDC)</option>
+                <option value="+242">🇨🇬 +242 (Congo)</option>
+                <option value="+33">🇫🇷 +33 (France)</option>
+                <option value="+32">🇧🇪 +32 (Belgique)</option>
+                <option value="+1">🇺🇸 +1 (USA)</option>
+                <option value="+44">🇬🇧 +44 (UK)</option>
+                <option value="+39">🇮🇹 +39 (Italie)</option>
+                <option value="+34">🇪🇸 +34 (Espagne)</option>
+                <option value="+49">🇩🇪 +49 (Allemagne)</option>
+                <option value="+41">🇨🇭 +41 (Suisse)</option>
+              </select>-->
+              <input type="tel" id="form-phone" name="telephone" placeholder="+123... 818 624 394"
+                     class="flex-1 px-4 py-2 bg-white/80 text-gray-900 border border-white/40 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500" />
+            </div>
+            <p class="text-xs text-white/90 mt-1">Le numéro sera envoyé avec le code pays sélectionné.</p>
+          </div>
+
+          <div>
+            <label for="form-message" class="block text-sm font-medium text-white mb-2">Votre message</label>
+            <textarea id="form-message" name="message" rows="5"
+                      class="w-full px-4 py-2 bg-white/80 text-gray-900 border border-white/40 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
+                      required></textarea>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-4">
+            <button id="submit-btn" type="submit"
+                    class="w-full sm:w-1/2 bg-green-900 text-white py-3 px-6 rounded-md font-semibold text-lg hover:bg-orange-600 transition-colors duration-300 shadow-md transform hover:scale-105">
+              Envoyer
+            </button>
+            <a id="whatsapp-contact-button" href="#" target="_blank" rel="noopener"
+               class="w-full sm:w-1/2 text-center bg-green-900 text-white py-3 px-6 rounded-md font-semibold text-lg hover:bg-orange-600 transition-colors duration-300 shadow-md transform hover:scale-105">
+              Contacter via WhatsApp
+            </a>
+          </div>
+          
+          <div class="mt-8">
+          <div class="relative overflow-hidden rounded-xl shadow-md">
+            <iframe title="Localisation: Kisangani, RDC" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15967.653638487834!2d25.1970228!3d0.5134768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x170b04a0e9a7e04f%3A0x6b45f4c5e7b8f9a2!2sKisangani%2C%20R%C3%A9publique%20D%C3%A9mocratique%20du%20Congo!5e0!3m2!1sfr!2scd!4v1678912345678!5m2!1sfr!2scd" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen class="w-full h-64 md:h-80 border-0"></iframe>
+          </div>
+        </div>
+      </form>
+
+          <!-- Statut d'envoi -->
+          <p id="sending-status" class="text-sm text-white/90 mt-2 hidden">Envoi en cours…</p>
+        </form>
+
+        <p class="text-sm text-center text-black/90 mt-6">
+          Vous pouvez aussi nous contacter directement à :
+          <a href="mailto:energiesmasco123@gmail.com" class="text-green-900 underline hover:text-white">energiesmasco123@gmail.com</a>
+        </p>
+      </div>
+    </div>
+  </section>
+   <p class="mt-6 text-center"><a href="../index.html" class="text-primary hover:text-black">Page d'Accueil </a></p>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 hidden px-6 py-3 rounded-lg text-white font-medium shadow-lg z-50"></div>
+
+  <script>
+    const form = document.getElementById('contact-form');
+    const toast = document.getElementById('toast');
+    const whatsappBtn = document.getElementById('whatsapp-contact-button');
+    const countryCode = document.getElementById('country-code');
+    const phoneInput = document.getElementById('form-phone');
+    const telFull = document.getElementById('telephone_full');
+    const sendingStatus = document.getElementById('sending-status');
+    const submitBtn = document.getElementById('submit-btn');
+
+    function showToast(message, type="success"){
+      toast.textContent = message;
+      toast.className = `fixed bottom-6 right-6 px-6 py-3 rounded-lg text-white font-medium shadow-lg z-50 ${type === 'success' ? 'bg-green-600' : 'bg-red-600'}`;
+      toast.style.display = 'block';
+      setTimeout(()=> toast.style.display = 'none', 4000);
+    }
+
+    // Préremplissage WhatsApp
+    whatsappBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      const nom = document.getElementById('form-nom').value;
+      const prenom = document.getElementById('form-prenom').value;
+      const message = document.getElementById('form-message').value;
+      const text = encodeURIComponent(`Bonjour, je suis ${prenom} ${nom}. ${message}`);
+      const url = `https://wa.me/243892555988?text=${text}`;
+      window.open(url, '_blank');
+    });
+
+    // Soumission via Web3Forms
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // honeypot
+      const honey = form.querySelector('input[name="botcheck"]');
+      if (honey && honey.checked) return;
+
+      if (!form.checkValidity()){
+        showToast('Veuillez remplir correctement le formulaire.', 'error');
+        return;
+      }
+
+      // Compose le numéro complet code+numéro
+      const code = (countryCode.value || '').trim();
+      const num = (phoneInput.value || '').trim();
+      telFull.value = [code, num].filter(Boolean).join(' ');
+
+      // Afficher statut d'envoi + désactiver bouton
+      sendingStatus.classList.remove('hidden');
+      const prevBtnText = submitBtn.textContent;
+      submitBtn.textContent = 'Envoi…';
+      submitBtn.disabled = true;
+
+      const accessKey = document.getElementById('ACCESS_KEY').value;
+      if (!accessKey || accessKey.includes('REPLACE_WITH')){
+        showToast("⚠️ Configurez d'abord votre Access Key Web3Forms.", 'error');
+        sendingStatus.classList.add('hidden');
+        submitBtn.textContent = prevBtnText;
+        submitBtn.disabled = false;
+        return;
+      }
+
+      const data = new FormData(form);
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: data
+        });
+        const json = await res.json();
+        if (json.success){
+          showToast('Votre message a été envoyé avec succès !', 'success');
+          form.reset();
+        } else {
+          console.error('Web3Forms error:', json);
+          showToast(json.message || "Échec de l'envoi.", 'error');
+        }
+      } catch (err){
+        console.error('Network error:', err);
+        showToast("Échec de l'envoi (réseau).", 'error');
+      } finally {
+        sendingStatus.classList.add('hidden');
+        submitBtn.textContent = prevBtnText;
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

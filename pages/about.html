@@ -1,257 +1,258 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>A propos — Masco</title>
   <!-- Favicon & Open Graph -->
-    <link rel="icon" href="../images/logo_light.webp" type="image/svg+xml">
-    <meta property="og:title" content="Masco Énergie et Construction">
-    <meta property="og:description" content="Conception et réalisation de projets d'infrastructure innovants en RDC.">
-    <meta property="og:image" content="../images/logo_light.webp">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons (fixed link) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="./pages/style.css">
-    <link rel="stylesheet" href="./pages/Galerie.css">
-  <link rel="stylesheet" href="../pages/style.css">
+  <link rel="icon" href="../images/logo_light.webp" type="image/svg+xml">
+  <meta property="og:title" content="Masco Énergie et Construction">
+  <meta property="og:description" content="Conception et réalisation de projets d'infrastructure innovants en RDC.">
+  <meta property="og:image" content="../images/logo_light.webp">
+  <!-- Tailwind (kept) & Fonts -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons (kept) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Existing site styles (kept paths) -->
+  <link rel="stylesheet" href="./pages/style.css">
+  <link rel="stylesheet" href="./pages/Galerie.css">
+  <link rel="stylesheet" href="../pages/style.css">
+  <!-- Tailwind already present above; keeping only one include avoids duplicates -->
+  <style>
+    :root { --masco: #e67e22; }
+    .text-primary { color: var(--masco); }
+    .bg-primary { background-color: var(--masco); }
+    .ring-primary { --tw-ring-color: var(--masco); }
+    .brand-gradient { background: linear-gradient(135deg, #e67e22 0%, #f59e0b 100%); }
+    .glass { backdrop-filter: saturate(180%) blur(8px); background: rgba(255,255,255,.7); }
+    .prose li { margin-left: 1rem; list-style: none; }
+    .prose li i { color: var(--masco); margin-right:.5rem; }
+    .nav-link { position: relative; }
+    .nav-link:after { content:""; position:absolute; left:0; bottom:-8px; height:2px; width:0; background: var(--masco); transition: width .25s ease; }
+    .nav-link:hover:after { width:100%; }
+    #mobile-menu.is-open { display:block; }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gray-50 text-gray-800 font-[Inter]">
   <!-- Header & Navigation -->
-    <header class="bg-white shadow-sm">
-        <nav class="max-w-6xl mx-auto px-4 flex items-center justify-between py-4">
-            <!-- Logo -->
-            <a href="../index.html" class="flex items-center space-x-2">
-                <img src="../images/logo_light.webp" alt="Masco Logo" class="h-10">
-                <span class="font-bold text-lg" style="color: #e67e22;">MASCO</span>
-            </a>
+  <header class="bg-white/90 glass sticky top-0 z-40 border-b border-gray-100">
+    <nav class="max-w-6xl mx-auto px-4 flex items-center justify-between py-4">
+      <!-- Logo -->
+      <a href="../index.html" class="flex items-center gap-2 group">
+        <img src="../images/logo_light.webp" alt="Masco Logo" class="h-10 w-10 object-contain">
+        <span class="font-extrabold text-xl tracking-wide text-orange-500">MASCO</span>
+        <span class="sr-only">Retour à l'accueil</span>
+      </a>
 
-            <!-- Mobile Menu Button -->
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="p-2 rounded text-gray-600 hover:bg-gray-100">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
-            </div>
+      <!-- Desktop Navigation -->
+      <ul id="main-nav" class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <li><a href="/index.html#hero" class="nav-link hover:text-primary">Accueil</a></li>
+        <li class="relative group">
+          <a href="/index.html#about" class="nav-link hover:text-primary flex items-center gap-2">À propos <i class="fas fa-chevron-down text-xs"></i></a>
+          <ul class="absolute hidden group-hover:block bg-white shadow-xl rounded-md mt-3 py-2 w-56 z-50">
+            <li><a href="/index.html#team" class="block px-4 py-2 hover:bg-gray-50"><i class="fas fa-users mr-2 text-primary"></i>Notre Équipe</a></li>
+            <li><a href="/index.html#partners" class="block px-4 py-2 hover:bg-gray-50"><i class="fas fa-handshake mr-2 text-primary"></i>Nos Partenaires</a></li>
+            <li><a href="../pages/galerie.html" class="block px-4 py-2 hover:bg-gray-50"><i class="fas fa-images mr-2 text-primary"></i>Galeries Photos</a></li>
+          </ul>
+        </li>
+        <li><a href="/index.html#services" class="nav-link hover:text-primary">Services</a></li>
+        <li class="relative group">
+          <a href="/index.html#projects" class="nav-link hover:text-primary flex items-center gap-2">Nos Projets <i class="fas fa-chevron-down text-xs"></i></a>
+          <ul class="absolute hidden group-hover:block bg-white shadow-xl rounded-md mt-3 py-2 w-80 z-50">
+            <li><a href="/index.html#renaissance" class="block px-4 py-2 hover:bg-gray-50"><i class="fas fa-train mr-2 text-primary"></i>Renaissance du chemin de fer Kisangani–Ubundu</a></li>
+            <li><a href="/index.html#projects" class="block px-4 py-2 hover:bg-gray-50"><i class="fas fa-project-diagram mr-2 text-primary"></i>Nos autres projets</a></li>
+          </ul>
+        </li>
+        <li><a href="../pages/blog.html" class="nav-link hover:text-primary">Blog</a></li>
+        <li class="relative group">
+          <a href="#faq" class="nav-link hover:text-primary flex items-center gap-2">FAQ <i class="fas fa-chevron-down text-xs"></i></a>
+          <ul class="absolute hidden group-hover:block bg-white shadow-xl rounded-md mt-3 py-2 w-56 z-50">
+            <li><a href="/index.html#faq" class="block px-4 py-2 hover:bg-gray-50"><i class="fas fa-circle-question mr-2 text-primary"></i>FAQ</a></li>
+            <li><a href="/index.html#optimum-swift" class="block px-4 py-2 hover:bg-gray-50"><i class="fas fa-robot mr-2 text-primary"></i>Optimum Swift (IA)</a></li>
+          </ul>
+        </li>
+        <li><a href="../pages/contact.html" class="nav-link hover:text-primary">Contact</a></li>
+      </ul>
 
-            <!-- Desktop Navigation --> 
-            <ul id="main-nav" class="hidden md:flex items-center space-x-6 text-sm font-medium"> 
-                <li><a href="/index.html#hero" class="hover:text-primary">Accueil</a></li> 
-                
-                <!-- Dropdown for "À propos" -->
-                <li class="relative group">
-                    <a href="/index.html#about" class="hover:text-primary flex items-center py-4">
-                        À propos <i class="fas fa-chevron-down text-xs ml-2"></i>
-                    </a>
-                    <ul class="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-0 py-2 w-48 z-50 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
-                        <li><a href="/index.html#team" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Notre Équipe</a></li>
-                        <li><a href="/index.html#partners" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Nos Partenaires</a></li>
-                        <li><a href="../pages/galerie.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Galeries Photos</a></li>
-                    </ul>
-                </li>
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-button" class="md:hidden p-2 rounded text-gray-600 hover:bg-gray-100" aria-label="Ouvrir le menu" aria-expanded="false">
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+    </nav>
 
-                <!-- Dropdown for "Nos Services" -->
-                <li><a href="/index.html#services" class="hover:text-primary">Services</a></li> 
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+      <ul class="flex flex-col divide-y">
+        <li><a href="../index.html#hero" class="flex items-center gap-3 py-3 px-5 hover:bg-gray-50"><i class="fas fa-house"></i> Accueil</a></li>
+        <li><a href="../index.html#about" class="flex items-center gap-3 py-3 px-5 hover:bg-gray-50"><i class="fas fa-info-circle"></i> À propos</a></li>
+        <li><a href="../index.html#services" class="flex items-center gap-3 py-3 px-5 hover:bg-gray-50"><i class="fas fa-screwdriver-wrench"></i> Nos Services</a></li>
+        <li><a href="../index.html#projects" class="flex items-center gap-3 py-3 px-5 hover:bg-gray-50"><i class="fas fa-diagram-project"></i> Projets</a></li>
+        <li><a href="../pages/galerie.html" class="flex items-center gap-3 py-3 px-5 hover:bg-gray-50"><i class="fas fa-images"></i> Galerie photos</a></li>
+        <li><a href="../pages/blog.html" class="flex items-center gap-3 py-3 px-5 hover:bg-gray-50"><i class="fas fa-blog"></i> Blog</a></li>
+        <li><a href="../index.html#faq" class="flex items-center gap-3 py-3 px-5 hover:bg-gray-50"><i class="fas fa-circle-question"></i> FAQ & IA</a></li>
+        <li><a href="../pages/contact.html" class="flex items-center gap-3 py-3 px-5 hover:bg-gray-50"><i class="fas fa-envelope"></i> Contact</a></li>
+      </ul>
+    </div>
+  </header>
 
-                <li class="relative group">
-                    <a href="/index.html#projects" class="hover:text-primary flex items-center py-4">
-                        Nos Projets<i class="fas fa-chevron-down text-xs ml-2"></i>
-                    </a>
-                    <ul class="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-0 py-2 w-48 z-50 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
-                        <li><a href="/index.html#renaissance" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Renaissance du chemin de fer Kisangani–Ubundu</a></li>
-                        <li><a href="/index.html#projects" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Nos autres projets</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="../pages/blog.html" class="hover:text-primary">Blog</a></li> 
-
-                <li class="relative group">
-                    <a href="#faq" class="hover:text-primary flex items-center py-4">
-                        FAQ<i class="fas fa-chevron-down text-xs ml-2"></i>
-                    </a>
-                    <ul class="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-0 py-2 w-48 z-50 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
-                        <li><a href="/index.html#faq" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">FAQ</a></li>
-                        <li><a href="/index.html#optimum-swift" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Optimum Swift (IA)</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="/index.html#contact" class="hover:text-primary">Contact</a></li> 
-            </ul> 
-        </nav> 
-        <!-- Mobile Menu (Hidden by default) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
-            <ul class="flex flex-col items-center space-y-2 py-4">
-                 <li><a href="../index.html#hero" class="block py-2 px-4 hover:bg-gray-100 w-full text-center">Accueil</a></li>
-                <li><a href="../index.html#about" class="block py-2 px-4 hover:bg-gray-100 w-full text-center">À propos</a></li>
-                <li><a href="../index.html#services" class="block py-2 px-4 hover:bg-gray-100 w-full text-center">Nos Services</a></li>
-                <li><a href="../index.html#projects" class="block py-2 px-4 hover:bg-gray-100 w-full text-center">Projets</a></li>
-                <li><a href="../pages/galerie.html">Galerie photos</a></li> 
-                <li><a href="../pages/blog.html" class="block py-2 px-4 hover:bg-gray-100 w-full text-center">Blog</a></li>
-                <li><a href="../index.html#faq" class="block py-2 px-4 hover:bg-gray-100 w-full text-center">FAQ & IA</a></li>
-                <li><a href="../index.html#contact" class="block py-2 px-4 hover:bg-gray-100 w-full text-center">Contact</a></li>
-            </ul>
-        </div>
-    </header>
-    <body>
-    <div class="container mx-auto max-w-4xl p-4 md:p-8">
-    <a class="inline-block mb-6 px-4 py-2 rounded-full bg-primary text-white font-semibold hover:bg-opacity-90 transition" href="../index.html#projects">← Retour aux projets</a>
-    <section class="max-w-4xl mx-auto p-10 bg-white rounded-md shadow-md">
-    <h1 class="text-3xl font-bold mb-4">Bienvenue chez Masco Energies & Construction S.A.</h1>
-    <time class="text-sm text-gray-500"></time>
-    <img src="../images/logo_light.webp" alt="chantier" class="w-full h-64 object-cover rounded-md my-4">
-    <p class="text-gray-700 mb-4">Stimuler la croissance par l’innovation et les infrastructures.</p>
-    <h2 class="text-xl text-center font-semibold mt-4">À PROPOS DE NOUS</h2>
-<p class="text-lg font-semibold mb-2">Qui sommes-nous ? </p>
-      
-<p class="text-gray-700">Masco Energies & Construction S.A. est une entreprise dynamique et multisectorielle spécialisée dans les infrastructures énergétiques, la construction civile et industrielle, ainsi que les services de conseil. Nous concevons et mettons en œuvre des solutions « clé en main » à travers toute la RDC, en tirant parti des technologies innovantes, de partenariats stratégiques et d’une équipe hautement qualifiée.</p> <br>
-<p class="text-gray-700">Notre engagement envers l’excellence, la transparence et la durabilité fait de nous un partenaire de confiance pour les projets publics et privés.</p> <br>
-
-
-<p class="text-lg font-semibold mb-2">Nos valeurs fondamentales</p>
-Le contrat de concession repose sur plusieurs axes prioritaires :
-
-<li> Intégrité – Nous respectons les normes éthiques les plus élevées dans toutes nos opérations.</li>
-<li> Innovation – Nous recherchons en permanence des solutions plus intelligentes et plus efficaces.</li>
-<li> Qualité – Nous livrons des projets conformes aux standards internationaux.</li>
-<li> Durabilité – Nous nous engageons pour un développement respectueux de l’environnement.</li>
-<li> Collaboration – Nous construisons des partenariats solides pour des résultats durables.</li>
-
-<h2 class="text-xl text-center font-semibold mt-4">VISION & MISSION</h2>
-<p class="text-lg font-semibold mb-2">Notre vison </p>
-<p>Devenir un acteur majeur de la transformation des infrastructures et de l’innovation énergétique en Afrique centrale, en favorisant une croissance inclusive et un progrès durable.</p> <br>
-<p class="text-lg font-semibold mb-2">Notre misiion</p>
-<p>Fournir des solutions de qualité, rentables et innovantes dans les domaines de l’énergie, de la construction et du conseil, afin de soutenir la croissance économique et le développement social en RDC et en Afrique.</p>
-<p class="mt-6"><a href="../index.html#about" class="text-primary hover:underline">Retour</a></p>
+  <!-- Top Band / Breadcrumb -->
+  <section class="brand-gradient text-white">
+    <div class="max-w-6xl mx-auto px-4 py-6 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <i class="fas fa-building text-2xl"></i>
+        <h1 class="text-2xl md:text-3xl font-bold">À propos de Masco Energies & Construction S.A.</h1>
+      </div>
+      <nav class="hidden md:block text-white/90 text-sm" aria-label="Fil d'Ariane">
+        <ol class="flex items-center gap-2">
+          <li><a href="../index.html#hero" class="hover:underline"><i class="fas fa-house mr-1"></i>Accueil</a></li>
+          <li><i class="fas fa-angle-right"></i></li>
+          <li>À propos</li>
+        </ol>
+      </nav>
+    </div>
   </section>
 
-       <!--  <h2 class="text-2xl font-semibold text-primary mt-8"></h2>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-            <img src="../images/IMG-20250907-WA0016_light.webp" alt="maquette 1" class="w-full h-40 object-cover rounded-lg" loading="lazy">
-            <img src="../images/logo_light.webp" alt="maquette 2" class="w-full h-40 object-cover rounded-lg" loading="lazy">
-            <img src="../images/IMG-20250907-WA0105_light.webp" alt="maquette 3" class="w-full h-40 object-cover rounded-lg" loading="lazy">
+  <main class="max-w-6xl mx-auto p-4 md:p-8">
+    <a class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-primary text-white font-semibold hover:opacity-90 transition focus:outline-none focus:ring ring-primary" href="../index.html#projects">
+      <i class="fas fa-arrow-left"></i> Retour aux projets
+    </a>
+
+    <!-- Intro Card -->
+    <section class="grid lg:grid-cols-5 gap-6">
+      <div class="lg:col-span-3 bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="inline-flex items-center gap-2 text-sm font-semibold text-primary bg-orange-50 px-3 py-1 rounded-full"><i class="fas fa-bolt"></i> Innovation & Infrastructures</span>
+          <time class="text-xs text-gray-500" id="today"></time>
+        </div>
+        <img src="../images/logo_light.webp" alt="chantier" class="w-full h-56 object-contain rounded-md mb-4">
+        <p class="text-gray-700">Stimuler la croissance par l’innovation et les infrastructures.</p>
+      </div>
+
+      <!-- Quick Stats -->
+      <aside class="lg:col-span-2 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-4">
+        <div class="bg-white rounded-xl shadow-sm border p-4">
+          <div class="text-2xl font-bold">24/7</div>
+          <div class="text-sm text-gray-500 flex items-center gap-2"><i class="fas fa-headset text-primary"></i> Support</div>
+        </div>
+        <div class="bg-white rounded-xl shadow-sm border p-4">
+          <div class="text-2xl font-bold">ISO</div>
+          <div class="text-sm text-gray-500 flex items-center gap-2"><i class="fas fa-shield-alt text-primary"></i> Standards qualité</div>
+        </div>
+        <div class="bg-white rounded-xl shadow-sm border p-4">
+          <div class="text-2xl font-bold">RDC</div>
+          <div class="text-sm text-gray-500 flex items-center gap-2"><i class="fas fa-location-dot text-primary"></i> Couverture nationale</div>
+        </div>
+        <div class="bg-white rounded-xl shadow-sm border p-4">
+          <div class="text-2xl font-bold">+10</div>
+          <div class="text-sm text-gray-500 flex items-center gap-2"><i class="fas fa-people-group text-primary"></i> Partenariats clés</div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- About / Values -->
+    <section class="mt-8 grid lg:grid-cols-3 gap-6">
+      <article class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+        <h2 class="text-xl font-semibold flex items-center gap-2"><i class="fas fa-id-card text-primary"></i> Qui sommes‑nous ?</h2>
+        <p class="text-gray-700 mt-3">Masco Energies & Construction S.A. est une entreprise dynamique et multisectorielle spécialisée dans les infrastructures énergétiques, la construction civile et industrielle, ainsi que les services de conseil. Nous concevons et mettons en œuvre des solutions « clé en main » à travers toute la RDC, en tirant parti des technologies innovantes, de partenariats stratégiques et d’une équipe hautement qualifiée.</p>
+        <p class="text-gray-700 mt-3">Notre engagement envers l’excellence, la transparence et la durabilité fait de nous un partenaire de confiance pour les projets publics et privés.</p>
+      </article>
+
+      <aside class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+        <h3 class="font-semibold flex items-center gap-2"><i class="fas fa-heart text-primary"></i> Valeurs fondamentales</h3>
+        <ul class="prose mt-3 space-y-2">
+          <li><i class="fas fa-scale-balanced"></i> <strong>Intégrité</strong> – Respect des normes éthiques les plus élevées.</li>
+          <li><i class="fas fa-lightbulb"></i> <strong>Innovation</strong> – Recherche permanente de solutions efficaces.</li>
+          <li><i class="fas fa-certificate"></i> <strong>Qualité</strong> – Projets conformes aux standards internationaux.</li>
+          <li><i class="fas fa-leaf"></i> <strong>Durabilité</strong> – Développement respectueux de l’environnement.</li>
+          <li><i class="fas fa-handshake-angle"></i> <strong>Collaboration</strong> – Partenariats solides et durables.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <!-- Vision & Mission Cards -->
+    <section class="mt-8 grid md:grid-cols-2 gap-6">
+      <div class="bg-white rounded-2xl shadow-sm border p-6">
+        <h3 class="text-lg font-semibold flex items-center gap-2"><i class="fas fa-eye text-primary"></i> Vision</h3>
+        <p class="text-gray-700 mt-3">Devenir un acteur majeur de la transformation des infrastructures et de l’innovation énergétique en Afrique centrale, en favorisant une croissance inclusive et un progrès durable.</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-sm border p-6">
+        <h3 class="text-lg font-semibold flex items-center gap-2"><i class="fas fa-bullseye text-primary"></i> Mission</h3>
+        <p class="text-gray-700 mt-3">Fournir des solutions de qualité, rentables et innovantes dans les domaines de l’énergie, de la construction et du conseil, afin de soutenir la croissance économique et le développement social en RDC et en Afrique.</p>
+      </div>
+    </section>
+
+    <p class="mt-6"><a href="../index.html#about" class="text-primary hover:underline inline-flex items-center gap-2"><i class="fas fa-arrow-left"></i> Retour</a></p>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-12 border-t bg-gray-900 text-gray-100">
+    <div class="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-2 gap-8 items-start">
+      <div>
+        <div class="flex items-center gap-3 mb-3">
+          <img src="../images/logo_light.webp" alt="Masco logo" class="h-8 w-8">
+          <span class="font-bold">Masco Énergie et Construction SA</span>
+        </div>
+        <p class="text-sm text-gray-300">© 2025. Design By <a class="underline hover:text-white" href="https://portfoliodavidwawina.vercel.app" target="_blank">Almekita Sarl.</a> Tous droits réservés.</p>
+        <p class="text-sm text-gray-400 mt-1">Construire l'Afrique, Concevoir l'avenir.</p>
+      </div>
+      <div>
+        <h2 class="text-white text-sm font-semibold mb-4"><i class="fas fa-headset mr-2 text-primary"></i>Contactez‑nous</h2>
+        <ul class="space-y-2 text-sm">
+          <li class="flex items-center gap-3"><i class="fas fa-phone-alt text-primary"></i> Téléphone: +243 892555988, +243 979271125</li>
+          <li class="flex items-center gap-3"><i class="fas fa-envelope text-primary"></i> Email: energiesmasco123@gmail.com</li>
+          <li class="flex items-center gap-3"><i class="fas fa-map-marker-alt text-primary"></i> Adresse: 7, Avenue du 10 Octobre/ Makiso, Kisangani, RDC.</li>
+        </ul>
+        <div class="mt-4 flex items-center gap-4 text-2xl">
+          <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn" class="hover:text-primary"><i class="fab fa-linkedin"></i></a>
+          <a href="https://facebook.com/ Masco SA" target="_blank" aria-label="Facebook" class="hover:text-primary"><i class="fab fa-facebook-square"></i></a>
+          <a href="https://wa.me/243892555988" target="_blank" aria-label="WhatsApp" class="hover:text-primary"><i class="fab fa-whatsapp-square"></i></a>
         </div>
       </div>
     </div>
-  </div>-->  
-    </body>
-     <!-- Footer --> 
-    <footer> 
-        <div class="container footer-content"> 
-            <div> 
-                <p>© 2025 Masco Énergie et Construction SA. Design By <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" href="https://portfoliodavidwawina.vercel.app" target="_blank">Almekita Sarl.</a> Tous droits réservés.</p> 
-                <p style="margin-top: 0.5rem;">Construire l'Afrique, Concevoir l'avenir.</p> 
-            </div> 
-             <!-- Contact Section --> 
-            <section id="" data-anim="fade-up"> 
-                <div class="text-center text-gray-600 mb-8"> 
-                    <h2 class="text-white">Contactez-nous</h2> 
-                    <div class="contact-grid"> 
-                <h3 class="text-primary-blue text-white ">Informations de contact</h3> 
-                            <p class="text-white"><i class="fas fa-phone-alt 
-        text-secondary-orange"></i> Téléphone: +243 892555988, +243 979271125</p> 
-                            <p class="text-white"><i class="fas fa-envelope 
-        text-secondary-orange"></i> Email: energiesmasco123@gmail.com</p> 
-                            <p class="text-white"><i class="fas fa-map-marker-alt 
-        text-secondary-orange"></i> Adresse: 7, Avenue du 10 Octobre/ Makiso, Kisangani, RDC.</p> 
-        
-                            <h3 class="text-primary-blue text-white" style="margin-top: 
-        1.5rem;">Suivez-nous</h3> 
-                            <div class="social-links text-white "> 
-                                <a href="https://linkedin.com" 
-        target="_blank"><i class="fab fa-linkedin"></i></a> 
-                                <a href="https://facebook.com/ Masco SA" 
-        target="_blank"><i class="fab fa-facebook-square"></i></a> 
-                                <a href="https://wa.me/243892555988" target="_blank"><i 
-        class="fab fa-whatsapp-square"></i></a> 
-                            </div> 
-                        </div> 
-            </div> 
-        </div> 
-    </section> 
-            <!--<div class="quick-links"> 
-                <a href="#">Mentions légales</a> 
-                <a href="#">Politique de confidentialité</a> 
-            </div> 
-            <div class="quick-links"> 
-                <a href="#hero">Accueil</a> 
-                <a href="#services">Services</a> 
-                <a href="#projects">Projets</a> 
-                <a href="#contact">Contact</a> 
-            </div> 
-        </div> -->
-    </footer> 
-    
-        <script>
-            document.addEventListener('DOMContentLoaded', function(){
-                try {
-                    const mobileMenuButton = document.getElementById('mobile-menu-button');
-                    const mobileMenu = document.getElementById('mobile-menu');
-                    const desktopNav = document.getElementById('main-nav');
+  </footer>
 
-                    if(!mobileMenuButton) return console.warn('mobile-menu-button introuvable');
-                    if(!mobileMenu) return console.warn('mobile-menu introuvable');
+  <!-- Scripts (kept behavior, improved resilience) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      try {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const desktopNav = document.getElementById('main-nav');
+        if(mobileMenuButton && mobileMenu){
+          if(!mobileMenuButton.hasAttribute('aria-expanded')) mobileMenuButton.setAttribute('aria-expanded','false');
+          mobileMenuButton.addEventListener('click', function(){
+            mobileMenu.classList.toggle('is-open');
+            mobileMenu.classList.toggle('hidden');
+            const expanded = mobileMenu.classList.contains('is-open') ? 'true' : 'false';
+            mobileMenuButton.setAttribute('aria-expanded', expanded);
+          });
+          mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=>{
+            mobileMenu.classList.remove('is-open');
+            mobileMenu.classList.add('hidden');
+            mobileMenuButton.setAttribute('aria-expanded','false');
+          }));
+        }
+        function handleResize(){
+          if(window.innerWidth >= 768){
+            if(desktopNav){ desktopNav.classList.remove('hidden'); desktopNav.classList.add('md:flex'); }
+            if(mobileMenu){ mobileMenu.classList.remove('is-open'); mobileMenu.classList.add('hidden'); }
+          } else {
+            if(desktopNav){ desktopNav.classList.add('hidden'); }
+          }
+        }
+        window.addEventListener('resize', handleResize);
+        handleResize();
 
-                    // Ensure aria-expanded initial state
-                    if(!mobileMenuButton.hasAttribute('aria-expanded')) mobileMenuButton.setAttribute('aria-expanded','false');
-
-                        mobileMenuButton.addEventListener('click', function(){
-                            // Toggle the project-specific 'is-open' class (style.css defines #mobile-menu.is-open { display:block })
-                            // Keep 'hidden' for initial state (Tailwind), but rely on 'is-open' to show/hide consistently with site-wide CSS.
-                            mobileMenu.classList.toggle('is-open');
-                            // Mirror hidden for Tailwind consumers (optional)
-                            if(mobileMenu.classList.contains('is-open')){
-                                mobileMenu.classList.remove('hidden');
-                            } else {
-                                mobileMenu.classList.add('hidden');
-                            }
-                            const expanded = mobileMenu.classList.contains('is-open') ? 'true' : 'false';
-                            mobileMenuButton.setAttribute('aria-expanded', expanded);
-                            console.log('mobile menu toggled - expanded=', expanded);
-                        });
-
-                    // close mobile menu when clicking a link (safe: check length)
-                    const links = mobileMenu.querySelectorAll('a');
-                    if(links && links.length){
-                        links.forEach(a => a.addEventListener('click', function(){
-                            // Close mobile menu: remove is-open and add hidden
-                            mobileMenu.classList.remove('is-open');
-                            mobileMenu.classList.add('hidden');
-                            mobileMenuButton.setAttribute('aria-expanded','false');
-                            console.log('mobile menu closed via link click');
-                        }));
-                    }
-
-                    // show/hide desktop nav based on width using classes (more robust with Tailwind)
-                    function handleResize(){
-                        try{
-                            if(window.innerWidth >= 768){
-                                if(desktopNav){
-                                    desktopNav.classList.remove('hidden');
-                                    desktopNav.classList.add('md:flex');
-                                }
-                                // Ensure mobile menu fully closed on desktop
-                                mobileMenu.classList.remove('is-open');
-                                mobileMenu.classList.add('hidden');
-                            } else {
-                                if(desktopNav) desktopNav.classList.add('hidden');
-                            }
-                        }catch(e){ console.error('handleResize error', e); }
-                    }
-
-                    window.addEventListener('resize', handleResize);
-                    // run once after load
-                    window.addEventListener('load', function(){
-                        handleResize();
-                        console.log('mobile menu script initialised');
-                    });
-
-                } catch(err){
-                    console.error('Erreur dans le script mobile menu:', err);
-                }
-            });
-        </script>
+        // Tiny helper: show today
+        const timeEl = document.getElementById('today');
+        if(timeEl){
+          const d = new Date();
+          const fmt = d.toLocaleDateString('fr-FR', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+          timeEl.textContent = fmt;
+        }
+      } catch(err){ console.error('Erreur dans le script:', err); }
+    });
+  </script>
 </body>
 </html>
