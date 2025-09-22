@@ -1,217 +1,498 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact – Masco Energies et Constructions</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — MASCO Énergie & Construction</title>
+  <meta name="theme-color" content="#20667a" />
+    <link rel="icon" href="../images/logo_light.webp" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta name="description" content="Contactez MASCO Énergie & Construction : devis, partenariat, presse. Réponse sous 24h ouvrées." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <meta name="theme-color" content="#ea580c" />
+  <style>
+    /* Palette dédiée contact (autorisé) */
+    :root{
+      --brand:rgba(243, 159, 3, 0.829);        /* teal profond */
+      --brand-600:green;
+      --brand-700:#184c5b;
+      --canvas:#f7fbfc;       /* fond doux */
+    }
+    body{font-family:'Inter',sans-serif}
+    .fade-reveal{opacity:0;transform:translateY(12px)}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;border-radius:.9rem;padding:.7rem 1rem;font-weight:700}
+    .btn-primary{background:var(--brand);color:#fff}.btn-primary:hover{background:var(--brand-600)}
+    .btn-ghost{background:#fff;color:orange;box-shadow:0 0 0 1px rgba(15,23,42,.10)} .btn-ghost:hover{background:#f8fafc}
+    .navlink{color:#000;font-weight:700}.navlink:hover,.navlink.active{color:var(--brand)}
+    .card{background:#fff;border:1px solid #e2e8f0;border-radius:1rem;transition:.25s}
+    .card:hover{transform:translateY(-2px);border-color:#cbd5e1}
+    .floating{
+      position:relative;
+    }
+    .floating input,
+    .floating textarea,
+    .floating select{
+      padding-top:1.25rem;padding-bottom:.75rem;
+    }
+    .floating label{
+      position:absolute;left:.9rem;top:.85rem;
+      font-size:.8rem;color:#64748b;background:#fff;padding:0 .35rem;
+      border-radius:.35rem;pointer-events:none;transform-origin:left top;
+      transition:transform .2s, color .2s, top .2s;
+    }
+    .floating :is(input,textarea,select):focus + label,
+    .floating :is(input,textarea,select):not(:placeholder-shown) + label{
+      top:-.55rem;transform:scale(.92);color:var(--brand-700)
+    }
+    .toast{
+      position:fixed;inset-inline:0;top:1rem;margin-inline:auto;
+      width:fit-content;max-width:calc(100% - 2rem);
+      background:#fff;border:1px solid #cce7ee;color:orange;border-radius:.85rem;
+      padding:.75rem 1rem;box-shadow:0 8px 30px rgba(0,0,0,.08);display:none;z-index:60
+    }
+  </style>
 </head>
-<body class="min-h-screen text-red-900"
-      style="background-image: linear-gradient(to bottom right, rgba(250, 246, 5, 0.35), rgba(0, 0, 0, 0.35)), url('../images/logo_light.webp'); background-size: cover; background-position: center; background-attachment: fixed;">
+<body class="bg-[var(--canvas)] text-slate-800">
 
-  <!-- Section Contact -->
-  <section id="contact" class="py-16 md:py-24">
-    <div class="container mx-auto px-6">
-      <h1 class="text-3xl md:text-4xl font-bold text-green-700 text-center mb-12 drop-shadow">Contactez-nous</h1>
+  <!-- Barre de progression -->
+  <div id="progress" class="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-[green] via-sky-100 to-[orange] origin-left scale-x-0 z-50"></div>
 
-      <div class="max-w-xl mx-auto bg-white/10 backdrop-blur-md p-8 md:p-10 rounded-xl shadow-2xl border border-white/20">
-        <p class="text-center text-gray-100/90 mb-8">
-          Powered by <a href="/index.html#optimum-swift"><strong>Optimum Swift</strong></a>
-        </p>
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-white/85 backdrop-blur border-b border-slate-200">
+    <nav class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-2 group">
+        <img src="../images/logo_light.webp" alt="MASCO" class="h-9 w-9 rounded-lg ring-1 ring-black/5" />
+        <span class="text-xl font-extrabold tracking-tight text-[var(--brand)] group-hover:opacity-90 transition">MASCO</span>
+      </a>
 
-        <form id="contact-form" class="space-y-6" novalidate>
-          <!-- Web3Forms -->
-          <input type="hidden" name="access_key" id="ACCESS_KEY" value="f0d99762-3340-4ac7-ba68-479b0c6b3158" />
-          <input type="hidden" name="subject" value="Nouveau message depuis le site" />
-          <input type="hidden" name="from_name" value="Site Web" />
-          <!-- composé du code pays + numéro -->
-          <input type="hidden" name="telephone_full" id="telephone_full" />
-          <!-- honeypot anti-bot (doit rester vide) -->
-          <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
+      <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100" aria-expanded="false" aria-controls="mobile-menu" aria-label="Ouvrir le menu">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-width="2" d="M4 6h16M4 12h16m-8 6h8"/></svg>
+      </button>
 
-          <div>
-            <label for="form-nom" class="block text-sm font-medium text-white mb-2">Nom</label>
-            <input type="text" id="form-nom" name="nom"
-                   class="w-full px-4 py-2 bg-white/80 text-gray-900 border border-white/40 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
-                   required />
-          </div>
+      <ul id="main-nav" class="hidden md:flex items-center gap-6 text-sm">
+        <li><a href="../index.html#hero" class="navlink">Accueil</a></li>
+        <li><a href="../index.html#about" class="navlink">À propos</a></li>
+        <li><a href="../index.html#services" class="navlink">Services</a></li>
+        <li><a href="../index.html#projects" class="navlink">Projets</a></li>
+        <li><a href="../pages/blog.html" class="navlink">Blog</a></li>
+        <li><a href="#contact" class="btn btn-primary text-sm">Nous contacter</a></li>
+      </ul>
+    </nav>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div>
-              <label for="form-postnom" class="block text-sm font-medium text-white mb-2">Post-nom</label>
-              <input type="text" id="form-postnom" name="postnom"
-                     class="w-full px-4 py-2 bg-white/80 text-gray-900 border border-white/40 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500" />
-            </div>
-            <div>
-              <label for="form-prenom" class="block text-sm font-medium text-white mb-2">Prénom</label>
-              <input type="text" id="form-prenom" name="prenom"
-                     class="w-full px-4 py-2 bg-white/80 text-gray-900 border border-white/40 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
-                     required />
-            </div>
-          </div>
+    <!-- Mobile -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200">
+      <ul class="flex flex-col items-center space-y-1 py-3 text-sm font-semibold">
+        <li><a href="../index.html#hero" class="block w-full text-center py-2 hover:bg-slate-100">Accueil</a></li>
+        <li><a href="../index.html#about" class="block w-full text-center py-2 hover:bg-slate-100">À propos</a></li>
+        <li><a href="../index.html#services" class="block w-full text-center py-2 hover:bg-slate-100">Services</a></li>
+        <li><a href="../index.html#projects" class="block w-full text-center py-2 hover:bg-slate-100">Projets</a></li>
+        <li><a href="../pages/blog.html" class="block w-full text-center py-2 hover:bg-slate-100">Blog</a></li>
+        <li><a href="#contact" class="block w-full text-center py-2 hover:bg-slate-100">Contact</a></li>
+      </ul>
+    </div>
+  </header>
 
-          <div>
-            <label for="form-entreprise" class="block text-sm font-medium text-white mb-2">Entreprise (facultatif)</label>
-            <input type="text" id="form-entreprise" name="entreprise"
-                   class="w-full px-4 py-2 bg-white/80 text-gray-900 border border-white/40 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500" />
-          </div>
+  <!-- Hero -->
+  <section class="relative overflow-hidden border-b border-slate-200 bg-white">
+    <!-- décor -->
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+      <div class="absolute -top-28 -left-28 h-64 w-64 rounded-full bg-[var(--brand)]/10 blur-3xl"></div>
+      <div class="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-sky-400/10 blur-3xl"></div>
+    </div>
 
-          <div>
-            <label for="form-email" class="block text-sm font-medium text-white mb-2">Email</label>
-            <input type="email" id="form-email" name="email"
-                   class="w-full px-4 py-2 bg-white/80 text-gray-900 border border-white/40 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
-                   required />
-          </div>
+    <div class="max-w-6xl mx-auto px-4 py-10 relative">
+      <div class="grid grid-cols-1 md:grid-cols-[1.1fr_.9fr] gap-10 items-center">
+        <div class="fade-reveal">
+          <nav class="text-xs text-slate-500">
+            <ol class="flex items-center gap-1">
+              <li><a class="hover:text-[var(--brand)]" href="../index.html#hero">Accueil</a></li>
+              <li>/</li>
+              <li class="text-slate-700 font-medium">Contact</li>
+            </ol>
+          </nav>
+          <h1 class="mt-2 text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">Parlons de votre projet</h1>
+          <p class="mt-2 text-slate-600 max-w-2xl">Une équipe dédiée vous répond sous <strong>24h ouvrées</strong>. Dites-nous en plus — et choisissez le mode d’échange qui vous convient.</p>
 
-          <!-- Code pays + Téléphone -->
-          <div>
-            <label class="block text-sm font-medium text-white mb-2">Téléphone</label>
-            <div class="flex gap-2">
-              <!--<select id="country-code" name="country_code"
-                      class="w-40 px-3 py-2 bg-white/80 text-gray-900 border border-white/40 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500">
-                <option value="+243">🇨🇩 +243 (RDC)</option>
-                <option value="+242">🇨🇬 +242 (Congo)</option>
-                <option value="+33">🇫🇷 +33 (France)</option>
-                <option value="+32">🇧🇪 +32 (Belgique)</option>
-                <option value="+1">🇺🇸 +1 (USA)</option>
-                <option value="+44">🇬🇧 +44 (UK)</option>
-                <option value="+39">🇮🇹 +39 (Italie)</option>
-                <option value="+34">🇪🇸 +34 (Espagne)</option>
-                <option value="+49">🇩🇪 +49 (Allemagne)</option>
-                <option value="+41">🇨🇭 +41 (Suisse)</option>
-              </select>-->
-              <input type="tel" id="form-phone" name="telephone" placeholder="+123... 818 624 394"
-                     class="flex-1 px-4 py-2 bg-white/80 text-gray-900 border border-white/40 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500" />
-            </div>
-            <p class="text-xs text-white/90 mt-1">Le numéro sera envoyé avec le code pays sélectionné.</p>
-          </div>
-
-          <div>
-            <label for="form-message" class="block text-sm font-medium text-white mb-2">Votre message</label>
-            <textarea id="form-message" name="message" rows="5"
-                      class="w-full px-4 py-2 bg-white/80 text-gray-900 border border-white/40 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
-                      required></textarea>
-          </div>
-
-          <div class="flex flex-col sm:flex-row gap-4">
-            <button id="submit-btn" type="submit"
-                    class="w-full sm:w-1/2 bg-green-900 text-white py-3 px-6 rounded-md font-semibold text-lg hover:bg-orange-600 transition-colors duration-300 shadow-md transform hover:scale-105">
-              Envoyer
-            </button>
-            <a id="whatsapp-contact-button" href="#" target="_blank" rel="noopener"
-               class="w-full sm:w-1/2 text-center bg-green-900 text-white py-3 px-6 rounded-md font-semibold text-lg hover:bg-orange-600 transition-colors duration-300 shadow-md transform hover:scale-105">
-              Contacter via WhatsApp
+          <!-- cartes de contact rapides -->
+          <div class="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <a href="tel:+243000000000" class="card p-4 flex items-center gap-3 hover:shadow-md">
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[var(--brand)]/10 text-[var(--brand)]">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="1.7" stroke-linecap="round" d="M6.6 10.8c1.4 2.7 3.9 5.2 6.6 6.6l2.2-2.2a1.5 1.5 0 0 1 1.6-.37l3.4 1.13a1.5 1.5 0 0 1 .99 1.41V20a2 2 0 0 1-2 2C9.61 22 2 14.39 2 5a2 2 0 0 1 2-2h2.63a1.5 1.5 0 0 1 1.41.99l1.13 3.4a1.5 1.5 0 0 1-.37 1.6L6.6 10.8Z"/></svg>
+              </span>
+              <div>
+                <p class="text-xs uppercase tracking-wide text-slate-500">Téléphone</p>
+                <p class="font-bold text-slate-900">+243 892555988</p>
+                <p class="font-bold text-slate-900">+243 979271125</p>
+              </div>
+            </a>
+            <a href="https://wa.me/+243 892555988" target="_blank" class="card p-4 flex items-center gap-3 hover:shadow-md">
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M.5 11.5C.5 5.71 5.21 1 11 1s10.5 4.71 10.5 10.5S16.79 22 11 22c-1.82 0-3.52-.45-5.01-1.25L1.5 22l1.33-4.36A10.38 10.38 0 0 1 .5 11.5Zm4.28 6.06.27.16c1.32.78 2.84 1.2 4.45 1.2 4.87 0 8.81-3.95 8.81-8.81S14.37 1.3 9.5 1.3 0.69 5.25 0.69 10.12c0 1.62.43 3.14 1.2 4.45l.16.27-.76 2.5 2.49-.78Z"/></svg>
+              </span>
+              <div>
+                <p class="text-xs uppercase tracking-wide text-slate-500">WhatsApp</p>
+                <p class="font-bold text-slate-900">Écrivez-nous</p>
+              </div>
+            </a>
+            <a href="mailto:contact@masco.cd" class="card p-4 flex items-center gap-3 hover:shadow-md">
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-sky-500/10 text-sky-600">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="1.6" stroke-linecap="round" d="M3 7.5h18v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-9Zm0 0 9 6 9-6"/></svg>
+              </span>
+              <div>
+                <p class="text-xs uppercase tracking-wide text-slate-500">E-mail</p>
+                <p class="font-bold text-slate-900">contactmascoenrgies@gmail.com</p>
+              </div> 
             </a>
           </div>
-          
-          <div class="mt-8">
-          <div class="relative overflow-hidden rounded-xl shadow-md">
-            <iframe title="Localisation: Kisangani, RDC" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15967.653638487834!2d25.1970228!3d0.5134768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x170b04a0e9a7e04f%3A0x6b45f4c5e7b8f9a2!2sKisangani%2C%20R%C3%A9publique%20D%C3%A9mocratique%20du%20Congo!5e0!3m2!1sfr!2scd!4v1678912345678!5m2!1sfr!2scd" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen class="w-full h-64 md:h-80 border-0"></iframe>
+        </div> <br>
+
+        <!-- Carte infos -->
+        <div class="fade-reveal card p-6">
+          <h2 class="text-lg font-extrabold text-slate-900">Notre bureau</h2>
+          <ul class="mt-3 space-y-3 text-sm">
+            <li class="flex items-start gap-3">
+              <svg class="h-5 w-5 text-[var(--brand)]" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="1.7" stroke-linecap="round" d="M12 22s8-4.5 8-12A8 8 0 1 0 4 10c0 7.5 8 12 8 12Z"/></svg>
+              <div>
+                <p class="font-semibold text-slate-900">Kisangani (RDC)</p>
+                <p class="text-slate-600">N 7, Avenue du 10 Octobre/ Makiso, Kisangani, RDC Commune Makiso</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="h-5 w-5 text-[var(--brand)]" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="1.7" stroke-linecap="round" d="M12 22s8-4.5 8-12A8 8 0 1 0 4 10c0 7.5 8 12 8 12Z"/></svg>
+              <div>
+                <!--<p class="font-semibold text-slate-900">Kinshasa (Bureau projet)</p>
+                <p class="text-slate-600">Gombe, Zone Administrative</p>-->
+              </div>
+            </li>
+          </ul>
+
+          <div class="mt-5 rounded-xl overflow-hidden ring-1 ring-slate-200">
+            <!-- Remplacez src par votre embed Google Maps -->
+            <iframe title="Localisation MASCO" src="https://maps.google.com/maps?q=Kisangani&t=&z=11&ie=UTF8&iwloc=&output=embed" class="w-full h-64"></iframe>
           </div>
+
+          <p class="mt-3 text-xs text-slate-500">Besoin d’un rendez-vous sur site ? <a href="#contact" class="underline text-[var(--brand)]">Écrivez-nous</a>.</p>
         </div>
-      </form>
-
-          <!-- Statut d'envoi -->
-          <p id="sending-status" class="text-sm text-white/90 mt-2 hidden">Envoi en cours…</p>
-        </form>
-
-        <p class="text-sm text-center text-black/90 mt-6">
-          Vous pouvez aussi nous contacter directement à :
-          <a href="mailto:energiesmasco123@gmail.com" class="text-green-900 underline hover:text-white">energiesmasco123@gmail.com</a>
-        </p>
       </div>
     </div>
   </section>
-   <p class="mt-6 text-center"><a href="../index.html" class="text-primary hover:text-black">Page d'Accueil </a></p>
 
-  <!-- Toast -->
-  <div id="toast" class="fixed bottom-6 right-6 hidden px-6 py-3 rounded-lg text-white font-medium shadow-lg z-50"></div>
+<!-- Formulaire Contact (Web3Forms + AJAX) -->
+<form id="contact-form"
+      action="https://api.web3forms.com/submit"
+      method="POST"
+      class="max-w-6xl mx-auto px-4 py-12"
+      novalidate>
+  <!-- ✅ Clé & métadonnées Web3Forms -->
+  <input type="hidden" name="access_key" value="f0d99762-3340-4ac7-ba68-479b0c6b3158">
+  <input type="hidden" name="from_name" value="MASCO — Site Web">
+  <input type="hidden" name="subject" value="Nouveau message via le formulaire de contact MASCO">
+  <!-- Web3Forms honeypot officiel -->
+  <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off">
+
+  <section class="fade-reveal card p-6 md:p-8">
+    <h2 class="text-2xl font-extrabold text-slate-900">Envoyez-nous un message</h2>
+    <p class="mt-1 text-slate-600">Détaillez votre besoin, nous revenons vers vous rapidement.</p>
+
+    <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <!-- prénom -->
+      <div class="floating">
+        <input id="firstname" name="firstname" type="text" required placeholder=" "
+               class="w-full rounded-xl border border-slate-300 focus:border-[var(--brand)] focus:ring-2 focus:ring-[var(--brand)]/20 px-3 py-3 outline-none" />
+        <label for="firstname">Prénom*</label>
+      </div>
+      <!-- nom -->
+      <div class="floating">
+        <input id="lastname" name="lastname" type="text" required placeholder=" "
+               class="w-full rounded-xl border border-slate-300 focus:border-[var(--brand)] focus:ring-2 focus:ring-[var(--brand)]/20 px-3 py-3 outline-none" />
+        <label for="lastname">Nom*</label>
+      </div>
+      <!-- email -->
+      <div class="floating sm:col-span-2">
+        <input id="email" name="email" type="email" inputmode="email" required placeholder=" "
+               class="w-full rounded-xl border border-slate-300 focus:border-[var(--brand)] focus:ring-2 focus:ring-[var(--brand)]/20 px-3 py-3 outline-none" />
+        <label for="email">Adresse e-mail*</label>
+      </div>
+      <!-- téléphone -->
+      <div class="floating">
+        <input id="phone" name="phone" type="tel" inputmode="tel" placeholder=" "
+               class="w-full rounded-xl border border-slate-300 focus:border-[var(--brand)] focus:ring-2 focus:ring-[var(--brand)]/20 px-3 py-3 outline-none" />
+        <label for="phone">Téléphone (optionnel)</label>
+      </div>
+      <!-- sujet -->
+      <div class="floating">
+        <select id="topic" name="topic" class="w-full rounded-xl border border-slate-300 focus:border-[var(--brand)] focus:ring-2 focus:ring-[var(--brand)]/20 px-3 py-3 outline-none bg-white" required>
+          <option value="" selected disabled>Choisir…</option>
+          <option>Devis / Appel d’offres</option>
+          <option>Partenariat</option>
+          <option>Presse</option>
+          <option>Autre</option>
+        </select>
+        <label for="topic">Sujet*</label>
+      </div>
+      <!-- message -->
+      <div class="floating sm:col-span-2">
+        <textarea id="message" name="message" rows="5" required placeholder=" "
+                  class="w-full rounded-xl border border-slate-300 focus:border-[var(--brand)] focus:ring-2 focus:ring-[var(--brand)]/20 px-3 py-3 outline-none resize-y"></textarea>
+        <label for="message">Votre message*</label>
+      </div>
+    </div>
+
+    <div class="mt-6 sm:col-span-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <p class="text-xs text-slate-500">En envoyant, vous acceptez notre
+        <a href="#" class="underline text-[var(--brand)]">politique de confidentialité</a>.
+      </p>
+      <button type="submit" id="submit-btn" class="btn btn-primary">
+        <span class="inline-flex items-center gap-2">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="1.7" stroke-linecap="round" d="m4 12 6 6L20 6"/></svg>
+          Envoyer
+        </span>
+      </button>
+    </div>
+
+    <!-- Zone de retour (toast léger) -->
+    <div id="form-toast" class="mt-4 hidden rounded-lg border p-3 text-sm"></div>
+  </section>
+</form>
+
+<script>
+(() => {
+  const form = document.getElementById('contact-form');
+  const toast = document.getElementById('form-toast');
+  const btn = document.getElementById('submit-btn');
+
+  function showToast(msg, ok = true) {
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.className =
+      'mt-4 rounded-lg p-3 text-sm ' +
+      (ok
+        ? 'border border-emerald-200 bg-emerald-50 text-emerald-800'
+        : 'border border-rose-200 bg-rose-50 text-rose-800');
+    toast.classList.remove('hidden');
+    setTimeout(() => toast.classList.add('hidden'), 5000);
+  }
+
+  function setBusy(isBusy) {
+    if (!btn) return;
+    btn.disabled = isBusy;
+    btn.style.opacity = isBusy ? .75 : 1;
+    btn.querySelector('span').innerHTML = isBusy
+      ? '<svg class="h-5 w-5 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9" stroke-width="1.6" class="opacity-25"/><path d="M21 12a9 9 0 0 1-9 9" stroke-width="1.8" class="opacity-80"/></svg> Envoi…'
+      : '<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="1.7" stroke-linecap="round" d="m4 12 6 6L20 6"/></svg> Envoyer';
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Validations minimales
+    const email = form.email?.value?.trim() || '';
+    const fname = form.firstname?.value?.trim() || '';
+    const lname = form.lastname?.value?.trim() || '';
+    const topic = form.topic?.value || '';
+    const message = form.message?.value?.trim() || '';
+
+    if (!/^[\w.\-+]+@[\w.\-]+\.[a-z]{2,}$/i.test(email)) {
+      showToast('Merci de saisir un e-mail valide.', false); return;
+    }
+    if (!fname || !lname) { showToast('Merci d’indiquer votre prénom et nom.', false); return; }
+    if (!topic) { showToast('Merci de choisir un sujet.', false); return; }
+    if (message.length < 10) { showToast('Votre message est trop court.', false); return; }
+
+    const data = new FormData(form);
+    // Champs utiles pour Web3Forms
+    data.set('name', `${fname} ${lname}`);
+    data.set('replyto', email);
+
+    setBusy(true);
+    try {
+      const res = await fetch(form.action || 'https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: data
+      });
+      const json = await res.json();
+
+      if (json.success) {
+        form.reset();
+        showToast('Message envoyé. Nous revenons vers vous très vite !', true);
+      } else {
+        console.error('Web3Forms error:', json);
+        showToast("Échec de l’envoi. Merci de réessayer dans un instant.", false);
+      }
+    } catch (err) {
+      console.error(err);
+      showToast("Impossible d’envoyer le message (connexion).", false);
+    } finally {
+      setBusy(false);
+    }
+  });
+})();
+</script>
+
+    <!-- FAQ / Horaires -->
+    <aside class="fade-reveal space-y-6">
+      <!-- ... garde ton contenu FAQ/horaires ici ... -->
+    </aside>
+  </div>
+</form>
+
+
+<!-- Footer -->
+<footer class="bg-green-900 text-gray-300">
+  <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+    
+    <!-- Bloc 1 : Présentation -->
+    <div>
+      <img src="../images/logo_light.webp" alt="Masco Logo" class="h-12 mb-4">
+      <p class="text-sm leading-relaxed">
+        Masco Énergie et Construction SA est engagée dans la réhabilitation
+        des infrastructures et l’innovation en RDC.
+      </p>
+      <p class="mt-4 text-orange-400 font-semibold">Construire l’Afrique, Concevoir l’avenir.</p>
+    </div>
+
+    <!-- Bloc 2 : Contact -->
+    <div>
+      <h3 class="text-lg font-bold text-white mb-4">Contactez-nous</h3>
+      <ul class="space-y-2 text-sm">
+        <li class="flex items-center gap-2">
+          <i class="fas fa-phone-alt text-orange-400"></i>
+          +243 892 555 988 / +243 979 271 125
+        </li>
+        <li class="flex items-center gap-2">
+          <i class="fas fa-envelope text-orange-400"></i>
+          energiesmasco123@gmail.com
+        </li>
+        <li class="flex items-center gap-2">
+          <i class="fas fa-map-marker-alt text-orange-400"></i>
+          7, Avenue du 10 Octobre, Makiso, Kisangani – RDC
+        </li>
+      </ul>
+      <!-- Réseaux sociaux -->
+      <div class="flex gap-4 mt-4">
+        <a href="https://linkedin.com" target="_blank" class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-800 hover:bg-orange-500 transition">
+          <i class="fab fa-linkedin text-white"></i>
+        </a>
+        <a href="https://facebook.com/MascoSA" target="_blank" class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-800 hover:bg-orange-500 transition">
+          <i class="fab fa-facebook-f text-white"></i>
+        </a>
+        <a href="https://wa.me/243892555988" target="_blank" class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-800 hover:bg-orange-500 transition">
+          <i class="fab fa-whatsapp text-white"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Bloc 3 : Liens rapides -->
+    <div>
+      <h3 class="text-lg font-bold text-white mb-4">Navigation</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a href="#hero" class="hover:text-orange-400 transition">Accueil</a></li>
+        <li><a href="#services" class="hover:text-orange-400 transition">Services</a></li>
+        <li><a href="#projects" class="hover:text-orange-400 transition">Projets</a></li>
+        <li><a href="#contact" class="hover:text-orange-400 transition">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Bas de page -->
+  <div class="border-t border-gray-700 text-center py-4 text-sm text-gray-500">
+    © 2025 Masco Énergie et Construction SA. Design par 
+    <a href="https://portfoliodavidwawina.vercel.app" target="_blank" class="text-orange-400 hover:underline">Almekita Sarl</a>.
+    Tous droits réservés.
+  </div>
+</footer>
+
+  <!-- Toast succès -->
+  <div id="toast" class="toast">
+    <div class="flex items-center gap-2">
+      <svg class="h-5 w-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m6 12 4 4 8-8" stroke-width="1.7" stroke-linecap="round"/></svg>
+      Message envoyé. Nous revenons vers vous très vite !
+    </div>
+  </div>
+
+  <!-- Back to top -->
+  <button id="backtop" class="hidden fixed bottom-6 right-6 rounded-full p-3 bg-[var(--brand)] text-white shadow-lg hover:opacity-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 z-40" aria-label="Remonter">
+    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-width="1.6" d="m5 15 7-7 7 7"/></svg>
+  </button>
 
   <script>
+  (() => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Progress bar
+    const progressEl = document.getElementById('progress');
+    const updateProgress = () => {
+      const h = document.documentElement;
+      const scrolled = (h.scrollTop || 0) / ((h.scrollHeight - h.clientHeight) || 1);
+      progressEl.style.transform = `scaleX(${Math.max(0, Math.min(1, scrolled))})`;
+    };
+    document.addEventListener('scroll', updateProgress, { passive: true }); updateProgress();
+
+    // Mobile menu
+    const mobileBtn = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const desktopNav = document.getElementById('main-nav');
+    mobileBtn?.addEventListener('click', () => {
+      const hidden = mobileMenu.classList.toggle('hidden');
+      mobileBtn.setAttribute('aria-expanded', String(!hidden));
+      if (!hidden) desktopNav?.classList.add('hidden');
+    });
+    const onResize = () => {
+      if (innerWidth >= 768) { desktopNav?.classList.remove('hidden'); mobileMenu?.classList.add('hidden'); mobileBtn?.setAttribute('aria-expanded','false'); }
+      else { desktopNav?.classList.add('hidden'); }
+    };
+    addEventListener('resize', onResize); addEventListener('load', onResize);
+
+    // Reveal
+    const reveals = document.querySelectorAll('.fade-reveal');
+    reveals.forEach(el => { el.style.opacity=0; el.style.transform='translateY(12px)' });
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => {
+        if(!e.isIntersecting) return;
+        const el = e.target;
+        el.style.opacity = 1; el.style.transform = 'none';
+        el.style.transition = prefersReduced ? 'opacity 200ms' : 'opacity 600ms, transform 600ms';
+        obs.unobserve(el);
+      });
+    }, { threshold: .15 });
+    reveals.forEach(el => io.observe(el));
+
+    // Contact form (demo submit)
     const form = document.getElementById('contact-form');
     const toast = document.getElementById('toast');
-    const whatsappBtn = document.getElementById('whatsapp-contact-button');
-    const countryCode = document.getElementById('country-code');
-    const phoneInput = document.getElementById('form-phone');
-    const telFull = document.getElementById('telephone_full');
-    const sendingStatus = document.getElementById('sending-status');
-    const submitBtn = document.getElementById('submit-btn');
-
-    function showToast(message, type="success"){
-      toast.textContent = message;
-      toast.className = `fixed bottom-6 right-6 px-6 py-3 rounded-lg text-white font-medium shadow-lg z-50 ${type === 'success' ? 'bg-green-600' : 'bg-red-600'}`;
+    function showToast(msg){
+      toast.textContent = '';
+      toast.innerHTML = '<div class="flex items-center gap-2"><svg class="h-5 w-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m6 12 4 4 8-8" stroke-width="1.7" stroke-linecap="round"/></svg>' + msg + '</div>';
       toast.style.display = 'block';
-      setTimeout(()=> toast.style.display = 'none', 4000);
+      setTimeout(()=>toast.style.display='none', 4000);
     }
-
-    // Préremplissage WhatsApp
-    whatsappBtn.addEventListener('click', function(e){
+    form?.addEventListener('submit', (e)=>{
       e.preventDefault();
-      const nom = document.getElementById('form-nom').value;
-      const prenom = document.getElementById('form-prenom').value;
-      const message = document.getElementById('form-message').value;
-      const text = encodeURIComponent(`Bonjour, je suis ${prenom} ${nom}. ${message}`);
-      const url = `https://wa.me/243892555988?text=${text}`;
-      window.open(url, '_blank');
-    });
-
-    // Soumission via Web3Forms
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      // honeypot
-      const honey = form.querySelector('input[name="botcheck"]');
-      if (honey && honey.checked) return;
-
-      if (!form.checkValidity()){
-        showToast('Veuillez remplir correctement le formulaire.', 'error');
-        return;
-      }
-
-      // Compose le numéro complet code+numéro
-      const code = (countryCode.value || '').trim();
-      const num = (phoneInput.value || '').trim();
-      telFull.value = [code, num].filter(Boolean).join(' ');
-
-      // Afficher statut d'envoi + désactiver bouton
-      sendingStatus.classList.remove('hidden');
-      const prevBtnText = submitBtn.textContent;
-      submitBtn.textContent = 'Envoi…';
-      submitBtn.disabled = true;
-
-      const accessKey = document.getElementById('ACCESS_KEY').value;
-      if (!accessKey || accessKey.includes('REPLACE_WITH')){
-        showToast("⚠️ Configurez d'abord votre Access Key Web3Forms.", 'error');
-        sendingStatus.classList.add('hidden');
-        submitBtn.textContent = prevBtnText;
-        submitBtn.disabled = false;
-        return;
-      }
-
       const data = new FormData(form);
-      try {
-        const res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          body: data
-        });
-        const json = await res.json();
-        if (json.success){
-          showToast('Votre message a été envoyé avec succès !', 'success');
-          form.reset();
-        } else {
-          console.error('Web3Forms error:', json);
-          showToast(json.message || "Échec de l'envoi.", 'error');
-        }
-      } catch (err){
-        console.error('Network error:', err);
-        showToast("Échec de l'envoi (réseau).", 'error');
-      } finally {
-        sendingStatus.classList.add('hidden');
-        submitBtn.textContent = prevBtnText;
-        submitBtn.disabled = false;
-      }
+      // honeypot
+      if (data.get('website')) return;
+      // validations basiques
+      const email = String(data.get('email')||'').trim();
+      const message = String(data.get('message')||'').trim();
+      const topic = String(data.get('topic')||'');
+      if (!email || !/^[\w.\-+]+@[\w.\-]+\.[a-z]{2,}$/i.test(email)) { alert('Merci de saisir un e-mail valide.'); return; }
+      if (!topic) { alert('Merci de choisir un sujet.'); return; }
+      if (message.length < 10) { alert('Votre message est trop court.'); return; }
+
+      // 👉 Ici, remplacez par votre envoi (API/Email)
+      form.reset();
+      showToast('Message envoyé. Nous revenons vers vous très vite !');
     });
+
+    // Back to top
+    const back = document.getElementById('backtop');
+    const backIO = new IntersectionObserver(([entry])=>{
+      back.classList.toggle('hidden', entry.isIntersecting);
+    }, {threshold:0.01});
+    backIO.observe(document.querySelector('header'));
+    back.addEventListener('click', ()=> scrollTo({top:0, behavior:'smooth'}));
+  })();
   </script>
 </body>
 </html>

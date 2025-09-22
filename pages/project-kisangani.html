@@ -1,253 +1,548 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Projet Kisangani–Ubundu — Masco</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Étude de cas — MASCO Énergie & Construction</title>
+  <meta property="og:image" content="../images/logo_light.webp">
+  <link rel="icon" href="../images/logo_light.webp" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta name="theme-color" content="#1a3a5e" />
+  <meta name="description" content="Étude de cas détaillée : objectifs, étapes, impacts et résultats.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; }
-    .modal-backdrop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.6);z-index:60}
-    .modal{background:#fff;border-radius:8px;overflow:auto;max-height:90vh}
-    :root{--primary:#1a3a5e}
-    .text-primary{color:var(--primary)}
+    /* Typo & helpers (même logique que tes dernières pages) */
+    body{font-family:'Inter',sans-serif}
+    .line-clamp-2{line-clamp:2;-webkit-line-clamp:2;-webkit-box-orient:vertical;display:-webkit-box;overflow:hidden}
+    .line-clamp-3{line-clamp:3;-webkit-line-clamp:3;-webkit-box-orient:vertical;display:-webkit-box;overflow:hidden}
+    .fade-reveal{opacity:0;transform:translateY(12px)}
+    .scale-reveal{opacity:0;transform:scale(.98)}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;border-radius:.875rem;padding:.6rem .95rem;font-weight:700}
+    .btn-primary{background:rgb(2, 87, 2);color:#fff}.btn-primary:hover{opacity:.95}
+    .btn-ghost{background:#fff;color:rgb(2, 90, 2);box-shadow:0 0 0 1px rgba(15,23,42,.10)} .btn-ghost:hover{background:#f8fafc}
+    .navlink{color:#000;font-weight:700}.navlink:hover,.navlink.active{color:rgb(226, 148, 3)}
+    .chip{display:inline-flex;align-items:center;border-radius:9999px;padding:.45rem .8rem;font-weight:600;font-size:.85rem;background:#fff;color:rgb(223, 147, 7);box-shadow:0 0 0 1px rgba(15,23,42,.10)}
+    .badge{display:inline-flex;align-items:center;gap:.35rem;border-radius:.75rem;background:#f1f5f9;color:#334155;padding:.25rem .5rem;font-weight:600;font-size:.7rem;border:1px solid #e2e8f0}
+    .card{background:#fff;border:1px solid #e2e8f0;border-radius:1rem;transition:.25s}
+    .card:hover{transform:translateY(-2px) scale(1.01);border-color:#cbd5e1}
+    .progressbar{height:.45rem;border-radius:9999px;overflow:hidden;background:#e2e8f0}
+    .progressbar>span{display:block;height:100%;background:rgb(0, 87, 0);transform-origin:left;transform:scaleX(0)}
   </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-neutral-50 text-slate-800">
 
-    <!-- Header & Navigation -->
-    <header class="bg-white shadow-sm">
-        <nav class="max-w-6xl mx-auto px-4 flex items-center justify-between py-4">
-            <!-- Logo -->
-            <a href="../index.html" class="flex items-center space-x-2">
-                <img src="../images/logo_light.webp" alt="Masco Logo" class="h-10">
-                <span class="font-bold text-lg" style="color: #e67e22;">MASCO</span>
-            </a>
+  <!-- Barre de progression lecture -->
+  <div id="progress" class="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-[orange] via-slate-500 to-[green] origin-left scale-x-0 z-50"></div>
 
-            <!-- Mobile Menu Button -->
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="p-2 rounded text-gray-600 hover:bg-gray-100">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
-            </div>
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-white/85 backdrop-blur border-b border-slate-200">
+    <nav class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-2">
+        <img src="../images/logo_light.webp" alt="MASCO" class="h-9 w-9 rounded-lg ring-1 ring-black/5">
+        <span class="text-xl font-extrabold tracking-tight text-orange-700">MASCO</span>
+      </a>
+      <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100" aria-expanded="false" aria-controls="mobile-menu" aria-label="Ouvrir le menu">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-width="2" d="M4 6h16M4 12h16m-8 6h8"/></svg>
+      </button>
+      <ul id="main-nav" class="hidden md:flex items-center gap-6 text-sm">
+        <li><a href="../index.html#hero" class="navlink">Accueil</a></li>
+        <li><a href="../index.html#about" class="navlink">À propos</a></li>
+        <li><a href="../index.html#services" class="navlink">Services</a></li>
+        <li><a href="../index.html#projects" class="navlink">Projets</a></li>
+        <li><a href="../pages/blog.html" class="navlink">Blog</a></li>
+        <li><a href="../pages/contact.html" class="btn btn-primary text-sm">Contact</a></li>
+      </ul>
+    </nav>
+    <!-- Mobile -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200">
+      <ul class="flex flex-col items-center space-y-1 py-3 text-sm font-semibold">
+        <li><a href="../index.html#hero" class="block w-full text-center py-2 hover:bg-slate-100">Accueil</a></li>
+        <li><a href="../index.html#about" class="block w-full text-center py-2 hover:bg-slate-100">À propos</a></li>
+        <li><a href="../index.html#services" class="block w-full text-center py-2 hover:bg-slate-100">Nos Services</a></li>
+        <li><a href="../index.html#projects" class="block w-full text-center py-2 hover:bg-slate-100">Projets</a></li>
+        <li><a href="../pages/blog.html" class="block w-full text-center py-2 hover:bg-slate-100">Blog</a></li>
+        <li><a href="../index.html#contact" class="block w-full text-center py-2 hover:bg-slate-100">Contact</a></li>
+      </ul>
+    </div>
+  </header>
 
-            <!-- Desktop Navigation -->
-            <ul id="main-nav" class="hidden md:flex items-center space-x-6 text-sm font-medium text-gray-700">
-                <li><a href="../index.html#hero" class="hover:text-primary">Accueil</a></li>
-                <li><a href="../index.html#about" class="hover:text-primary">À propos</a></li>
-                <li><a href="../index.html#services" class="hover:text-primary">Nos Services</a></li>
-                <li><a href="../index.html#projects" class="hover:text-primary">Projets</a></li>
-                <li><a href="../index.html#blog" class="hover:text-primary">Blog</a></li>
-                <li><a href="../index.html#contact" class="hover:text-primary">Contact</a></li>
-            </ul>
+  <!-- Hero -->
+  <section class="bg-white border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 py-8 md:py-10 grid grid-cols-1 lg:grid-cols-[1.2fr_.8fr] gap-8 items-center">
+      <div class="fade-reveal">
+        <nav class="text-xs text-slate-500">
+          <ol class="flex items-center gap-1">
+            <li><a href="../index.html#projects" class="hover:text-[#1a3a5e]">Projets</a></li><li>/</li>
+            <li class="text-slate-700 font-medium">Étude de cas</li>
+          </ol>
         </nav>
+        <h1 class="mt-2 text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">
+          Réhabilitation ferroviaire — premières phases
+        </h1>
+        <p class="mt-2 text-slate-600 max-w-2xl">Objectifs, jalons, impacts et résultats attendus dans une feuille de route claire et mesurable.</p>
+        <!-- Corps -->
+  <main class="max-w-6xl mx-auto px-4 pb-14">
+    <article class="fade-reveal prose prose-slate max-w-none">
+      <h2>Contexte et objectifs</h2>
+      <p>Jadis, le train Kisangani–Ubundu grondait au rythme du fleuve et ouvrait la voie aux échanges, reliant des peuples, des marchés et des rêves. Construit vers la fin des années 1920 pour contourner les cataractes du fleuve Congo, ce chemin de fer a aujourd’hui plus de 100 ans d’existence. Pendant des décennies, il fut une artère vitale, transportant des minerais stratégiques tels que le Tin, le Tantale et le Tungstène (3T), mais aussi des produits agricoles et du bois.</p>
+      <p>Avec le temps, les rails se sont fatigués, les wagons se sont tus… et aujourd’hui, le chemin de fer se trouve dans un état délabré, témoin d’une histoire presque oubliée.</p>
 
-        <!-- Mobile Menu (Hidden by default) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
-            <ul class="flex flex-col items-center space-y-2 py-4">
-                 <li><a href="../index.html#hero" class="block py-2 px-4 hover:bg-gray-100 w-full text-center">Accueil</a></li>
-                <li><a href="../index.html#about" class="block py-2 px-4 hover:bg-gray-100 w-full text-center">À propos</a></li>
-                <li><a href="../index.html#services" class="block py-2 px-4 hover:bg-gray-100 w-full text-center">Nos Services</a></li>
-                <li><a href="../index.html#projects" class="block py-2 px-4 hover:bg-gray-100 w-full text-center">Projets</a></li>
-                <li><a href="../index.html#blog" class="block py-2 px-4 hover:bg-gray-100 w-full text-center">Blog</a></li>
-                <li><a href="../index.html#contact" class="block py-2 px-4 hover:bg-gray-100 w-full text-center">Contact</a></li>
-            </ul>
-        </div>
-    </header>
+      <blockquote>
+        « Une nouvelle ère s’ouvre. Grâce à la vision du Chef de l’État Félix Antoine Tshisekedi Tshilombo, et sous l’encadrement de l’APCSC, MASCO Énergie & Construction, en partenariat avec ses partenaires financiers, croit qu’une renaissance est possible. »
+      </blockquote>
 
-  <div class="container mx-auto max-w-4xl p-4 md:p-8">
-    <a class="inline-block mb-6 px-4 py-2 rounded-full bg-primary text-white font-semibold hover:bg-opacity-90 transition" href="../index.html#projects">← Retour aux projets</a>
-    
-    <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
-      <h1 class="text-3xl md:text-4xl font-bold text-primary mb-2">Réhabilitation du chemin de fer Kisangani–Ubundu</h1>
-      <p class="text-gray-500 mb-6">Un projet de renaissance pour la connectivité et l'économie régionale.</p>
-      
-      <img src="../images/MASCO 2.png" alt="Illustration du projet Kisangani–Ubundu" class="w-full h-64 md:h-80 object-cover rounded-lg mb-6" loading="lazy">
+      <p><strong>Le 16 septembre 2025</strong>, le lancement officiel des travaux de reconstruction du chemin de fer Kisangani–Ubundu, Kindu–Kabalo–Kalemie sera effectué. Reconstruire ce chemin de fer, c’est plus qu’un chantier :</p>
+      <ul>
+        <li>C’est rallumer une mémoire collective,</li>
+        <li>Reconnecter des communautés,</li>
+        <li>Redonner souffle au développement.</li>
+      </ul>
 
-      <div class="prose max-w-none">
-        <h2 class="text-2xl font-semibold text-primary">Contexte et Objectifs</h2>
-        <p>Jadis, le train Kisangani–Ubundu grondait au rythme du fleuve et ouvrait la voie aux échanges, reliant des peuples, des marchés et des rêves. Construit vers la fin des années 1920 pour contourner les cataractes du fleuve Congo, ce chemin de fer a aujourd’hui plus de 100 ans d’existence. Pendant des décennies, il fut une artère vitale, transportant des minerais stratégiques tels que le Tin, le Tantale et le Tungstène (3T), mais aussi des produits agricoles et du bois.</p>
-        <p>Avec le temps, les rails se sont fatigués, les wagons se sont tus… et aujourd’hui, le chemin de fer se trouve dans un état délabré, témoin d’une histoire presque oubliée.</p>
-        
-        <blockquote class="border-l-4 border-primary pl-4 italic text-gray-700 my-4">
-            "Une nouvelle ère s’ouvre. Grâce à la vision du Chef de l’État Félix Antoine Tshisekedi Tshilombo, et sous l’encadrement de l’APCSC, MASCO Énergie et Construction, en partenariat avec ses partenaires financiers, croit qu’une renaissance est possible."
-        </blockquote>
-
-        <p>Le 16 septembre 2025, le lancement officiel des travaux de reconstruction du chemin de fer Kisangani–Ubundu, Kindu–Kabalo–Kalemie sera effectué. Reconstruire ce chemin de fer, c’est plus qu’un chantier :</p>
-        <ul class="list-disc list-inside">
-            <li>C’est rallumer une mémoire collective,</li>
-            <li>Reconnecter des communautés,</li>
-            <li>Redonner souffle au développement.</li>
-        </ul>
-        
-        <div class="my-6 bg-gray-50 p-4 rounded-lg text-center">
-            <img src="../images/logo_light.webp" alt="Illustration symbolique du rail en reconstruction" class="w-1/2 mx-auto h-auto object-contain rounded-lg" loading="lazy">
-            <p class="mt-2 text-sm text-gray-600">MASCO Énergie et Construction : L'avenir se construit sur les rails de notre histoire.</p>
-        </div>
-
-        <h2 class="text-2xl font-semibold text-primary mt-8">Nos Partenaires sur ce Projet</h2>
-        <div class="flex flex-wrap gap-x-6 gap-y-4 items-center mt-4">
-            <div class="partner-item cursor-pointer" data-name="Vice-Ministère des ITPR" data-description="Le Vice-Ministère des Infrastructures, Travaux Publics et Reconstruction est un partenaire clé dans la supervision et la validation de nos projets d'envergure nationale." data-img-src="../images/vice-ministere.jpg">
-                <p class="font-semibold text-primary no-underline hover:underline">Vice-Ministère ITPR</p>
-            </div>
-            <div class="partner-item cursor-pointer" data-name="APCSC" data-description="L'APCSC nous accompagne dans la gestion et la logistique de nos projets, assurant une coordination efficace sur le terrain." data-img-src="../images/apcsc.jpg">
-                <p class="font-semibold text-primary no-underline hover:underline">APCSC</p>
-            </div>
-            <div class="partner-item cursor-pointer" data-name="BGFI Bank" data-description="Partenaire financier de premier plan, BGFI Bank nous soutient dans le financement de nos projets d'infrastructure." data-img-src="../images/bgfibank.jpg">
-                <p class="font-semibold text-primary no-underline hover:underline">BGFI Bank</p>
-            </div>
-            <div class="partner-item cursor-pointer" data-name="CCCC" data-description="China Communications Construction Company (CCCC) est un partenaire technique stratégique pour les projets ferroviaires et routiers." data-img-src="../images/cccc.jpg">
-                <p class="font-semibold text-primary no-underline hover:underline">CCCC</p>
-            </div>
-            <div class="partner-item cursor-pointer" data-name="CCECC" data-description="China Civil Engineering Construction Corporation (CCECC) collabore avec nous sur des projets de construction complexes." data-img-src="../images/ccecc.jpg">
-                <p class="font-semibold text-primary no-underline hover:underline">CCECC</p>
-            </div>
-             <div class="partner-item cursor-pointer" data-name="FHEC" data-description="FHEC est un partenaire essentiel pour les études et la mise en œuvre de nos projets énergétiques." data-img-src="../images/fhec.jpg">
-                <p class="font-semibold text-primary no-underline hover:underline">FHEC</p>
-            </div>
-            <div class="partner-item cursor-pointer" data-name="SNCC" data-description="La Société Nationale des Chemins de fer du Congo (SNCC) est un acteur historique et incontournable du transport ferroviaire en RDC, partenaire clé de nos projets de réhabilitation." data-img-src="../images/sncc.jpg">
-                <p class="font-semibold text-primary no-underline hover:underline">SNCC</p>
-            </div>
-        </div>
-
-        <h2 class="text-2xl font-semibold text-primary mt-8">Galerie Maquettes</h2>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-            <img src="../images/ferre.jpeg" alt="maquette 1" class="w-full h-40 object-cover rounded-lg" loading="lazy">
-            <img src="../images/MASCO 1.png" alt="maquette 2" class="w-full h-40 object-cover rounded-lg" loading="lazy">
-            <img src="../images/maqtt (4).jpg" alt="maquette 3" class="w-full h-40 object-cover rounded-lg" loading="lazy">
+      <div class="not-prose my-6">
+        <div class="rounded-2xl bg-white ring-1 ring-slate-200 p-6 text-center">
+          <img src="../images/logo_light.webp" alt="Symbole" class="mx-auto w-40 md:w-56 h-auto object-contain">
+          <p class="mt-3 text-sm text-slate-600">MASCO Énergie & Construction — L’avenir se construit sur les rails de notre histoire.</p>
         </div>
       </div>
+
+      <h2 id="partenaires">Nos partenaires</h2>
+
+        <div class="mt-5 flex flex-wrap gap-3">
+          <a href="../index.html#projects" class="btn btn-ghost text-sm">← Retour aux projets</a>
+          <!--<a href="#sommaire" class="btn btn-primary text-sm">Aller au sommaire</a>-->
+        </div>
+
+        <!-- mini stats -->
+        <dl class="mt-6 grid grid-cols-3 gap-3">
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-3 text-center">
+            <dt class="text-[11px] uppercase tracking-wide text-slate-500">Emplois</dt>
+            <dd class="mt-1 text-xl font-extrabold text-slate-900"><span class="count" data-to="850" data-suffix="+">0</span></dd>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-3 text-center">
+            <dt class="text-[11px] uppercase tracking-wide text-slate-500">Lecture</dt>
+            <dd class="mt-1 text-xl font-extrabold text-slate-900"><span class="read" data-words="1100">5 min</span></dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- Carte visuelle -->
+      <article class="scale-reveal card overflow-hidden">
+        <figure class="relative">
+          <img src="../images/maqtt (1).jpg" alt="Aperçu chantier" class="w-full h-56 object-cover">
+          <figcaption class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/35 to-transparent text-white text-xs">
+            Aperçu — Phase 1 : Terrassement & ouvrages d’art
+          </figcaption>
+        </figure>
+        <div class="p-5">
+          <div class="badge">
+            <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 12h12M9 7h.01M15 7h.01" stroke-width="1.4" stroke-linecap="round"/></svg>
+            Ferroviaire
+          </div>
+          <h2 class="mt-2 text-lg font-bold text-slate-900">Feuille de route : 2025–2027</h2>
+          <p class="mt-1.5 text-slate-600 line-clamp-2">Séquencement des travaux, priorisation des tronçons et gestion des interfaces.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <main class="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-[1fr_.35fr] gap-10">
+    <!-- Contenu principal -->
+    <article class="prose prose-slate max-w-none">
+      <!-- Sommaire sticky -->
+      <div id="sommaire" class="lg:hidden mb-6 rounded-xl bg-white ring-1 ring-slate-200 p-4">
+        <h3 class="text-sm font-extrabold text-slate-900">Sommaire</h3>
+        <ul class="mt-2 text-sm leading-6">
+          <li><a href="#objectifs" class="hover:text-[#1a3a5e]">1. Objectifs & périmètre</a></li>
+          <li><a href="#phases" class="hover:text-[#1a3a5e]">2. Phases & jalons</a></li>
+          <li><a href="#echelle-impact" class="hover:text-[#1a3a5e]">3. Notre impact (échelles)</a></li>
+          <li><a href="#avant-apres" class="hover:text-[#1a3a5e]">4. Avant / Après</a></li>
+          <li><a href="#galerie" class="hover:text-[#1a3a5e]">5. Galerie</a></li>
+        </ul>
+      </div>
+
+      <section id="objectifs" class="fade-reveal">
+        <h2>Objectifs & périmètre</h2>
+        <p>Réhabiliter de manière progressive le corridor prioritaire, sécuriser les ouvrages sensibles, améliorer la disponibilité de la voie et réduire les coûts logistiques.</p>
+        <ul>
+          <li>Remise à niveau de la plateforme et du ballast</li>
+          <li>Réparation d’ouvrages d’art — ponts & dalots</li>
+          <li>Signalisation, sécurité & exploitation</li>
+          <li>Approche sociale & emploi local</li>
+        </ul>
+      </section>
+
+      <!-- Timeline / Étapes -->
+      <section id="phases" class="mt-10 fade-reveal">
+        <h2>Phases & jalons clés</h2>
+        <ol class="relative border-s-2 border-slate-200 ml-3">
+          <li class="ms-4 py-4">
+            <div class="absolute -left-2.5 mt-1.5 h-4 w-4 rounded-full bg-orange-500 ring-4 ring-white"></div>
+            <h3 class="font-bold text-slate-900">Phase 1 — Diagnostics & accès</h3>
+            <p class="text-slate-600">Levé topo, tests géotechniques, organisation de base-vie & logistique.</p>
+          </li>
+          <li class="ms-4 py-4">
+            <div class="absolute -left-2.5 mt-1.5 h-4 w-4 rounded-full bg-green-700 ring-4 ring-white"></div>
+            <h3 class="font-bold text-slate-900">Phase 2 — Ouvrages prioritaires</h3>
+            <p class="text-slate-600">Ponts, dalots, soutènement — sécurisation des points critiques.</p>
+          </li>
+          <li class="ms-4 py-4">
+            <div class="absolute -left-2.5 mt-1.5 h-4 w-4 rounded-full bg-orange-500 ring-4 ring-white"></div>
+            <h3 class="font-bold text-slate-900">Phase 3 — Voie & signalisation</h3>
+            <p class="text-slate-600">Rails, traverses, ballast ; balisage & procédures d’exploitation.</p>
+          </li>
+          <li class="ms-4 py-4">
+            <div class="absolute -left-2.5 mt-1.5 h-4 w-4 rounded-full bg-green-700 ring-4 ring-white"></div>
+            <h3 class="font-bold text-slate-900">Phase 4 — Essais & mise en service</h3>
+            <p class="text-slate-600">Rodage, protocoles de sécurité, transfert & montée en cadence.</p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Échelles d’impact (bars animées) -->
+      <section id="echelle-impact" class="mt-10 fade-reveal">
+        <h2>Notre impact en échelles</h2>
+        <p class="text-slate-600">Mesures indicatives sur 12–18 mois d’exploitation.</p>
+
+        <div class="mt-4 space-y-4">
+          <!-- Logistique -->
+          <div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="font-semibold text-slate-800">Réduction coût logistique</span>
+              <span class="text-slate-600" data-bar-target="logistique">0%</span>
+            </div>
+            <div class="progressbar mt-2" aria-label="Réduction coût logistique">
+              <span id="bar-logistique" style="width:70%"></span>
+            </div>
+          </div>
+          <!-- Temps de transit -->
+          <div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="font-semibold text-slate-800">Gain sur temps de transit</span>
+              <span class="text-slate-600" data-bar-target="transit">0%</span>
+            </div>
+            <div class="progressbar mt-2" aria-label="Gain temps de transit">
+              <span id="bar-transit" style="width:55%"></span>
+            </div>
+          </div>
+          <!-- Emplois locaux -->
+          <div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="font-semibold text-slate-800">Emplois locaux mobilisés</span>
+              <span class="text-slate-600" data-bar-target="emplois">0%</span>
+            </div>
+            <div class="progressbar mt-2" aria-label="Emplois locaux">
+              <span id="bar-emplois" style="width:80%"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cartes KPI avec effet scale -->
+        <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="card p-5 hover:shadow-md">
+            <div class="flex items-center gap-2 text-slate-600 text-sm">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 3h18M3 12h18M3 21h18" stroke-linecap="round" stroke-width="1.5"/></svg>
+              KPI
+            </div>
+            <p class="mt-2 text-3xl font-extrabold text-slate-900"><span class="count" data-to="115">0</span> km</p>
+            <p class="text-slate-600">Tronçon prioritaire</p>
+          </div>
+          <div class="card p-5 hover:shadow-md">
+            <div class="flex items-center gap-2 text-slate-600 text-sm">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m6 12 4 4 8-8" stroke-linecap="round" stroke-width="1.6"/></svg>
+              Qualité
+            </div>
+            <p class="mt-2 text-3xl font-extrabold text-slate-900"><span class="count" data-to="96" data-suffix="%">0</span></p>
+            <p class="text-slate-600">Taux de conformité</p>
+          </div>
+          <div class="card p-5 hover:shadow-md">
+            <div class="flex items-center gap-2 text-slate-600 text-sm">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v18M3 12h18" stroke-linecap="round" stroke-width="1.5"/></svg>
+              Sécurité
+            </div>
+            <p class="mt-2 text-3xl font-extrabold text-slate-900"><span class="count" data-to="18">0</span> protocoles</p>
+            <p class="text-slate-600">Procédures opérationnelles</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Avant / Après (curseur échelle) -->
+      <section id="avant-apres" class="mt-10 fade-reveal">
+        <h2>Avant / Après</h2>
+        <div class="relative rounded-2xl overflow-hidden ring-1 ring-slate-200 bg-white">
+          <div class="relative w-full h-72 md:h-96">
+            <img src="../images/maqtt (2).jpg" alt="Avant" class="absolute inset-0 w-full h-full object-cover">
+            <img id="after-img" src="../images/maqtt (3).jpg" alt="Après" class="absolute inset-0 w-full h-full object-cover" style="clip-path:inset(0 50% 0 0)">
+            <div class="absolute inset-x-0 bottom-0 p-2 text-white text-xs bg-gradient-to-t from-black/30 to-transparent flex justify-between">
+              <span>Avant</span><span>Après</span>
+            </div>
+          </div>
+          <input id="slider" type="range" min="0" max="100" value="50" class="w-full appearance-none accent-orange-600 h-2">
+        </div>
+        <p class="mt-2 text-xs text-slate-500">Glisse le curseur pour comparer.</p>
+      </section>
+
+      <!-- Galerie -->
+      <section id="galerie" class="mt-10 fade-reveal">
+        <h2>Galerie</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-3">
+          <img src="../images/ferre.jpeg" alt="Site A" class="gallery w-full h-40 object-cover rounded-xl ring-1 ring-slate-200 cursor-zoom-in transition hover:brightness-95" loading="lazy">
+          <img src="../images/MASCO 1.png" alt="Site B" class="gallery w-full h-40 object-cover rounded-xl ring-1 ring-slate-200 cursor-zoom-in transition hover:brightness-95" loading="lazy">
+          <img src="../images/maqtt (4).jpg" alt="Site C" class="gallery w-full h-40 object-cover rounded-xl ring-1 ring-slate-200 cursor-zoom-in transition hover:brightness-95" loading="lazy">
+        </div>
+      </section>
+
+      <!-- Appel à action -->
+      <div class="fade-reveal mt-10">
+        <a href="../pages/contact.html" class="btn btn-primary">Discuter de votre projet</a>
+      </div>
+    </article>
+
+    <!-- TOC sticky (bureau) + info -->
+    <aside class="hidden lg:block pt-2">
+      <div class="sticky top-24 space-y-4">
+        <nav class="rounded-xl bg-white ring-1 ring-slate-200 p-4">
+          <h3 class="text-sm font-extrabold text-slate-900">Sommaire</h3>
+          <ul class="mt-2 text-sm leading-6">
+            <li><a href="#objectifs" class="hover:text-[#1a3a5e]">1. Objectifs & périmètre</a></li>
+            <li><a href="#phases" class="hover:text-[#1a3a5e]">2. Phases & jalons</a></li>
+            <li><a href="#echelle-impact" class="hover:text-[#1a3a5e]">3. Notre impact (échelles)</a></li>
+            <li><a href="#avant-apres" class="hover:text-[#1a3a5e]">4. Avant / Après</a></li>
+            <li><a href="#galerie" class="hover:text-[#1a3a5e]">5. Galerie</a></li>
+          </ul>
+        </nav>
+
+        <!--<div class="rounded-xl bg-white ring-1 ring-slate-200 p-4">
+          <p class="text-sm text-slate-600">Besoin d’un dossier complet (PDF) ?</p>
+          <a href="#" class="mt-2 inline-flex btn btn-ghost text-sm">Télécharger la présentation</a>
+        </div>-->
+      </div>
+    </aside>
+  </main>
+<!-- Footer -->
+<footer class="bg-green-900 text-gray-300">
+  <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+    
+    <!-- Bloc 1 : Présentation -->
+    <div>
+      <img src="../images/logo_light.webp" alt="Masco Logo" class="h-12 mb-4">
+      <p class="text-sm leading-relaxed">
+        Masco Énergie et Construction SA est engagée dans la réhabilitation
+        des infrastructures et l’innovation en RDC.
+      </p>
+      <p class="mt-4 text-orange-400 font-semibold">Construire l’Afrique, Concevoir l’avenir.</p>
+    </div>
+
+    <!-- Bloc 2 : Contact -->
+    <div>
+      <h3 class="text-lg font-bold text-white mb-4">Contactez-nous</h3>
+      <ul class="space-y-2 text-sm">
+        <li class="flex items-center gap-2">
+          <i class="fas fa-phone-alt text-orange-400"></i>
+          +243 892 555 988 / +243 979 271 125
+        </li>
+        <li class="flex items-center gap-2">
+          <i class="fas fa-envelope text-orange-400"></i>
+          energiesmasco123@gmail.com
+        </li>
+        <li class="flex items-center gap-2">
+          <i class="fas fa-map-marker-alt text-orange-400"></i>
+          7, Avenue du 10 Octobre, Makiso, Kisangani – RDC
+        </li>
+      </ul>
+      <!-- Réseaux sociaux -->
+      <div class="flex gap-4 mt-4">
+        <a href="https://linkedin.com" target="_blank" class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-800 hover:bg-orange-500 transition">
+          <i class="fab fa-linkedin text-white"></i>
+        </a>
+        <a href="https://facebook.com/MascoSA" target="_blank" class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-800 hover:bg-orange-500 transition">
+          <i class="fab fa-facebook-f text-white"></i>
+        </a>
+        <a href="https://wa.me/243892555988" target="_blank" class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-800 hover:bg-orange-500 transition">
+          <i class="fab fa-whatsapp text-white"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Bloc 3 : Liens rapides -->
+    <div>
+      <h3 class="text-lg font-bold text-white mb-4">Navigation</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a href="#hero" class="hover:text-orange-400 transition">Accueil</a></li>
+        <li><a href="#services" class="hover:text-orange-400 transition">Services</a></li>
+        <li><a href="#projects" class="hover:text-orange-400 transition">Projets</a></li>
+        <li><a href="#contact" class="hover:text-orange-400 transition">Contact</a></li>
+      </ul>
     </div>
   </div>
 
-  <!-- Modal for Partner Details -->
-  <div id="partner-modal" class="modal-backdrop" aria-hidden="true" role="dialog">
-      <div class="modal max-w-lg w-11/12 p-6 relative">
-          <button id="modal-close-btn" class="absolute top-3 right-4 text-2xl font-bold text-gray-600 hover:text-black">&times;</button>
-          <div id="modal-content" class="text-center">
-              <!-- Content will be injected by JS -->
-          </div>
-      </div>
+  <!-- Bas de page -->
+  <div class="border-t border-gray-700 text-center py-4 text-sm text-gray-500">
+    © 2025 Masco Énergie et Construction SA. Design par 
+    <a href="https://portfoliodavidwawina.vercel.app" target="_blank" class="text-orange-400 hover:underline">Almekita Sarl</a>.
+    Tous droits réservés.
+  </div>
+</footer>
+
+  <!-- Modal (lightbox) -->
+  <div id="modal" class="fixed inset-0 hidden items-center justify-center bg-black/60 z-50 p-4" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="relative w-full max-w-2xl rounded-2xl bg-white ring-1 ring-slate-200 shadow-xl overflow-hidden">
+      <button id="modal-close" class="absolute top-3 right-3 rounded-lg p-1.5 text-slate-600 hover:bg-slate-100" aria-label="Fermer">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-width="1.6" d="M6 18 18 6M6 6l12 12"/></svg>
+      </button>
+      <div id="modal-content" class="p-4 md:p-6 text-center"></div>
+    </div>
   </div>
 
-    <!-- Footer -->
-    <footer class="bg-white text-gray-800 mt-12 py-8">
-        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-            <div>
-                <h3 class="font-bold text-lg mb-2">MASCO Énergie & Construction</h3>
-                <p class="text-sm text-gray-600">&copy; 2025 Tous droits réservés.</p>
-                <p class="text-sm text-gray-600 mt-2">Construire l'Afrique, Concevoir l'avenir.</p>
-            </div>
-            <div>
-                <h3 class="font-bold text-lg mb-2">Liens Rapides</h3>
-                <ul class="space-y-1 text-sm">
-                    <li><a href="../index.html#hero" class="text-gray-600 hover:text-primary">Accueil</a></li>
-                    <li><a href="../index.html#services" class="text-gray-600 hover:text-primary">Services</a></li>
-                    <li><a href="../index.html#projects" class="text-gray-600 hover:text-primary">Projets</a></li>
-                    <li><a href="../index.html#contact" class="text-gray-600 hover:text-primary">Contact</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="font-bold text-lg mb-2">Légal</h3>
-                <ul class="space-y-1 text-sm">
-                    <li><a href="#" class="text-gray-600 hover:text-primary">Mentions légales</a></li>
-                    <li><a href="#" class="text-gray-600 hover:text-primary">Politique de confidentialité</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
+  <!-- Back to top -->
+  <button id="backtop" class="hidden fixed bottom-6 right-6 rounded-full p-3 bg-[#1a3a5e] text-white shadow-lg hover:opacity-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 z-40" aria-label="Remonter">
+    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-width="1.6" d="m5 15 7-7 7 7"/></svg>
+  </button>
 
   <script>
-    // Mobile menu toggle (robust: use 'is-open' and sync with 'hidden' + aria-expanded)
-    (function() {
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const desktopNav = document.getElementById('main-nav');
+  (() => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        if (!mobileMenuButton || !mobileMenu) return;
+    /* Barre de progression */
+    const progressEl = document.getElementById('progress');
+    const updateProgress = () => {
+      const h = document.documentElement;
+      const scrolled = (h.scrollTop || 0) / ((h.scrollHeight - h.clientHeight) || 1);
+      progressEl.style.transform = `scaleX(${Math.max(0, Math.min(1, scrolled))})`;
+    };
+    document.addEventListener('scroll', updateProgress, { passive: true }); updateProgress();
 
-        if(!mobileMenuButton.hasAttribute('aria-expanded')) mobileMenuButton.setAttribute('aria-expanded','false');
+    /* Mobile menu */
+    const mobileBtn = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const desktopNav = document.getElementById('main-nav');
+    mobileBtn?.addEventListener('click', () => {
+      const hidden = mobileMenu.classList.toggle('hidden');
+      mobileBtn.setAttribute('aria-expanded', String(!hidden));
+      if (!hidden) desktopNav?.classList.add('hidden');
+    });
+    const onResize = () => {
+      if (innerWidth >= 768) { desktopNav?.classList.remove('hidden'); mobileMenu?.classList.add('hidden'); mobileBtn?.setAttribute('aria-expanded','false'); }
+      else { desktopNav?.classList.add('hidden'); }
+    };
+    addEventListener('resize', onResize); addEventListener('load', onResize);
 
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('is-open');
-            if(mobileMenu.classList.contains('is-open')){
-                mobileMenu.classList.remove('hidden');
-                mobileMenuButton.setAttribute('aria-expanded','true');
-            } else {
-                mobileMenu.classList.add('hidden');
-                mobileMenuButton.setAttribute('aria-expanded','false');
-            }
-        });
-
-        // Close when clicking a menu link
-        const links = mobileMenu.querySelectorAll('a');
-        links.forEach(a => a.addEventListener('click', ()=>{
-            mobileMenu.classList.remove('is-open');
-            mobileMenu.classList.add('hidden');
-            mobileMenuButton.setAttribute('aria-expanded','false');
-        }));
-
-        // Ensure closed on desktop resize
-        function handleResize(){
-            if(window.innerWidth >= 768){
-                if(desktopNav) desktopNav.classList.remove('hidden');
-                mobileMenu.classList.remove('is-open');
-                mobileMenu.classList.add('hidden');
-            } else {
-                if(desktopNav) desktopNav.classList.add('hidden');
-            }
+    /* Reveal on scroll */
+    const reveals = document.querySelectorAll('.fade-reveal,.scale-reveal');
+    reveals.forEach(el => {
+      if (el.classList.contains('fade-reveal')) { el.style.opacity=0; el.style.transform='translateY(12px)'; }
+      if (el.classList.contains('scale-reveal')) { el.style.opacity=0; el.style.transform='scale(.985)'; }
+    });
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => {
+        if(!e.isIntersecting) return;
+        const el = e.target;
+        if (el.classList.contains('fade-reveal')) {
+          el.style.opacity = 1; el.style.transform = 'none';
+          el.style.transition = prefersReduced ? 'opacity 200ms' : 'opacity 600ms, transform 600ms';
+        } else {
+          el.style.opacity = 1; el.style.transform = 'none';
+          el.style.transition = prefersReduced ? 'opacity 200ms' : 'opacity 650ms, transform 650ms';
         }
-        window.addEventListener('resize', handleResize);
-        window.addEventListener('load', handleResize);
-    })();
+        obs.unobserve(el);
+      });
+    }, { threshold: .15 });
+    reveals.forEach(el => io.observe(el));
 
-    // Partner Modal Logic
-    (function() {
-        const partnerItems = document.querySelectorAll('.partner-item');
-        const modal = document.getElementById('partner-modal');
-        const modalContent = document.getElementById('modal-content');
-        const closeModalBtn = document.getElementById('modal-close-btn');
+    /* Compteurs */
+    function ease(t){return 1 - Math.pow(1 - t, 3)}
+    function runCounter(el, to, suffix=''){
+      if (prefersReduced) { el.textContent = to.toLocaleString('fr-FR') + (suffix||''); return; }
+      const start = performance.now();
+      const step = now => {
+        const p = Math.min(1, (now - start) / 1200);
+        const v = Math.round(to * ease(p));
+        el.textContent = v.toLocaleString('fr-FR') + (suffix||'');
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+    const ioCount = new IntersectionObserver((ents,obs)=>ents.forEach(e=>{
+      if(!e.isIntersecting) return;
+      runCounter(e.target, parseInt(e.target.dataset.to||'0',10), e.target.dataset.suffix||'');
+      obs.unobserve(e.target);
+    }), {threshold:.4});
+    document.querySelectorAll('.count').forEach(el=>ioCount.observe(el));
 
-        if (!modal) return;
-
-        partnerItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const name = item.dataset.name;
-                const description = item.dataset.description;
-                const imgSrc = item.dataset.imgSrc;
-                
-                modalContent.innerHTML = `
-                    <img src="${imgSrc}" alt="Logo ${name}" class="w-24 h-24 object-contain mx-auto mb-4 rounded-md">
-                    <h3 class="text-2xl font-bold text-primary mb-3">${name}</h3>
-                    <p class="text-gray-700">${description}</p>
-                `;
-                
-                modal.style.display = 'flex';
-                modal.setAttribute('aria-hidden', 'false');
-            });
+    /* Échelles (barres) */
+    const bars = [
+      { id:'#bar-logistique', labelTarget:'[data-bar-target="logistique"]', val:70 },
+      { id:'#bar-transit', labelTarget:'[data-bar-target="transit"]', val:55 },
+      { id:'#bar-emplois', labelTarget:'[data-bar-target="emplois"]', val:80 },
+    ];
+    const animateBar = (barEl, toPct) => {
+      if (prefersReduced) { barEl.style.transform = 'scaleX(1)'; return; }
+      const start = performance.now();
+      const step = now => {
+        const p = Math.min(1, (now - start) / 1200);
+        const s = (toPct/100) * (1 - Math.pow(1-p,3));
+        barEl.style.transform = `scaleX(${s})`;
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+    const ioBars = new IntersectionObserver((ents,obs)=>{
+      ents.forEach(e=>{
+        if(!e.isIntersecting) return;
+        bars.forEach(b=>{
+          const el = document.querySelector(b.id);
+          const lbl = document.querySelector(b.labelTarget);
+          if(el){ animateBar(el, b.val); }
+          if(lbl){ lbl.textContent = b.val + '%'; }
         });
+        obs.disconnect();
+      });
+    }, {threshold:.3});
+    const anyBar = document.querySelector('#bar-logistique'); if (anyBar) ioBars.observe(anyBar);
 
-        function closeModal() {
-            modal.style.display = 'none';
-            modal.setAttribute('aria-hidden', 'true');
-        }
+    /* Avant/Après slider */
+    const slider = document.getElementById('slider');
+    const afterImg = document.getElementById('after-img');
+    slider?.addEventListener('input', (e)=>{
+      const v = e.target.valueAsNumber || 50;
+      afterImg.style.clipPath = `inset(0 ${100-v}% 0 0)`;
+    });
 
-        closeModalBtn.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-    })();
+    /* Lightbox */
+    const modal = document.getElementById('modal');
+    const modalContent = document.getElementById('modal-content');
+    const closeBtn = document.getElementById('modal-close');
+    const openModal = () => { modal.classList.remove('hidden'); document.body.style.overflow='hidden'; };
+    const closeModal = () => { modal.classList.add('hidden'); document.body.style.overflow=''; };
+    closeBtn?.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) closeModal(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
+    document.querySelectorAll('.gallery').forEach(img=>{
+      img.addEventListener('click', ()=>{
+        modalContent.innerHTML = `
+          <figure class="overflow-hidden rounded-xl">
+            <img src="${img.src}" alt="${img.alt}" class="w-full h-auto object-contain">
+            <figcaption class="mt-2 text-xs text-slate-600">${img.alt || 'Aperçu'}</figcaption>
+          </figure>`;
+        openModal();
+      });
+    });
+
+    /* Temps de lecture */
+    const WPM = 200;
+    document.querySelectorAll('.read').forEach(el => {
+      const w = parseInt(el.dataset.words || '600', 10);
+      el.textContent = `${Math.max(1, Math.round(w/WPM))} min`;
+    });
+
+    /* Back to top */
+    const back = document.getElementById('backtop');
+    const backIO = new IntersectionObserver(([entry])=>{
+      back.classList.toggle('hidden', entry.isIntersecting);
+    }, {threshold:0.01});
+    backIO.observe(document.querySelector('header'));
+    back.addEventListener('click', ()=> scrollTo({top:0, behavior:'smooth'}));
+  })();
   </script>
-
 </body>
 </html>
